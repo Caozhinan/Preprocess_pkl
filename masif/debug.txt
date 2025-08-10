@@ -1,0 +1,19 @@
+zncao02@f100$ p /xcfhome/zncao02/AffinSculptor/masif/extract_feature_triang.py
+Traceback (most recent call last):
+File "/xcfhome/zncao02/AffinSculptor/masif/extract_feature_triang.py", line 14, in <module>
+from triangulation.fixmesh import fix_mesh
+File "/xcfhome/zncao02/AffinSculptor/masif/source/triangulation/fixmesh.py", line 3, in <module>
+import pymesh
+File "/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh/init.py", line 18, in <module>
+from .Mesh import Mesh
+File "/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh/Mesh.py", line 5, in <module>
+import PyMesh
+ModuleNotFoundError: No module named 'PyMesh'
+(dynaformer) ~/dataset_bap/test_set/custom/6uux-QHM
+zncao02@f100$ pip install PyMesh
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Requirement already satisfied: PyMesh in /xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages (0.2.0)
+Requirement already satisfied: numpy in /xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages (from PyMesh) (1.20.3)
+WARNING: Error parsing dependencies of omegaconf: .* suffix can only be used with == or != operators
+PyYAML (>=5.1.*)
+~~~~~~^

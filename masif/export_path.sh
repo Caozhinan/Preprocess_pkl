@@ -1,0 +1,9 @@
+export APBS_BIN=/xcfhome/zncao02/software/APBS-3.0.0.Linux/bin/apbs
+export MULTIVALUE_BIN=/xcfhome/zncao02/software/APBS-3.0.0.Linux/share/apbs/tools/bin/multivalue
+export PDB2PQR_BIN=/xcfhome/zncao02/software/pdb2pqr-linux-bin64-2.1.0/pdb2pqr
+export REDUCE_HET_DICT=/xcfhome/zncao02/software/reduce_wwPDB_het_dict.txt
+export PYMESH_PATH=/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh
+export MSMS_BIN=/xcfhome/zncao02/software/msms/msms.x86_64Linux2.2.6.1
+export PDB2XYZRN=/xcfhome/zncao02/software/msms/pdb_to_xyzrn
+export LD_LIBRARY_PATH=/xcfhome/zncao02/software/APBS-3.0.0.Linux/lib:$LD_LIBRARY_PATH
+export PATH=$PATH:/xcfhome/zncao02/software/reduce_bin

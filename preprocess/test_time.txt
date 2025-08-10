@@ -1,0 +1,2541 @@
+[TIMER] read_mol took 0.006 seconds
+[TIMER] mol2graph_protein_from_pdb took 0.039 seconds
+[TIMER] get_info took 0.031 seconds
+[TIMER] mol2graph_ligand took 0.001 seconds
+[TIMER] GB_score took 0.007 seconds
+DEBUG: 识别出的配体数量: 1
+[TIMER] analyze_plip_interactions took 0.155 seconds
+[2zga_frame75] read_mol: 0.006s, mol2graph_protein_from_pdb: 0.039s, get_info: 0.031s, mol2graph_ligand: 0.001s, GB_score: 0.007s, plip: 0.155s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.101742s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022103s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.124071s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021873s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021676s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000042s
+    [classify_protein_spatial_edges] single edge total: 0.043728s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022024s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021891s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044073s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021771s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021950s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043870s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022051s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022102s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044304s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022036s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021731s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043912s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021905s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103192s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.125310s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021892s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021896s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.043956s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021842s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025093s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.047092s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021886s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021941s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043979s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021822s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021838s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043808s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021779s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021665s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043592s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021958s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021910s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044017s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021890s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103335s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000058s
+    [classify_protein_spatial_edges] single edge total: 0.125443s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022253s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021873s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.044310s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021864s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021814s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043836s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022266s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021817s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044139s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022006s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021889s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043943s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022034s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021733s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043920s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021963s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021962s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044076s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021954s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105004s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.127164s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021921s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021934s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044022s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021999s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021830s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043987s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021671s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043695s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022163s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022059s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044373s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021773s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021935s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043856s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022010s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022048s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044126s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021898s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022030s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043976s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102695s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022109s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.125012s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021971s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021801s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.043947s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022100s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021976s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044229s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021760s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021833s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043742s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022040s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021942s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044035s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021942s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021726s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043714s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022056s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103791s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000066s
+    [classify_protein_spatial_edges] single edge total: 0.125945s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022094s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022113s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.044280s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022007s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022039s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.044108s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022017s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022110s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044305s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021963s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022148s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044288s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021995s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021913s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044072s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022059s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021961s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044177s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022090s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102905s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000067s
+    [classify_protein_spatial_edges] single edge total: 0.125095s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022028s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021990s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000046s
+    [classify_protein_spatial_edges] single edge total: 0.044095s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021676s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021899s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.043760s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021960s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021895s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044020s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021918s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043920s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022096s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021839s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043990s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025032s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021833s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.047030s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022078s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105912s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000066s
+    [classify_protein_spatial_edges] single edge total: 0.128213s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022269s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022063s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044511s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022030s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021867s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044065s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021734s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021558s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043353s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022058s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021932s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044044s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021882s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021796s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043825s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022316s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022111s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044592s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021802s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021877s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043827s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103172s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021963s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.125348s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021969s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021638s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043782s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022200s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022146s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044506s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021804s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021808s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043765s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021880s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021943s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043972s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021793s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021678s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043620s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022209s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102707s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000056s
+    [classify_protein_spatial_edges] single edge total: 0.125135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022134s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022096s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000046s
+    [classify_protein_spatial_edges] single edge total: 0.044307s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022028s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022035s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044223s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021751s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021940s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043850s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021936s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022149s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044236s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022007s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021873s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044038s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022260s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022199s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044606s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022201s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103722s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.126133s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022103s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022126s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044402s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021833s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021833s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043822s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021950s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021948s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044045s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021709s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021646s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043505s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022118s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021898s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044162s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021788s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021805s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043746s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021882s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103893s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.125992s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021807s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021929s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043910s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021966s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021848s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043969s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021882s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021854s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043886s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022173s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021945s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044263s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021643s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021921s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043707s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022031s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022109s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044300s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021909s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022006s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044057s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.106386s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021999s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.128593s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021849s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021808s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043830s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022123s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021917s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044199s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021692s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021921s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043766s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021924s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021982s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044049s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021880s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021528s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043553s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021978s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102593s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.124783s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021954s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021833s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043956s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021767s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043844s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021762s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021947s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043855s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022151s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044331s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022025s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021788s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043957s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021962s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022028s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000039s
+    [classify_protein_spatial_edges] single edge total: 0.044050s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021898s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103945s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.126063s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022065s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022056s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000045s
+    [classify_protein_spatial_edges] single edge total: 0.044195s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022081s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021931s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044173s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022009s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021825s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043991s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022049s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021841s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044044s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022255s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022195s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044597s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022071s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044358s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022146s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103626s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000068s
+    [classify_protein_spatial_edges] single edge total: 0.125874s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022194s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022198s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000040s
+    [classify_protein_spatial_edges] single edge total: 0.044460s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022159s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021944s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044158s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021997s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044038s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022165s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022091s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044309s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021943s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021943s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022079s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022356s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044617s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021823s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022059s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044050s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103029s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022215s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.125463s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021984s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021803s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043954s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022158s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022041s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044348s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021725s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021945s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043812s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022142s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022162s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044445s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021811s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021764s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043618s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022073s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102790s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.125072s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022310s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022284s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044764s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022229s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022193s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044577s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021774s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025237s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.047162s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022198s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022124s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044469s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021944s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021964s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044051s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022054s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021890s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021873s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105575s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.127656s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022283s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022046s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044506s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021934s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021962s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044050s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022059s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021924s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021759s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043894s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022051s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044305s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022173s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021929s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044245s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021868s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103715s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000050s
+    [classify_protein_spatial_edges] single edge total: 0.125788s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022046s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021944s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044153s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022229s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022089s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044366s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021987s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021721s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043854s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022132s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021992s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044270s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021778s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021846s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043768s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022042s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022125s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044324s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021877s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021913s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.043941s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.105367s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021991s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000060s
+    [classify_protein_spatial_edges] single edge total: 0.127577s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021995s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021879s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044038s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022145s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022150s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044449s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021842s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021907s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043913s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022168s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022207s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044522s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021913s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021967s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044031s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022243s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.106054s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.128507s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022063s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021785s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044017s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022117s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022018s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.044301s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022100s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044125s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022224s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022348s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044723s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022083s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021903s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044129s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022059s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044337s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022015s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103068s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000064s
+    [classify_protein_spatial_edges] single edge total: 0.125302s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022244s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022345s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000048s
+    [classify_protein_spatial_edges] single edge total: 0.044784s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021932s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022005s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043999s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022160s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021847s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044054s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021908s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021876s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043943s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022204s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021893s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044243s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021958s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022114s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044220s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025050s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105473s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.130730s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022075s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021994s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044233s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022064s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044140s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021947s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044081s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022080s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021870s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044096s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021770s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021880s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043796s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022013s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022070s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044245s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022006s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021934s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044090s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102785s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022122s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000064s
+    [classify_protein_spatial_edges] single edge total: 0.125135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021937s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021819s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000043s
+    [classify_protein_spatial_edges] single edge total: 0.043937s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022009s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022156s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044315s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021780s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021838s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043772s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021974s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022203s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044323s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021895s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022020s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044062s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022140s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103402s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000068s
+    [classify_protein_spatial_edges] single edge total: 0.125769s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022129s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022009s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.044211s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021868s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021893s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043927s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021736s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021881s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043773s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022165s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022404s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044722s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021984s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021960s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044094s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022214s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022062s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044420s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021979s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102636s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000068s
+    [classify_protein_spatial_edges] single edge total: 0.124843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022035s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021998s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000045s
+    [classify_protein_spatial_edges] single edge total: 0.044109s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022072s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021894s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044139s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022257s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022039s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044457s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021784s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021779s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043719s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022368s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022001s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044513s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021955s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044096s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022198s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.106834s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000068s
+    [classify_protein_spatial_edges] single edge total: 0.129258s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022002s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022038s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044213s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022032s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022041s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044238s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022094s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022032s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044183s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022254s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022153s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044569s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021794s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021871s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043720s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022022s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022072s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044164s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021908s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022141s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044209s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.108528s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022252s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000063s
+    [classify_protein_spatial_edges] single edge total: 0.131003s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021954s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021879s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000040s
+    [classify_protein_spatial_edges] single edge total: 0.044011s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022240s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022099s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044398s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021790s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021998s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.043947s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022182s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022166s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044405s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021885s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022079s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044126s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022134s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105689s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000067s
+    [classify_protein_spatial_edges] single edge total: 0.127923s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022104s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021850s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000040s
+    [classify_protein_spatial_edges] single edge total: 0.044149s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021896s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021973s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044031s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021649s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021857s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043561s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021952s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022048s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044052s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021894s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021708s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043757s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022011s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043987s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021757s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103473s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000065s
+    [classify_protein_spatial_edges] single edge total: 0.125448s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022034s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022116s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000045s
+    [classify_protein_spatial_edges] single edge total: 0.044226s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021721s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021824s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.043720s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021841s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043836s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021714s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021769s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043536s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022015s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021886s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043953s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022013s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021873s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043936s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021906s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104145s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.126268s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021823s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021879s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.043883s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022019s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022037s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044217s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021908s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021816s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043873s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022383s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022066s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044604s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021917s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022000s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044066s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022066s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022180s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044414s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021741s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021909s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043794s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102911s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022111s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000048s
+    [classify_protein_spatial_edges] single edge total: 0.125228s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021987s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021864s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044016s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022153s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021929s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044234s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022126s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044302s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022108s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022128s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044380s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021735s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021709s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043592s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022224s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103491s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.125930s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022122s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021967s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044258s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022057s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022062s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044277s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021792s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022012s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043959s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025556s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.047794s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022241s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022167s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044558s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022273s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022238s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044657s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022059s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104445s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.126717s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022146s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022044s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044364s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021942s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021845s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043946s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022112s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021839s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021863s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021676s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043593s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022093s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021827s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044063s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021963s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021786s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043893s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022007s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103006s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.125227s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021988s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021834s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043993s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021901s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044137s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021803s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021642s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043591s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022072s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022085s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044301s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021680s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021844s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043666s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021993s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021994s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044148s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021700s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021904s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043747s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102317s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022115s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000048s
+    [classify_protein_spatial_edges] single edge total: 0.124637s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021926s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021905s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043997s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022129s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022201s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044488s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021875s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022074s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044099s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022034s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022086s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044273s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021806s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021773s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043726s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021984s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103376s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.125570s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022122s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021742s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044040s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021831s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021898s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043885s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021773s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021959s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043881s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022034s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022168s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044348s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021716s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021707s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043567s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021994s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021964s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044003s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022004s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104233s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.126449s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022244s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022175s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044486s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021856s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022058s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044078s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022092s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021939s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044185s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021840s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021899s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043885s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022150s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022160s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044354s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022041s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021953s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044138s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021992s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.107232s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.129438s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021906s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021899s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.043972s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021911s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044170s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021902s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021793s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022235s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021994s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044374s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021702s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021792s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043639s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022028s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022110s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044305s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021799s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043790s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102680s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022044s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.124935s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021870s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021835s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.043880s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022331s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022326s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044809s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021695s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021884s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043727s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021926s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022087s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044158s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021937s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021734s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043823s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022121s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105545s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.127886s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022161s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021969s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044300s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021878s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021996s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021638s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021956s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043747s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022192s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022140s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044483s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022062s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021803s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044016s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022125s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021980s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044253s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021862s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104029s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000056s
+    [classify_protein_spatial_edges] single edge total: 0.126100s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022258s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022120s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044543s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021737s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021869s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043655s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021895s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021821s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043864s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022213s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021847s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044205s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022234s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022054s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044435s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021926s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021972s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044041s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021950s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103197s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.125355s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021808s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021947s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.043923s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022122s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021942s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044219s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021982s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021835s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043967s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022117s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022000s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044264s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021816s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021857s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043819s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022053s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022084s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044298s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021867s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022012s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044024s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.104658s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022078s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000049s
+    [classify_protein_spatial_edges] single edge total: 0.126945s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025325s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021931s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.047436s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022280s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022251s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044692s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021891s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022108s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044155s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022056s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022075s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044276s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021990s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021856s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043989s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022191s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105179s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.127591s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022868s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022019s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.045076s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022087s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022052s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044294s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021708s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021928s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043788s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022085s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022068s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044298s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021865s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021907s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043913s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022100s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021914s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044157s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022033s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105643s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000050s
+    [classify_protein_spatial_edges] single edge total: 0.127884s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022001s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021999s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044174s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021881s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021912s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022070s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021888s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021975s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021851s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043972s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022147s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021818s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044110s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021997s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021836s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043878s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021977s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.106304s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.128496s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022288s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022116s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000042s
+    [classify_protein_spatial_edges] single edge total: 0.044599s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022159s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021995s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044309s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021883s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021735s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043776s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022167s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022091s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044411s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021635s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021755s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043540s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021970s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022046s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044184s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021816s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021989s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043951s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.107027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022207s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.129449s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021969s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021807s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043947s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022210s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021882s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044248s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021768s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021797s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043718s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021830s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022050s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044028s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021849s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022089s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044085s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022035s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105290s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.127543s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021882s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.044156s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022068s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022029s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044251s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021670s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021856s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043680s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022071s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022138s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044355s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025125s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021728s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.047004s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021974s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021925s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044046s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022010s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105175s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.127400s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021941s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022093s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044207s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021765s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021953s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043865s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022149s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022071s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044367s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021988s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022045s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044180s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022088s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021910s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044142s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021976s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021858s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043978s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021888s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105103s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.127201s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021973s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022121s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044264s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022090s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022382s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044619s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022080s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021987s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044225s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022273s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022188s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044615s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021775s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021891s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.043807s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022003s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022343s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044405s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022115s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022300s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044560s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.105894s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022323s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.128293s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022027s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044311s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022027s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044317s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021728s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021917s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.043786s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022103s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022213s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044456s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021996s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021848s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000019s
+    [classify_protein_spatial_edges] single edge total: 0.043983s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022073s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103233s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.125517s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022077s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021940s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044189s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021967s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022237s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044357s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021824s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022013s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043885s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022071s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044203s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021744s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021713s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043600s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022235s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022050s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044428s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021971s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103410s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.125589s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022091s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021931s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044194s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021776s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021795s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043622s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021902s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021913s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043963s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022122s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021715s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043983s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022067s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021835s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044046s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021926s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021843s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043918s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021881s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.107143s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.129234s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021973s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021869s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044012s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022262s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022195s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044608s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022020s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021896s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044065s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022290s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022097s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044531s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021793s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021761s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043700s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021913s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022042s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044118s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021921s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102520s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022156s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.124885s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022001s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022029s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044197s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022163s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022160s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044472s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021799s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022275s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022126s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044543s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021797s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021706s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043650s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022010s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103606s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.125828s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022172s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021946s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044289s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022186s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022048s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044387s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021858s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021868s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022079s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022136s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044371s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021966s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021813s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043930s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022004s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021900s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044047s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022069s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.106619s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000056s
+    [classify_protein_spatial_edges] single edge total: 0.128903s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022020s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022031s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000045s
+    [classify_protein_spatial_edges] single edge total: 0.044234s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021838s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021989s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.043990s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022227s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021902s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044283s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021839s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021730s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043720s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022173s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022036s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044362s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021864s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021796s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043805s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022016s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.107362s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000058s
+    [classify_protein_spatial_edges] single edge total: 0.129598s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022184s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022061s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.044423s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022202s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022149s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044504s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022215s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022251s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044617s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022156s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022118s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044420s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021977s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021968s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044092s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022105s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044400s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021825s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022067s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044040s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.105466s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022179s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.127731s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021886s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025051s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.047119s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022245s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021928s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044337s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021780s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022000s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043828s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022100s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022128s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044376s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021881s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021643s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043568s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022061s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104528s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000057s
+    [classify_protein_spatial_edges] single edge total: 0.126676s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022105s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021949s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044246s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021841s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021957s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043958s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021764s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021919s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043836s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021988s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022133s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044266s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021839s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021746s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043629s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022116s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021880s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044140s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022007s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.105217s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000056s
+    [classify_protein_spatial_edges] single edge total: 0.127312s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022021s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021917s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043997s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021745s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021843s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043757s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021996s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021796s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043944s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021796s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021613s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043553s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022028s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021931s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044002s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021687s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021767s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043599s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021889s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103857s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.125954s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021889s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021876s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043933s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022092s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021822s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044061s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021866s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021829s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043843s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022046s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021988s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044176s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021673s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021786s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043602s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022043s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022028s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044249s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021844s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021942s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000038s
+    [classify_protein_spatial_edges] single edge total: 0.043846s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103006s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022342s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.125553s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021841s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021710s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.043622s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021984s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022096s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044243s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021962s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021771s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.043891s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022007s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044093s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021904s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021704s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043755s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021948s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103728s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000058s
+    [classify_protein_spatial_edges] single edge total: 0.125902s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022173s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021857s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044200s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022012s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022173s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044337s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021896s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022144s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044187s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022201s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022199s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044548s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021991s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021791s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043926s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025356s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022112s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.047618s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022024s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103048s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.125285s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022112s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022210s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044502s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021997s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022097s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044253s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022170s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021957s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044274s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021846s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021823s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043814s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022149s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022019s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044312s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021896s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021917s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043956s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021968s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103707s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.125884s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022106s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022015s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044306s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022024s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022001s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044176s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022005s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021892s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044042s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022071s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022039s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044254s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021653s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021807s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.043503s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021965s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022164s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044288s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021953s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021920s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044015s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103588s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022240s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000047s
+    [classify_protein_spatial_edges] single edge total: 0.126030s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021922s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021797s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043884s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022178s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022014s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044338s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021850s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022155s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044148s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021984s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022081s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044224s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021896s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021734s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043776s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103049s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000066s
+    [classify_protein_spatial_edges] single edge total: 0.125134s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021994s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021792s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.043966s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021970s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021972s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.044111s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021769s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021856s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043778s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022041s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022135s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044331s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021952s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021986s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044091s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022166s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022233s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044551s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022078s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103456s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000053s
+    [classify_protein_spatial_edges] single edge total: 0.125744s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021962s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022338s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000043s
+    [classify_protein_spatial_edges] single edge total: 0.044372s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022124s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021950s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044231s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022260s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022006s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044424s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021964s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021743s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043870s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022023s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021975s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044160s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022075s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021953s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044176s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.109654s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000067s
+    [classify_protein_spatial_edges] single edge total: 0.131837s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022109s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021992s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000044s
+    [classify_protein_spatial_edges] single edge total: 0.044172s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021974s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021838s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043986s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022092s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021838s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044095s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022120s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021843s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044120s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021777s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021815s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043741s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022058s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022021s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044248s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022118s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022110s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044282s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103260s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022163s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000063s
+    [classify_protein_spatial_edges] single edge total: 0.125517s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022011s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021827s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000047s
+    [classify_protein_spatial_edges] single edge total: 0.043911s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021952s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021965s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044094s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021741s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021826s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043616s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022083s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044265s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021788s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021714s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043655s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022082s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104238s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.126528s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022085s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021907s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044172s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021927s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022027s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044008s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021740s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021802s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043690s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021948s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021938s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044031s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021783s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021645s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043581s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021915s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021806s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043868s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021742s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103409s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.125368s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021958s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022001s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044132s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021819s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021861s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.043833s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021962s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021790s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043901s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021809s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021793s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043752s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022105s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021792s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044043s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021933s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021978s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044060s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022228s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104263s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.126705s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022026s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044131s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022252s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022110s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044511s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022020s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021931s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044095s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022080s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021969s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044190s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021867s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021809s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043816s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022032s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022108s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044297s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021912s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021992s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044048s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.102221s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021968s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000049s
+    [classify_protein_spatial_edges] single edge total: 0.124392s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021979s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021885s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044030s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022232s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025441s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.047826s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021730s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021992s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043872s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021994s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022099s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044235s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021901s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021781s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043824s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022071s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103031s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000050s
+    [classify_protein_spatial_edges] single edge total: 0.125309s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022263s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022114s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044537s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022247s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022354s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044649s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021875s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022094s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044117s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022043s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022050s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000020s
+    [classify_protein_spatial_edges] single edge total: 0.044135s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021929s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021806s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000019s
+    [classify_protein_spatial_edges] single edge total: 0.043875s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022223s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021984s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044349s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021872s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103460s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000050s
+    [classify_protein_spatial_edges] single edge total: 0.125537s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021999s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022040s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044212s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021737s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021987s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043870s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022110s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021917s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044169s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021804s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021822s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043772s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022023s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022089s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044254s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021910s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021782s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043835s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021981s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103421s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000054s
+    [classify_protein_spatial_edges] single edge total: 0.125488s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021918s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021918s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044020s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022399s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021966s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044522s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021994s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021897s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044039s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022167s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022048s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044367s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021910s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021802s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043857s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021973s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022113s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044256s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021890s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022047s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044083s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103146s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022073s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000049s
+    [classify_protein_spatial_edges] single edge total: 0.125426s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022105s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021820s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044095s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022081s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021990s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044221s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021785s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021836s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.043772s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021838s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021990s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043975s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021778s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021622s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043543s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021841s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102822s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.124871s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022138s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021820s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044127s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021824s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021929s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043900s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021650s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021932s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043732s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021978s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021925s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044047s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021855s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021625s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043622s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022118s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021987s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044251s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.025056s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102818s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000052s
+    [classify_protein_spatial_edges] single edge total: 0.128086s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021914s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021894s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043977s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021847s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.043922s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022129s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021729s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044003s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021803s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021764s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043712s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022119s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022003s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.044265s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021929s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021950s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044018s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021793s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103986s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000058s
+    [classify_protein_spatial_edges] single edge total: 0.125992s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021943s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021870s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.043977s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022133s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021871s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044151s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021949s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021905s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044017s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022040s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022084s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044273s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021681s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021957s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000022s
+    [classify_protein_spatial_edges] single edge total: 0.043780s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022192s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000021s
+    [classify_protein_spatial_edges] single edge total: 0.044376s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021948s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022090s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000026s
+    [classify_protein_spatial_edges] single edge total: 0.044186s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.105556s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022232s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000050s
+    [classify_protein_spatial_edges] single edge total: 0.127989s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022060s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021923s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044154s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022296s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022013s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000027s
+    [classify_protein_spatial_edges] single edge total: 0.044460s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021738s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022016s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.043904s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022094s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022216s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044459s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021944s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021743s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043832s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022126s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102870s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000065s
+    [classify_protein_spatial_edges] single edge total: 0.125223s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021944s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021848s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000049s
+    [classify_protein_spatial_edges] single edge total: 0.043993s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021820s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022038s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000028s
+    [classify_protein_spatial_edges] single edge total: 0.044024s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021620s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021719s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.043395s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022107s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022032s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000024s
+    [classify_protein_spatial_edges] single edge total: 0.044285s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022007s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021902s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044062s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022161s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022027s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044340s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022010s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.104079s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000055s
+    [classify_protein_spatial_edges] single edge total: 0.126301s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022053s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022074s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000041s
+    [classify_protein_spatial_edges] single edge total: 0.044309s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021726s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021856s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043744s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022141s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021920s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000034s
+    [classify_protein_spatial_edges] single edge total: 0.044117s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021993s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021835s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043985s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022083s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021942s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044169s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022012s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021863s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.044027s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021900s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.103748s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000067s
+    [classify_protein_spatial_edges] single edge total: 0.125746s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022133s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.025148s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000046s
+    [classify_protein_spatial_edges] single edge total: 0.047355s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022075s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021909s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000030s
+    [classify_protein_spatial_edges] single edge total: 0.044160s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021751s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021768s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.043578s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022176s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022057s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000036s
+    [classify_protein_spatial_edges] single edge total: 0.044402s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021591s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022105s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000031s
+    [classify_protein_spatial_edges] single edge total: 0.043852s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022168s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022348s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044680s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022051s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022016s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044223s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.103528s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022026s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000051s
+    [classify_protein_spatial_edges] single edge total: 0.125762s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021938s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021724s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000042s
+    [classify_protein_spatial_edges] single edge total: 0.043838s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022125s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022252s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.044537s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021755s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021782s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000035s
+    [classify_protein_spatial_edges] single edge total: 0.043594s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021928s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022122s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.044203s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021802s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021829s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.043776s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022128s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102866s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000064s
+    [classify_protein_spatial_edges] single edge total: 0.125216s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022144s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021676s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000040s
+    [classify_protein_spatial_edges] single edge total: 0.043997s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021866s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022139s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000025s
+    [classify_protein_spatial_edges] single edge total: 0.044159s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021915s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021860s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000033s
+    [classify_protein_spatial_edges] single edge total: 0.043829s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022103s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022180s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044336s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022031s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021874s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000029s
+    [classify_protein_spatial_edges] single edge total: 0.044054s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022179s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022010s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000023s
+    [classify_protein_spatial_edges] single edge total: 0.044335s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.022013s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.102891s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000064s
+    [classify_protein_spatial_edges] single edge total: 0.125124s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021965s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.022118s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000032s
+    [classify_protein_spatial_edges] single edge total: 0.044256s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(src): 0.021873s
+    [classify_protein_spatial_edges] find_closest_atom_by_coord(tgt): 0.021780s
+    [classify_protein_spatial_edges] analyze_atom_pair: 0.000037s
+    [classify_protein_spatial_edges] single edge total: 0.043715s
+[classify_protein_spatial_edges] total big loop: 35.396s
+[TIMER] gen_graph took 35.866 seconds
+[2zga_frame75] gen_graph: 35.866s
+[2zga_frame75] Total parallel_helper took 36.105s
+[custom_input.py] Finished in 36.11 seconds
