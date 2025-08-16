@@ -17,3 +17,4 @@ print(f'find_closest_atom_by_coord(tgt) 总时间: {tgt_sum:.6f} s')
 print(f'analyze_atom_pair 总时间: {analyze_sum:.6f} s')
 print(f'single edge total 总时间: {single_sum:.6f} s')
 print(f'所有src+tgt+analyze+single edge合计: {src_sum + tgt_sum + analyze_sum + single_sum:.6f} s')
+

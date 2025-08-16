@@ -393,13 +393,33 @@ def halogen_bonds(acceptors, donors):
     return pairings
 
 class InteractionAnalyzer:  
-    """相互作用分析器主类"""  
+    """相互作用分析器主类 - 使用精细的PLIP检测函数"""  
       
     def __init__(self):  
         self.interactions = []  
+        self.molecule = None  
+        # 预计算的功能基团  
+        self.hydrophobic_atoms = None  
+        self.hba_atoms = None  
+        self.hbd_atoms = None  
+        self.rings = None  
+        self.charged_groups = None  
+        self.hal_acceptors = None  
+        self.hal_donors = None  
+      
+    def set_molecule(self, molecule):  
+        """设置分子并预计算所有功能基团"""  
+        self.molecule = molecule  
+        self.hydrophobic_atoms = find_hydrophobic_atoms(molecule)  
+        self.hba_atoms = find_hba(molecule)  
+        self.hbd_atoms = find_hbd(molecule, self.hydrophobic_atoms)  
+        self.rings = find_rings(molecule)  
+        self.charged_groups = find_charged_groups(molecule)  
+        self.hal_acceptors = find_halogen_acceptors(molecule)  
+        self.hal_donors = find_halogen_donors(molecule)  
       
     def analyze_atom_pair(self, atom1, atom2, distance=None):  
-        """分析单个原子对的相互作用类型"""  
+        """分析单个原子对的相互作用类型 - 使用精细检测函数"""  
         if distance is None:  
             distance = euclidean3d(atom1.coords, atom2.coords)  
           
@@ -408,34 +428,67 @@ class InteractionAnalyzer:
           
         interaction_types = []  
           
-        # 1. 检测疏水相互作用  
-        if self._is_hydrophobic_atom(atom1) and self._is_hydrophobic_atom(atom2):  
-            if distance < config.HYDROPH_DIST_MAX:  
-                interaction_types.append('hydrophobic')  
+        # 1. 检测氢键 - 使用精细的hbonds函数  
+        if self.hba_atoms and self.hbd_atoms:  
+            atom1_acceptors = [acc for acc in self.hba_atoms if acc.idx == atom1.idx]  
+            atom2_acceptors = [acc for acc in self.hba_atoms if acc.idx == atom2.idx]  
+            atom1_donors = [don for don in self.hbd_atoms if don.d.idx == atom1.idx]  
+            atom2_donors = [don for don in self.hbd_atoms if don.d.idx == atom2.idx]  
+              
+            # 检测氢键  
+            if atom1_acceptors and atom2_donors:  
+                hbond_results = hbonds(atom1_acceptors, atom2_donors)  
+                if hbond_results:  
+                    interaction_types.append('hydrogen_bond')  
+            elif atom2_acceptors and atom1_donors:  
+                hbond_results = hbonds(atom2_acceptors, atom1_donors)  
+                if hbond_results:  
+                    interaction_types.append('hydrogen_bond')  
           
-        # 2. 检测氢键  
-        if self._is_hbond_acceptor(atom1) and self._is_hbond_donor(atom2):  
-            if distance < config.HBOND_DIST_MAX:  
-                interaction_types.append('hydrogen_bond')  
-        elif self._is_hbond_donor(atom1) and self._is_hbond_acceptor(atom2):  
-            if distance < config.HBOND_DIST_MAX:  
-                interaction_types.append('hydrogen_bond')  
+        # 2. 检测疏水相互作用 - 使用精细的hydrophobic_interactions函数  
+        if self.hydrophobic_atoms:  
+            atom1_hydrophobic = [h for h in self.hydrophobic_atoms if h.idx == atom1.idx]  
+            atom2_hydrophobic = [h for h in self.hydrophobic_atoms if h.idx == atom2.idx]  
+              
+            if atom1_hydrophobic and atom2_hydrophobic:  
+                hydrophobic_results = hydrophobic_interactions(atom1_hydrophobic, atom2_hydrophobic)  
+                if hydrophobic_results:  
+                    interaction_types.append('hydrophobic')  
           
-        # 3. 检测盐桥（需要带电原子）  
-        if self._is_positively_charged(atom1) and self._is_negatively_charged(atom2):  
-            if distance < config.SALTBRIDGE_DIST_MAX:  
-                interaction_types.append('salt_bridge')  
-        elif self._is_negatively_charged(atom1) and self._is_positively_charged(atom2):  
-            if distance < config.SALTBRIDGE_DIST_MAX:  
-                interaction_types.append('salt_bridge')  
+        # 3. 检测卤键 - 使用精细的halogen_bonds函数  
+        if self.hal_acceptors and self.hal_donors:  
+            atom1_hal_acc = [acc for acc in self.hal_acceptors if acc.o.idx == atom1.idx]  
+            atom2_hal_acc = [acc for acc in self.hal_acceptors if acc.o.idx == atom2.idx]  
+            atom1_hal_don = [don for don in self.hal_donors if don.x.idx == atom1.idx]  
+            atom2_hal_don = [don for don in self.hal_donors if don.x.idx == atom2.idx]  
+              
+            if atom1_hal_acc and atom2_hal_don:  
+                halogen_results = halogen_bonds(atom1_hal_acc, atom2_hal_don)  
+                if halogen_results:  
+                    interaction_types.append('halogen_bond')  
+            elif atom2_hal_acc and atom1_hal_don:  
+                halogen_results = halogen_bonds(atom2_hal_acc, atom1_hal_don)  
+                if halogen_results:  
+                    interaction_types.append('halogen_bond')  
           
-        # 4. 检测卤键  
-        if self._is_halogen_donor(atom1) and self._is_halogen_acceptor(atom2):  
-            if distance < config.HALOGEN_DIST_MAX:  
-                interaction_types.append('halogen_bond')  
-        elif self._is_halogen_acceptor(atom1) and self._is_halogen_donor(atom2):  
-            if distance < config.HALOGEN_DIST_MAX:  
-                interaction_types.append('halogen_bond')  
+        # 4. 检测盐桥 - 使用精细的saltbridge函数  
+        if self.charged_groups:  
+            pos_charged = [g for g in self.charged_groups if g.type == 'positive']  
+            neg_charged = [g for g in self.charged_groups if g.type == 'negative']  
+              
+            # 检查原子是否属于带电基团  
+            atom1_pos = [g for g in pos_charged if any(a.idx == atom1.idx for a in g.atoms)]  
+            atom1_neg = [g for g in neg_charged if any(a.idx == atom1.idx for a in g.atoms)]  
+            atom2_pos = [g for g in pos_charged if any(a.idx == atom2.idx for a in g.atoms)]  
+            atom2_neg = [g for g in neg_charged if any(a.idx == atom2.idx for a in g.atoms)]  
+              
+            if (atom1_pos and atom2_neg) or (atom1_neg and atom2_pos):  
+                # 使用相关的带电基团进行盐桥检测  
+                relevant_pos = atom1_pos if atom1_pos else atom2_pos  
+                relevant_neg = atom1_neg if atom1_neg else atom2_neg  
+                saltbridge_results = saltbridge(relevant_pos, relevant_neg)  
+                if saltbridge_results:  
+                    interaction_types.append('salt_bridge')  
           
         return {  
             'atom1': atom1,  
@@ -444,96 +497,38 @@ class InteractionAnalyzer:
             'interaction_types': interaction_types  
         }  
       
-    def analyze_atom_pairs(self, atom_pairs):  
-        """批量分析原子对"""  
-        results = []  
-        for atom1, atom2 in atom_pairs:  
-            result = self.analyze_atom_pair(atom1, atom2)  
-            if result and result['interaction_types']:  
-                results.append(result)  
-        return results  
-      
     def analyze_molecule_interactions(self, molecule):  
-        """分析整个分子的相互作用（包括π-π堆积和π-阳离子）"""  
+        """分析整个分子的相互作用（包括π-π堆积和π-阳离子）- 使用精细检测函数"""  
+        if not self.molecule:  
+            self.set_molecule(molecule)  
+          
         results = []  
           
-        # 识别功能基团  
-        hydrophobic_atoms = find_hydrophobic_atoms(molecule)  
-        hba = find_hba(molecule)  
-        hbd = find_hbd(molecule, hydrophobic_atoms)  
-        rings = find_rings(molecule)  
-        charged_groups = find_charged_groups(molecule)  
-        hal_acceptors = find_halogen_acceptors(molecule)  
-        hal_donors = find_halogen_donors(molecule)  
+        # 检测π-π堆积 - 使用精细的pistacking函数  
+        if self.rings:  
+            pi_stacks = pistacking(self.rings, self.rings)  
+            for stack in pi_stacks:  
+                results.append({  
+                    'interaction_type': 'pi_stacking',  
+                    'ring1': stack.ring1,  
+                    'ring2': stack.ring2,  
+                    'distance': stack.distance,  
+                    'type': stack.type  
+                })  
           
-        # 检测π-π堆积  
-        pi_stacks = pistacking(rings, rings)  
-        for stack in pi_stacks:  
-            results.append({  
-                'interaction_type': 'pi_stacking',  
-                'ring1': stack.ring1,  
-                'ring2': stack.ring2,  
-                'distance': stack.distance,  
-                'type': stack.type  
-            })  
+        # 检测π-阳离子相互作用 - 使用精细的pication函数  
+        if self.rings and self.charged_groups:  
+            pos_charged = [g for g in self.charged_groups if g.type == 'positive']  
+            pi_cations = pication(self.rings, pos_charged)  
+            for pication_int in pi_cations:  
+                results.append({  
+                    'interaction_type': 'pi_cation',  
+                    'ring': pication_int.ring,  
+                    'charge': pication_int.charge,  
+                    'distance': pication_int.distance  
+                })  
           
-        # 检测π-阳离子相互作用  
-        pos_charged = [g for g in charged_groups if g.type == 'positive']  
-        pi_cations = pication(rings, pos_charged)  
-        for pication_int in pi_cations:  
-            results.append({  
-                'interaction_type': 'pi_cation',  
-                'ring': pication_int.ring,  
-                'charge': pication_int.charge,  
-                'distance': pication_int.distance  
-            })  
-          
-        return results  
-      
-    def _is_hydrophobic_atom(self, atom):  
-        """判断是否为疏水原子"""  
-        if atom.atomicnum == 6:  # 碳原子  
-            neighbor_nums = set()  
-            for neighbor in pybel.ob.OBAtomAtomIter(atom.OBAtom):  
-                neighbor_nums.add(neighbor.GetAtomicNum())  
-            return neighbor_nums.issubset({1, 6})  # 只连碳和氢  
-        return False  
-      
-    def _is_hbond_acceptor(self, atom):  
-        """判断是否为氢键受体"""  
-        return atom.OBAtom.IsHbondAcceptor() and atom.atomicnum not in [9, 17, 35, 53]  
-      
-    def _is_hbond_donor(self, atom):  
-        """判断是否为氢键供体"""  
-        return atom.OBAtom.IsHbondDonor()  
-      
-    def _is_positively_charged(self, atom):  
-        """判断是否为正电荷原子"""  
-        residue = atom.OBAtom.GetResidue()  
-        if residue and residue.GetName() in ('ARG', 'HIS', 'LYS'):  
-            return atom.atomicnum == 7 and residue.GetAtomProperty(atom.OBAtom, 8)  
-        return False  
-      
-    def _is_negatively_charged(self, atom):  
-        """判断是否为负电荷原子"""  
-        residue = atom.OBAtom.GetResidue()  
-        if residue and residue.GetName() in ('GLU', 'ASP'):  
-            return atom.atomicnum == 8 and residue.GetAtomProperty(atom.OBAtom, 8)  
-        return False  
-      
-    def _is_halogen_donor(self, atom):  
-        """判断是否为卤键供体"""  
-        return atom.atomicnum in [9, 17, 35, 53]  # F, Cl, Br, I  
-      
-    def _is_halogen_acceptor(self, atom):  
-        """判断是否为卤键受体"""  
-        if atom.atomicnum in [8, 7, 16]:  # O, N, S  
-            neighbors = []  
-            for neighbor in pybel.ob.OBAtomAtomIter(atom.OBAtom):  
-                if neighbor.GetAtomicNum() in [6, 7, 15, 16]:  # C, N, P, S  
-                    neighbors.append(neighbor)  
-            return len(neighbors) == 1  
-        return False  
+        return results
   
 # 使用示例  
 if __name__ == "__main__":  

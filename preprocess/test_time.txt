@@ -2539,3 +2539,10 @@ DEBUG: 识别出的配体数量: 1
 [2zga_frame75] gen_graph: 35.866s
 [2zga_frame75] Total parallel_helper took 36.105s
 [custom_input.py] Finished in 36.11 seconds
+
+zncao02@f101$ p test.py 
+find_closest_atom_by_coord(src) 总时间: 15.803208 s
+find_closest_atom_by_coord(tgt) 总时间: 19.494529 s
+analyze_atom_pair 总时间: 0.020115 s
+single edge total 总时间: 35.392386 s
+所有src+tgt+analyze+single edge合计: 70.710238 s

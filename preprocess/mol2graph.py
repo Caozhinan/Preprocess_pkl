@@ -13,18 +13,23 @@ import numpy as np                 # 导入 numpy 用于数值计算
 from utils import read_mol         # 从 utils.py 中导入 read_mol 函数
 from features import atom_to_feature_vector, bond_to_feature_vector  
 
-def mol2graph(mol: Chem.Mol):
-    conformer = mol.GetConformer(0)    # 获取分子的第一个构象对象，用于获取3D坐标
-
-    # 处理原子
-    atom_features_list, coords = [], []    # 用于存储原子特征和原子坐标
-    atom_map = dict()                      # 建立原子在新序号中的映射（去除氢原子）
-    for idx, atom in enumerate(mol.GetAtoms()):   # 遍历分子中的每个原子
-        if atom.GetSymbol() == "H":        # 如果是氢原子则跳过
-            continue
-        atom_features_list.append(atom_to_feature_vector(atom))  # 原子特征向量化
-        coords.append(conformer.GetAtomPosition(atom.GetIdx()))  # 获取原子坐标
-        atom_map[idx] = len(coords) - 1    # 原子在新表中的索引（跳过氢原子）
+def mol2graph(mol: Chem.Mol):  
+    conformer = mol.GetConformer(0)  
+  
+    # 处理原子  
+    atom_features_list, coords = [], []  
+    atom_map = dict()  
+    atom_ids = []  # 新增：存储原子ID  
+      
+    for idx, atom in enumerate(mol.GetAtoms()):  
+        if atom.GetSymbol() == "H":  
+            continue  
+        atom_features_list.append(atom_to_feature_vector(atom))  
+        coords.append(conformer.GetAtomPosition(atom.GetIdx()))  
+          
+        # 新增：记录原子ID映射  
+        atom_ids.append(atom.GetIdx())  
+        atom_map[atom.GetIdx()] = len(coords) - 1
 
     x = np.array(atom_features_list, dtype = np.int64)   # 所有原子特征转换为 numpy 数组
 
@@ -60,44 +65,51 @@ def mol2graph(mol: Chem.Mol):
         edge_attr = np.empty((0, num_bond_features), dtype = np.int64)  # 空边特征
 
     # 构建分子图字典
-    graph = dict()
-    graph['edge_index'] = edge_index       # 边索引
-    graph['edge_feat'] = edge_attr         # 边特征
-    graph['node_feat'] = x                 # 节点（原子）特征
-    graph['coords'] = np.array(coords)     # 原子坐标
-
-    return graph  # 返回分子图
-
-def mol2graph_protein_from_pdb(pdb_file: Path):  
-    """直接从PDB文件处理蛋白质分子的图构建"""  
-    # 使用RDKit读取PDB文件  
-    mol = Chem.MolFromPDBFile(str(pdb_file), sanitize=False, removeHs=False)  
-    if mol is None:  
-        raise RuntimeError(f"Cannot read PDB file: {pdb_file}")  
+    graph = dict()  
+    graph['edge_index'] = edge_index  
+    graph['edge_feat'] = edge_attr  
+    graph['node_feat'] = x  
+    graph['coords'] = np.array(coords)  
       
-    mol = correct_sanitize_v2(mol)  
-    mol = Chem.RemoveHs(mol, sanitize=False)  
-      
-    conformer = mol.GetConformer(0)  
-    atom_features_list, coords, pro_names, aa_names = [], [], [], []  
+    # 新增：添加原子ID信息  
+    graph['atom_ids'] = np.array(atom_ids)  
+    graph['atom_id_to_graph_index'] = atom_map  
+  
+    return graph
+
+def mol2graph_protein_from_pdb(pdb_file: Path):    
+    """直接从PDB文件处理蛋白质分子的图构建"""    
+    # 使用RDKit读取PDB文件    
+    mol = Chem.MolFromPDBFile(str(pdb_file), sanitize=False, removeHs=False)    
+    if mol is None:    
+        raise RuntimeError(f"Cannot read PDB file: {pdb_file}")    
+        
+    mol = correct_sanitize_v2(mol)    
+    mol = Chem.RemoveHs(mol, sanitize=False)    
+        
+    conformer = mol.GetConformer(0)    
+    atom_features_list, coords, pro_names, aa_names = [], [], [], []    
     atom_map = dict()  
-      
-    for idx, atom in enumerate(mol.GetAtoms()):  
-        if atom.GetSymbol() == "H": continue  
-          
-        atom_features_list.append(atom_to_feature_vector(atom))  
-        coords.append(conformer.GetAtomPosition(atom.GetIdx()))  
-          
-        # 从PDB残基信息中获取原子名称和氨基酸名称  
-        atom_info = atom.GetPDBResidueInfo()  
-        if atom_info:  
-            pro_names.append(atom_info.GetName().strip())  
-            aa_names.append(atom_info.GetResidueName().strip())  
-        else:  
-            pro_names.append("UNK")  
-            aa_names.append("UNK")  
-              
-        atom_map[idx] = len(coords) - 1  
+    atom_ids = []  # 新增：存储原子ID  
+        
+    for idx, atom in enumerate(mol.GetAtoms()):    
+        if atom.GetSymbol() == "H": continue    
+            
+        atom_features_list.append(atom_to_feature_vector(atom))    
+        coords.append(conformer.GetAtomPosition(atom.GetIdx()))    
+            
+        # 从PDB残基信息中获取原子名称和氨基酸名称    
+        atom_info = atom.GetPDBResidueInfo()    
+        if atom_info:    
+            pro_names.append(atom_info.GetName().strip())    
+            aa_names.append(atom_info.GetResidueName().strip())    
+        else:    
+            pro_names.append("UNK")    
+            aa_names.append("UNK")    
+                
+        # 新增：记录原子ID映射  
+        atom_ids.append(atom.GetIdx())  
+        atom_map[atom.GetIdx()] = len(coords) - 1 
       
     x = np.array(atom_features_list, dtype=np.int64)  
       
@@ -130,26 +142,45 @@ def mol2graph_protein_from_pdb(pdb_file: Path):
         edge_index = np.empty((2, 0), dtype=np.int64)  
         edge_attr = np.empty((0, num_bond_features), dtype=np.int64)  
       
-    graph = dict()  
-    graph['edge_index'] = edge_index  
-    graph['edge_feat'] = edge_attr  
-    graph['node_feat'] = x  
-    graph['coords'] = np.array(coords)  
-    graph['pro_name'] = np.array(pro_names)  
+    graph = dict()    
+    graph['edge_index'] = edge_index    
+    graph['edge_feat'] = edge_attr    
+    graph['node_feat'] = x    
+    graph['coords'] = np.array(coords)    
+    graph['pro_name'] = np.array(pro_names)    
     graph['AA_name'] = np.array(aa_names)  
       
+    # 新增：添加原子ID信息  
+    graph['atom_ids'] = np.array(atom_ids)  
+    graph['atom_id_to_graph_index'] = atom_map  
+        
     return graph
   
-def mol2graph_ligand(mol: Chem.Mol):  
-    """处理小分子的图构建"""  
-    # 获取SMILES  
-    smiles = Chem.MolToSmiles(mol)  
-      
-    # 调用原有逻辑  
-    result = mol2graph(mol)  
+def mol2graph_ligand(mol: Chem.Mol):    
+    """处理小分子的图构建"""    
+    # 获取SMILES    
+    smiles = Chem.MolToSmiles(mol)    
+        
+    # 调用原有逻辑    
+    result = mol2graph(mol)    
     result['smiles'] = smiles  # 新增：SMILES字符串  
       
-    return result  
+    # 新增：添加原子ID映射  
+    result['atom_ids'] = []  
+    atom_map = {}  
+    idx_counter = 0  
+      
+    for atom in mol.GetAtoms():  
+        if atom.GetSymbol() == "H":  
+            continue  
+        result['atom_ids'].append(atom.GetIdx())  
+        atom_map[atom.GetIdx()] = idx_counter  
+        idx_counter += 1  
+      
+    result['atom_id_to_graph_index'] = atom_map  
+    result['atom_ids'] = np.array(result['atom_ids'])  
+        
+    return result
 # 主程序入口
 if __name__ == '__main__':
     graph = smiles2graph('O1C=C[C@H]([C@H]1O2)c3c2cc(OC)c4c3OC(=O)C5=C4CCC(=O)5')
