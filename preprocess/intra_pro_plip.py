@@ -422,29 +422,42 @@ class InteractionAnalyzer:
         """分析单个原子对的相互作用类型 - 使用精细检测函数"""  
         if distance is None:  
             distance = euclidean3d(atom1.coords, atom2.coords)  
-          
+
         if distance > 5.0:  # 超过5Å的不分析  
             return None  
-          
+
         interaction_types = []  
-          
+
+        # 添加原子索引调试信息  
+        # print(f"[DEBUG] 分析原子对: atom1.idx={atom1.idx}, atom2.idx={atom2.idx}, 距离={distance:.2f}Å")  
+
         # 1. 检测氢键 - 使用精细的hbonds函数  
         if self.hba_atoms and self.hbd_atoms:  
             atom1_acceptors = [acc for acc in self.hba_atoms if acc.idx == atom1.idx]  
             atom2_acceptors = [acc for acc in self.hba_atoms if acc.idx == atom2.idx]  
             atom1_donors = [don for don in self.hbd_atoms if don.d.idx == atom1.idx]  
             atom2_donors = [don for don in self.hbd_atoms if don.d.idx == atom2.idx]  
-              
+
+            # # 添加匹配调试信息  
+            # print(f"[DEBUG] 氢键匹配: atom1_acceptors={len(atom1_acceptors)}, atom2_acceptors={len(atom2_acceptors)}")  
+            # print(f"[DEBUG] 氢键匹配: atom1_donors={len(atom1_donors)}, atom2_donors={len(atom2_donors)}")  
+
             # 检测氢键  
             if atom1_acceptors and atom2_donors:  
+                # print(f"[DEBUG] 尝试检测氢键: acceptor={atom1.idx} -> donor={atom2.idx}")  
                 hbond_results = hbonds(atom1_acceptors, atom2_donors)  
                 if hbond_results:  
+                    # print(f"[DEBUG] 检测到氢键: {len(hbond_results)} 个")  
                     interaction_types.append('hydrogen_bond')  
             elif atom2_acceptors and atom1_donors:  
+                # print(f"[DEBUG] 尝试检测氢键: acceptor={atom2.idx} -> donor={atom1.idx}")  
                 hbond_results = hbonds(atom2_acceptors, atom1_donors)  
                 if hbond_results:  
+                    # print(f"[DEBUG] 检测到氢键: {len(hbond_results)} 个")  
                     interaction_types.append('hydrogen_bond')  
-          
+            else:  
+                pass
+
         # 2. 检测疏水相互作用 - 使用精细的hydrophobic_interactions函数  
         if self.hydrophobic_atoms:  
             atom1_hydrophobic = [h for h in self.hydrophobic_atoms if h.idx == atom1.idx]  

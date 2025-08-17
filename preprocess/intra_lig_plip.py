@@ -27,7 +27,7 @@ class AtomInfo:
         self.atomicnum = atom.atomicnum    
         self.coords = np.array([atom.coords[0], atom.coords[1], atom.coords[2]])    
         self.element = atom.OBAtom.GetAtomicNum()    
-        self.formal_charge = atom.formalcharge    
+        self.formal_charge = getattr(atom, 'formalcharge', 0)
         self.partial_charge = getattr(atom.OBAtom, 'GetPartialCharge', lambda: 0.0)()  
         self.type = atom.type  
         self.OBAtom = atom.OBAtom  
