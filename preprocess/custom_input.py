@@ -2,7 +2,7 @@ import argparse  # 解析命令行参数
 from pathlib import Path  # 跨平台处理文件和路径
 # from tqdm import tqdm  # 进度条，可显示任务进度
 import pickle  # 用于保存/加载Python对象
-from preprocess import  gen_graph, to_pyg_graph, get_info, GB_score, analyze_plip_interactions  # 预处理和特征生成相关函数
+from preprocess import  gen_graph, get_info, GB_score, analyze_plip_interactions  # 预处理和特征生成相关函数
 from joblib import Parallel, delayed  # 并行计算工具
 from utils import read_mol, obabel_pdb2mol, pymol_pocket  # 读取分子和格式转换工具
 import numpy as np  # 数值计算库

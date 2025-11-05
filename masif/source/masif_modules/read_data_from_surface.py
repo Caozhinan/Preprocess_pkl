@@ -47,8 +47,11 @@ def read_data_from_surface(ply_fn, params):
     si = np.arctan(si)*(2/np.pi)
 
     # Normalize the charge.
-    charge = mesh.get_attribute("vertex_charge")
-    charge = normalize_electrostatics(charge)
+    if "vertex_charge" in mesh.get_attribute_names():  
+        charge = mesh.get_attribute("vertex_charge")  
+        charge = normalize_electrostatics(charge)  
+    else:  
+        charge = np.zeros(len(mesh.vertices))
 
     # Hbond features
     hbond = mesh.get_attribute("vertex_hbond")

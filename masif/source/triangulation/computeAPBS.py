@@ -37,7 +37,7 @@ def computeAPBS(vertices, pdb_file, tmp_file_base, mol2_file=None):
     p2 = Popen(args, stdout=PIPE, stderr=PIPE, cwd=directory)
     stdout, stderr = p2.communicate()
 
-    print("### PDB2PQR ###\n", stderr.decode('utf-8'))
+    # print("### PDB2PQR ###\n", stderr.decode('utf-8'))
     # from pdb import set_trace; set_trace()
 
     args = [apbs_bin, filename_base + ".in"]

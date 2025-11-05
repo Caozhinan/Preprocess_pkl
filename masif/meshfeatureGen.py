@@ -62,7 +62,7 @@ def compute_protein_ligand_surface_features(pdb_file, chain_id, ligand_code=None
     extractPDB(protonated_file, out_filename + ".pdb", chain_id, ligand_code, ligand_chain)  
       
     # 4. 计算MSMS表面  
-    print("计算MSMS分子表面...")  
+    # print("计算MSMS分子表面...")  
     vertices1, faces1, normals1, names1, areas1 = computeMSMS(  
         out_filename + ".pdb",   
         protonate=True,   
@@ -146,7 +146,7 @@ def compute_protein_ligand_surface_features(pdb_file, chain_id, ligand_code=None
             out_filename,   
             mol2_file  
         )  
-        # print("APBS计算完成!")  
+        print("APBS计算完成!")  
       
     # 11. 计算界面特征（可选）  
     iface = np.zeros(len(regular_mesh.vertices))  

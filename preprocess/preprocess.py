@@ -2,8 +2,8 @@
 import numpy as np  
 from scipy.spatial.distance import cdist  
 from pathlib import Path  
-from torch_geometric.data import Data  
-import torch  
+# from torch_geometric.data import Data  
+# import torch  
 from rdkit import Chem  
 from pymol import cmd  
 # 添加PLIP导入  
@@ -828,26 +828,26 @@ def load_pk_data(data_path: Path):
     res = {i: p for i, p in zip(pdbid, pk)}
     return res
 
-def to_pyg_graph(raw: list, **kwargs):  
-    comp_coord, comp_feat, comp_ei, comp_ea, comp_num_node, comp_num_edge, rfscore, gbscore, ecif, pk, name = raw  
+# def to_pyg_graph(raw: list, **kwargs):  
+#     comp_coord, comp_feat, comp_ei, comp_ea, comp_num_node, comp_num_edge, rfscore, gbscore, ecif, pk, name = raw  
       
-    # 从kwargs中提取rmsd值  
-    rmsd = kwargs.pop('rmsd', 0.0)  # 默认值为0.0  
+#     # 从kwargs中提取rmsd值  
+#     rmsd = kwargs.pop('rmsd', 0.0)  # 默认值为0.0  
   
-    d = Data(x=torch.from_numpy(comp_feat).to(torch.long),     
-         edge_index=torch.from_numpy(comp_ei).to(torch.long),     
-         edge_attr=torch.from_numpy(comp_ea).to(torch.float32),  # 改为float32  
-         pos=torch.from_numpy(comp_coord).to(torch.float32),
-     y=torch.tensor([pk], dtype=torch.float32),   
-     pdbid=name,  
-     num_node=torch.from_numpy(comp_num_node).to(torch.long),   
-     num_edge=torch.from_numpy(comp_num_edge).to(torch.long),  
-     rfscore=torch.from_numpy(rfscore).to(torch.float32),   
-     gbscore=torch.from_numpy(gbscore).to(torch.float32),  
-     ecif=torch.from_numpy(ecif).to(dtype=torch.float32),  
-     rmsd=torch.tensor([rmsd], dtype=torch.float32),  # 新增：rmsd值  
-     **kwargs)  
-    return d
+#     d = Data(x=torch.from_numpy(comp_feat).to(torch.long),     
+#          edge_index=torch.from_numpy(comp_ei).to(torch.long),     
+#          edge_attr=torch.from_numpy(comp_ea).to(torch.float32),  # 改为float32  
+#          pos=torch.from_numpy(comp_coord).to(torch.float32),
+#      y=torch.tensor([pk], dtype=torch.float32),   
+#      pdbid=name,  
+#      num_node=torch.from_numpy(comp_num_node).to(torch.long),   
+#      num_edge=torch.from_numpy(comp_num_edge).to(torch.long),  
+#      rfscore=torch.from_numpy(rfscore).to(torch.float32),   
+#      gbscore=torch.from_numpy(gbscore).to(torch.float32),  
+#      ecif=torch.from_numpy(ecif).to(dtype=torch.float32),  
+#      rmsd=torch.tensor([rmsd], dtype=torch.float32),  # 新增：rmsd值  
+#      **kwargs)  
+#     return d
 
 def get_info(protein_file, ligand_file):
     # 用PyMOL获取蛋白和配体的元素、残基和坐标信息

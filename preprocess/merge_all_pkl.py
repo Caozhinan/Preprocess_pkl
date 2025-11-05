@@ -1,220 +1,239 @@
-#!/usr/bin/env python3
-"""
-merge_all_pkl.py - 合并多个复合物的PKL文件（支持多核并行）
-
-用法:
-python merge_all_pkl.py --input_dir /path/to/directory --output_file merged_complexes.pkl
-python merge_all_pkl.py --input_pattern "/path/to/*_features_with_masif.pkl" --output_file merged.pkl
-python merge_all_pkl.py --input_file_list my_pkls.txt --output_file merged.pkl
-"""
-
-import argparse
-import pickle
-import glob
-from pathlib import Path
-from typing import List, Dict, Any
-import sys
-import os
-from concurrent.futures import ProcessPoolExecutor, as_completed
-
-def load_pkl_file(pkl_path: str) -> List[Dict[Any, Any]]:
-    """
-    加载单个PKL文件
-
-    Args:
-        pkl_path: PKL文件路径
-
-    Returns:
-        复合物数据列表
-    """
-    try:
-        with open(pkl_path, 'rb') as f:
-            data = pickle.load(f)
-
-        # 确保数据是列表格式
-        if isinstance(data, list):
-            return data
-        else:
-            # 如果是单个复合物，包装成列表
-            return [data]
-
-    except Exception as e:
-        print(f"Error loading {pkl_path}: {e}")
-        return []
-
-def merge_pkl_files(pkl_files: List[str], output_file: str, num_workers: int = 12) -> None:
-    """
-    并行合并多个PKL文件到单个文件
-
-    Args:
-        pkl_files: PKL文件路径列表
-        output_file: 输出文件路径
-        num_workers: 并行核数
-    """
-    all_complexes = []
-
-    print(f"Found {len(pkl_files)} PKL files to merge (using {num_workers} workers):")
-
-    # 并发读取
-    with ProcessPoolExecutor(max_workers=num_workers) as executor:
-        future_to_file = {executor.submit(load_pkl_file, pkl_file): pkl_file for pkl_file in pkl_files}
-        for i, future in enumerate(as_completed(future_to_file), 1):
-            pkl_file = future_to_file[future]
-            try:
-                complexes = future.result()
-                if complexes:
-                    all_complexes.extend(complexes)
-                    print(f"[{i}/{len(pkl_files)}] Added {len(complexes)} complex(es) from {pkl_file}")
-                else:
-                    print(f"[{i}/{len(pkl_files)}] Warning: No data loaded from {pkl_file}")
-            except Exception as e:
-                print(f"[{i}/{len(pkl_files)}] Error reading {pkl_file}: {e}")
-
-    if not all_complexes:
-        print("Error: No complexes found to merge!")
-        sys.exit(1)
-
-    print(f"\nTotal complexes to save: {len(all_complexes)}")
-
-    # 保存合并后的数据
-    try:
-        with open(output_file, 'wb') as f:
-            pickle.dump(all_complexes, f)
-        print(f"Successfully saved merged data to: {output_file}")
-
-        # 验证保存的文件
-        with open(output_file, 'rb') as f:
-            verification_data = pickle.load(f)
-        print(f"Verification: Loaded {len(verification_data)} complexes from saved file")
-
-    except Exception as e:
-        print(f"Error saving merged file: {e}")
-        sys.exit(1)
-
-def find_pkl_files(input_dir: str = None, input_pattern: str = None, input_file_list: str = None) -> List[str]:
-    """
-    查找PKL文件
-
-    Args:
-        input_dir: 输入目录路径
-        input_pattern: 文件模式匹配
-        input_file_list: 文件列表
-
-    Returns:
-        PKL文件路径列表
-    """
-    pkl_files = []
-
-    if input_file_list:
-        if not os.path.isfile(input_file_list):
-            print(f"Error: input_file_list file not found: {input_file_list}")
-            sys.exit(1)
-        with open(input_file_list) as fin:
-            pkl_files = [line.strip() for line in fin if line.strip()]
-    elif input_pattern:
-        pkl_files = glob.glob(input_pattern, recursive=True)
-    elif input_dir:
-        pattern = str(Path(input_dir) / "**" / "*_features_with_masif.pkl")
-        pkl_files = glob.glob(pattern, recursive=True)
-        if not pkl_files:
-            pattern = str(Path(input_dir) / "**" / "*_features.pkl")
-            pkl_files = glob.glob(pattern, recursive=True)
-
-    # 只保留存在的文件
-    pkl_files = [f for f in pkl_files if os.path.isfile(f)]
-    return sorted(pkl_files)
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="合并多个复合物的PKL文件到单个文件（支持多核并行）",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-示例用法:
-  # 合并目录下所有PKL文件
-  python merge_all_pkl.py --input_dir /path/to/data --output_file merged.pkl
-
-  # 使用通配符模式
-  python merge_all_pkl.py --input_pattern "/path/to/*_features_with_masif.pkl" --output_file merged.pkl
-
-  # 使用文件列表
-  python merge_all_pkl.py --input_file_list my_pkls.txt --output_file merged.pkl
-
-  # 合并当前目录下的所有PKL文件
-  python merge_all_pkl.py --input_dir . --output_file all_complexes.pkl
-
-  # 指定并行核数
-  python merge_all_pkl.py --input_dir . --output_file all_complexes.pkl --num_workers 16
-        """
-    )
-
-    # 输入选项（三选一）
-    input_group = parser.add_mutually_exclusive_group(required=True)
-    input_group.add_argument(
-        '--input_dir',
-        type=str,
-        help='输入目录路径，将递归查找所有 *_features_with_masif.pkl 文件'
-    )
-    input_group.add_argument(
-        '--input_pattern',
-        type=str,
-        help='文件匹配模式，如 "/path/to/*_features_with_masif.pkl"'
-    )
-    input_group.add_argument(
-        '--input_file_list',
-        type=str,
-        help='包含所有要合并的pkl文件路径的文本文件，每行一个路径'
-    )
-
-    # 输出文件
-    parser.add_argument(
-        '--output_file',
-        type=str,
-        required=True,
-        help='输出PKL文件路径'
-    )
-
-    # 可选参数
-    parser.add_argument(
-        '--dry_run',
-        action='store_true',
-        help='仅显示将要处理的文件，不实际合并'
-    )
-
-    parser.add_argument(
-        '--num_workers',
-        type=int,
-        default=12,
-        help='并行核数（默认12）'
-    )
-
-    args = parser.parse_args()
-
-    # 查找PKL文件
-    pkl_files = find_pkl_files(
-        input_dir=getattr(args, 'input_dir', None),
-        input_pattern=getattr(args, 'input_pattern', None),
-        input_file_list=getattr(args, 'input_file_list', None)
-    )
-
-    if not pkl_files:
-        print("Error: No PKL files found!")
-        if args.input_dir:
-            print(f"Searched in directory: {args.input_dir}")
-        if args.input_pattern:
-            print(f"Searched with pattern: {args.input_pattern}")
-        if args.input_file_list:
-            print(f"Checked file list: {args.input_file_list}")
-        sys.exit(1)
-
-    if args.dry_run:
-        print(f"Found {len(pkl_files)} PKL files:")
-        for pkl_file in pkl_files:
-            print(f"  {pkl_file}")
-        print(f"Would save merged data to: {args.output_file}")
-        return
-
-    # 执行合并
-    merge_pkl_files(pkl_files, args.output_file, num_workers=args.num_workers)
-
-if __name__ == "__main__":
+#!/usr/bin/env python3  
+"""  
+清理临时文件并合并所有PKL文件  
+"""  
+  
+import argparse  
+import pickle  
+import os  
+import sys  
+import shutil  
+import glob  
+from pathlib import Path  
+from concurrent.futures import ProcessPoolExecutor  
+import traceback  
+  
+def cleanup_directory(target_dir, name):  
+    """  
+    清理单个目录，只保留必要的PKL文件  
+    """  
+    try:  
+        output_dir = os.path.join(target_dir, "output")  
+        if not os.path.exists(output_dir):  
+            return False, f"Output directory not found: {output_dir}"  
+              
+        # 需要保留的文件  
+        features_pkl = os.path.join(output_dir, f"{name}_features.pkl")  
+        masif_pkl = os.path.join(output_dir, f"{name}_features_with_masif.pkl")  
+          
+        # 检查必要文件是否存在  
+        if not os.path.exists(masif_pkl):  
+            return False, f"MaSIF PKL file not found: {masif_pkl}"  
+              
+        # 删除不需要的子目录和文件  
+        dirs_to_remove = ['descriptors', 'precomputed', 'surfaces', 'pdbs', 'tmp']  
+        for dir_name in dirs_to_remove:  
+            dir_path = os.path.join(output_dir, dir_name)  
+            if os.path.exists(dir_path):  
+                shutil.rmtree(dir_path)  
+                print(f"Removed directory: {dir_path}")  
+          
+        # 删除其他临时文件，但保留必要的PKL文件  
+        for file_path in glob.glob(os.path.join(output_dir, "*")):  
+            if os.path.isfile(file_path):  
+                if file_path not in [features_pkl, masif_pkl]:  
+                    os.remove(file_path)  
+                    print(f"Removed file: {file_path}")  
+          
+        print(f"Cleanup completed for {name}")  
+        return True, "Success"  
+          
+    except Exception as e:  
+        error_msg = f"Error cleaning up {target_dir}: {e}"  
+        print(error_msg)  
+        return False, error_msg  
+  
+def load_pkl_file(pkl_path):  
+    """  
+    加载单个PKL文件  
+    """  
+    try:  
+        with open(pkl_path, 'rb') as f:  
+            data = pickle.load(f)  
+        return data  
+    except Exception as e:  
+        print(f"Error loading {pkl_path}: {e}")  
+        return None  
+  
+def merge_pkl_files(pkl_files, output_file):  
+    """  
+    合并多个PKL文件  
+    """  
+    try:  
+        all_complexes = []  
+          
+        print(f"Merging {len(pkl_files)} PKL files...")  
+          
+        # 使用多进程加载PKL文件  
+        with ProcessPoolExecutor(max_workers=24) as executor:  
+            results = list(executor.map(load_pkl_file, pkl_files))  
+          
+        for i, data in enumerate(results):  
+            if data is None:  
+                print(f"Skipping failed file: {pkl_files[i]}")  
+                continue  
+                  
+            if isinstance(data, list):  
+                all_complexes.extend(data)  
+            elif isinstance(data, dict):  
+                all_complexes.append(data)  
+            else:  
+                print(f"Unknown data format in {pkl_files[i]}")  
+          
+        print(f"Total complexes to merge: {len(all_complexes)}")  
+          
+        # 保存合并后的文件  
+        with open(output_file, 'wb') as f:  
+            pickle.dump(all_complexes, f)  
+              
+        print(f"Merged PKL saved to: {output_file}")  
+        return True  
+          
+    except Exception as e:  
+        print(f"Error merging PKL files: {e}")  
+        traceback.print_exc()  
+        return False  
+  
+def process_csv_and_merge(csv_file, base_output_dir):  
+    """  
+    处理CSV文件，清理目录并合并PKL文件  
+    """  
+    try:  
+        # 读取CSV文件获取所有复合物信息  
+        complexes_info = []  
+        with open(csv_file, 'r') as f:  
+            lines = f.readlines()  
+              
+        # 跳过标题行  
+        for line in lines[1:]:  
+            line = line.strip()  
+            if not line:  
+                continue  
+            parts = line.split(',')  
+            if len(parts) >= 3:  
+                receptor = parts[0].strip()  
+                name = parts[2].strip()  
+                target_dir = os.path.dirname(receptor)  
+                complexes_info.append((target_dir, name))  
+          
+        print(f"Found {len(complexes_info)} complexes to process")  
+          
+        # 记录成功和失败的目录  
+        success_dirs = []  
+        failed_dirs = []  
+          
+        # 清理目录并收集PKL文件路径  
+        features_pkl_files = []  
+        masif_pkl_files = []  
+          
+        for target_dir, name in complexes_info:  
+            print(f"Processing {name}...")  
+              
+            # 清理目录  
+            success, message = cleanup_directory(target_dir, name)  
+            if success:  
+                success_dirs.append((target_dir, name, message))  
+                # 收集PKL文件路径  
+                output_dir = os.path.join(target_dir, "output")  
+                features_pkl = os.path.join(output_dir, f"{name}_features.pkl")  
+                masif_pkl = os.path.join(output_dir, f"{name}_features_with_masif.pkl")  
+                  
+                if os.path.exists(features_pkl):  
+                    features_pkl_files.append(features_pkl)  
+                if os.path.exists(masif_pkl):  
+                    masif_pkl_files.append(masif_pkl)  
+            else:  
+                failed_dirs.append((target_dir, name, message))  
+          
+        # 写入成功和失败的记录文件  
+        success_log = os.path.join(base_output_dir, "successful_directories.txt")  
+        failed_log = os.path.join(base_output_dir, "failed_directories.txt")  
+          
+        with open(success_log, 'w') as f:  
+            f.write(f"# Successful directories ({len(success_dirs)} total)\n")  
+            f.write("# Format: directory_path | complex_name | status\n\n")  
+            for target_dir, name, message in success_dirs:  
+                f.write(f"{target_dir} | {name} | {message}\n")  
+          
+        with open(failed_log, 'w') as f:  
+            f.write(f"# Failed directories ({len(failed_dirs)} total)\n")  
+            f.write("# Format: directory_path | complex_name | error_message\n\n")  
+            for target_dir, name, message in failed_dirs:  
+                f.write(f"{target_dir} | {name} | {message}\n")  
+          
+        print(f"Success log saved to: {success_log}")  
+        print(f"Failed log saved to: {failed_log}")  
+        print(f"Collected {len(features_pkl_files)} features.pkl files")  
+        print(f"Collected {len(masif_pkl_files)} features_with_masif.pkl files")  
+          
+        # 合并PKL文件  
+        if features_pkl_files:  
+            features_output = os.path.join(base_output_dir, "merged_features.pkl")  
+            merge_pkl_files(features_pkl_files, features_output)  
+          
+        if masif_pkl_files:  
+            masif_output = os.path.join(base_output_dir, "merged_features_with_masif.pkl")  
+            merge_pkl_files(masif_pkl_files, masif_output)  
+          
+        # 写入处理总结  
+        summary_file = os.path.join(base_output_dir, "processing_summary.txt")  
+        with open(summary_file, 'w') as f:  
+            f.write(f"Processing Summary\n")  
+            f.write(f"==================\n\n")  
+            f.write(f"Total complexes processed: {len(complexes_info)}\n")  
+            f.write(f"Successful: {len(success_dirs)}\n")  
+            f.write(f"Failed: {len(failed_dirs)}\n\n")  
+            f.write(f"PKL files merged:\n")  
+            f.write(f"- features.pkl: {len(features_pkl_files)} files\n")  
+            f.write(f"- features_with_masif.pkl: {len(masif_pkl_files)} files\n\n")  
+            f.write(f"Output files:\n")  
+            if features_pkl_files:  
+                f.write(f"- merged_features.pkl\n")  
+            if masif_pkl_files:  
+                f.write(f"- merged_features_with_masif.pkl\n")  
+            f.write(f"- successful_directories.txt\n")  
+            f.write(f"- failed_directories.txt\n")  
+          
+        print(f"Processing summary saved to: {summary_file}")  
+        return True  
+          
+    except Exception as e:  
+        print(f"Error processing CSV and merging: {e}")  
+        traceback.print_exc()  
+        return False  
+  
+def main():  
+    parser = argparse.ArgumentParser(description='清理临时文件并合并所有PKL文件')  
+    parser.add_argument('--csv_file', required=True, help='输入的CSV文件路径')  
+    parser.add_argument('--output_dir', required=True, help='合并后PKL文件的输出目录')  
+      
+    args = parser.parse_args()  
+      
+    if not os.path.exists(args.csv_file):  
+        print(f"Error: CSV file not found: {args.csv_file}")  
+        sys.exit(1)  
+      
+    # 创建输出目录  
+    os.makedirs(args.output_dir, exist_ok=True)  
+      
+    # 处理CSV并合并PKL文件  
+    success = process_csv_and_merge(args.csv_file, args.output_dir)  
+      
+    if not success:  
+        print("Processing failed!")  
+        sys.exit(1)  
+      
+    print("All processing completed successfully!")  
+  
+if __name__ == "__main__":  
     main()

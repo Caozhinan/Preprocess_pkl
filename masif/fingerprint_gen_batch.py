@@ -91,7 +91,7 @@ def main():
     )  
       
     # 使用HDF5权重文件  
-    hdf5_weight_dir = "/xcfhome/zncao02/affinsculp/masif/data/masif_ppi_search/nn_models/sc05/all_feat/weight"    
+    hdf5_weight_dir = "/es01/paratera/sce0413/czn/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/weight"    
     hdf5_weight_path = os.path.join(hdf5_weight_dir, "weights_12A_0129.hdf5")  
       
     if os.path.exists(hdf5_weight_path):  
