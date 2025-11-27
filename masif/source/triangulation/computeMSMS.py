@@ -1,6 +1,6 @@
 import os
 from subprocess import Popen, PIPE
-
+import sys
 from input_output.read_msms import read_msms
 from triangulation.xyzrn import output_pdb_as_xyzrn
 from default_config.global_vars import msms_bin 

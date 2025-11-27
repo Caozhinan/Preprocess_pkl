@@ -75,3 +75,29 @@ python /xcfhome/zncao02/AffinSculptor/preprocess/custom_input.py \\
     --name test_complex
 
 这个脚本设计为批量处理工具，可以高效地为多个蛋白质-配体复合物生成包含 MaSIF 表面指纹的完整特征数据。
+
+
+## 关键技术更新 
+1. 输入处理优化
+- 修改 custom_input.py: 根据配体文件后缀(.sdf或.pdb)自动选择处理函数
+- 配体残基名标准化: 将配体残基名从UNK改为LIG preprocess.py:58-67
+- 溶剂过滤: 自动过滤常见溶剂分子，避免PLIP误识别 preprocess.py:58-67
+2. 小分子表面生成技术突破
+- MSMS参数优化: density=8.0, probe_radius=1.2Å, mesh_res=0.8
+- 静电特征解决方案: 使用Gasteiger电荷替代APBS，解决小分子APBS计算失败问题
+- XYZRN转换修复: 解决小分子原子过滤问题，确保MSMS正常运行
+3. 特征预计算参数调整
+- 小分子参数: max_distance=5.0Å, max_shape_size=60
+- 蛋白质口袋参数: max_distance=6.0Å, max_shape_size=80
+##  新增脚本列表 
+meshfeatureGen_ligand.py	小分子表面生成	高密度MSMS参数，Gasteiger电荷
+meshfeatureGen_pocket.py	蛋白质口袋表面生成	跳过链ID检测，直接处理所有残基
+feature_precompute_ligand.py	小分子特征预计算	5维特征，184个patches
+feature_precompute_pocket.py	蛋白质口袋特征预计算	5维特征，1759个patches
+merge_surface_features.py	特征合并	过滤冗余字段，添加MaSIF特征
+batch_preprocess_surface_features_full.sh	完整批量处理	四步流程，多核并行，自动清理
+## 输出文件结构 
+每个复合物最终生成：
+- output/precomputed/ligand/all_features.npz - 小分子5维特征 (184×60×5)
+- output/precomputed/pocket/all_features.npz - 蛋白质口袋5维特征 (1759×80×5)
+- output/{name}_features_with_masif.pkl - 合并后的完整特征文件

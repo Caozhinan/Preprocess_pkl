@@ -8,63 +8,84 @@ import sys
 import os  
 from plip.structure.preparation import PDBComplex  
   
-def merge_protein_ligand_with_pymol(protein_file, ligand_file, output_file="complex.pdb"):  
-    """使用PyMOL合并蛋白质和配体文件"""  
+def merge_protein_ligand_with_pymol(protein_file, ligand_file, output_file):  
+    """  
+    使用PyMOL合并蛋白质和配体,生成complex.pdb  
+      
+    修改:  
+    1. 将配体残基名从UNK改为LIG  
+    2. 过滤掉常见溶剂分子  
+    """  
+    from pymol import cmd  
+      
+    # 常见溶剂的三字母代码列表  
+    SOLVENT_RESIDUES = {  
+        '144', '15P', '1PE', '2F2', '2JC', '3HR', '3SY', '7N5', '7PE', '9JE',  
+        'AAE', 'ABA', 'ACE', 'ACN', 'ACT', 'ACY', 'AZI', 'BAM', 'BCN', 'BCT',  
+        'BDN', 'BEN', 'BME', 'BO3', 'BTB', 'BTC', 'BU1', 'C8E', 'CAD', 'CAQ',  
+        'CBM', 'CCN', 'CIT', 'CL', 'CLR', 'CM', 'CMO', 'CO3', 'CPT', 'CXS',  
+        'D10', 'DEP', 'DIO', 'DMS', 'DN', 'DOD', 'DOX', 'EDO', 'EEE', 'EGL',  
+        'EOH', 'EOX', 'EPE', 'ETF', 'FCY', 'FJO', 'FLC', 'FMT', 'FW5', 'GOL',  
+        'GSH', 'GTT', 'GYF', 'HED', 'IHP', 'IHS', 'IMD', 'IOD', 'IPA', 'IPH',  
+        'LDA', 'MB3', 'MEG', 'MES', 'MLA', 'MLI', 'MOH', 'MPD', 'MRD', 'MSE',  
+        'MYR', 'N', 'NA', 'NH2', 'NH4', 'NHE', 'NO3', 'O4B', 'OHE', 'OLA',  
+        'OLC', 'OMB', 'OME', 'OXA', 'P6G', 'PE3', 'PE4', 'PEG', 'PEO', 'PEP',  
+        'PG0', 'PG4', 'PGE', 'PGR', 'PLM', 'PO4', 'POL', 'POP', 'PVO', 'SAR',  
+        'SCN', 'SEO', 'SEP', 'SIN', 'SO4', 'SPD', 'SPM', 'SR', 'STE', 'STO',  
+        'STU', 'TAR', 'TBU', 'TME', 'TPO', 'TRS', 'UNK', 'UNL', 'UNX', 'UPL',  
+        'URE', 'HOH'  
+    }  
+      
     try:  
-        import pymol  
-        from pymol import cmd  
-          
-        # 初始化PyMOL  
-        pymol.finish_launching(['pymol', '-c'])  
         cmd.reinitialize()  
           
-        # print(f"使用PyMOL合并文件...")  
-        # print(f"  蛋白质文件: {protein_file}")  
-        # print(f"  配体文件: {ligand_file}")  
+        # 加载蛋白质和配体  
+        cmd.load(protein_file, 'protein')  
+        cmd.load(ligand_file, 'ligand')  
           
-        # 加载蛋白质文件  
-        cmd.load(protein_file, "protein")  
-        # print("  ✓ 蛋白质文件已加载")  
+        # 将配体残基名改为LIG  
+        cmd.alter('ligand', 'resn="LIG"')  
           
-        # 加载配体文件  
-        cmd.load(ligand_file, "ligand")  
-        # print("  ✓ 配体文件已加载")  
+        # 合并并保存到临时文件  
+        import tempfile  
+        temp_file = tempfile.NamedTemporaryFile(mode='w', suffix='.pdb', delete=False)  
+        temp_file.close()  
           
-        # 创建复合物选择  
-        cmd.create("complex", "protein or ligand")  
-          
-        # 保存复合物 - 使用绝对路径确保保存位置正确  
-        abs_output_file = os.path.abspath(output_file)  
-        cmd.save(abs_output_file, "complex")  
-        print(f"  ✓ 复合物已保存为: {abs_output_file}")  
-          
-        # 强制刷新并等待文件写入完成  
-        cmd.sync()  
-          
-        # 验证文件是否真的存在  
-        if not os.path.exists(abs_output_file):
-            print(f"  ✗ 警告: 文件未找到: {abs_output_file}")
-            return False
-          
-        # 清理PyMOL会话  
+        cmd.save(temp_file.name, 'protein or ligand')  
         cmd.reinitialize()  
+          
+        # 读取临时文件并过滤溶剂  
+        with open(temp_file.name, 'r') as f:  
+            lines = f.readlines()  
+          
+        filtered_lines = []  
+        for line in lines:  
+            if line.startswith('HETATM'):  
+                # 提取残基名(第18-20列,索引17-20)  
+                resn = line[17:20].strip()  
+                  
+                # 跳过溶剂分子  
+                if resn in SOLVENT_RESIDUES:  
+                    continue  
+              
+            filtered_lines.append(line)  
+          
+        # 写入最终文件  
+        with open(output_file, 'w') as f:  
+            f.writelines(filtered_lines)  
+          
+        # 清理临时文件  
+        os.unlink(temp_file.name)  
+          
+        # print(f"✓ 已生成complex.pdb: {output_file}")  
+        # print(f"  - 配体残基名: LIG")  
+        # print(f"  - 已过滤 {len(SOLVENT_RESIDUES)} 种溶剂分子")  
           
         return True  
           
-    except ImportError:  
-        print("错误: 未找到PyMOL模块")  
-        return False  
     except Exception as e:  
-        print(f"PyMOL合并过程中出现错误: {e}")  
-        return False  
-          
-    except ImportError:  
-        print("错误: 未找到PyMOL模块")  
-        print("请安装PyMOL: pip install pymol-open-source")  
-        return False  
-    except Exception as e:  
-        print(f"PyMOL合并过程中出现错误: {e}")  
-        return False  
+        print(f"合并失败: {e}")  
+        return False
   
 def extract_interaction_atom_pairs(interaction_sets):  
     """  

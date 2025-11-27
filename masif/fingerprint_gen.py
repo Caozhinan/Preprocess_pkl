@@ -3,12 +3,18 @@ import os
 import sys    
 import time    
 import importlib    
-    
+import warnings  
+warnings.filterwarnings('ignore')  
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 # 导入必要的模块    
 from default_config.masif_opts import masif_opts    
 from masif_modules.MaSIF_ppi_search import MaSIF_ppi_search    
 from masif_modules.train_ppi_search import compute_val_test_desc    
-    
+
+
+
+
 def mask_input_feat(input_feat, mask):    
     """    
     根据特征掩码过滤输入特征。    

@@ -10,31 +10,59 @@ from IPython.core.debugger import set_trace
 import os
 
 
-def protonate(in_pdb_file, out_pdb_file):
-    # protonate (i.e., add hydrogens) a pdb using reduce and save to an output file.
-    # in_pdb_file: file to protonate.
-    # out_pdb_file: output file where to save the protonated pdb file. 
-    
-    # Remove protons first, in case the structure is already protonated
-    args = ["reduce", "-Trim", in_pdb_file]
-    p2 = Popen(args, stdout=PIPE, stderr=PIPE)
-    stdout, stderr = p2.communicate()
-    outfile = open(out_pdb_file, "w")
-    outfile.write(stdout.decode('utf-8').rstrip())
-    outfile.close()
-
-    # Now add them again.
-    # args = ["reduce", "-HIS", "-DB", "/work/upcorreia/bin/reduce/reduce_wwPDB_het_dict_old.txt", out_pdb_file]
-    args = ["reduce", out_pdb_file, "-HIS"]
-    het_dict = os.environ.get('REDUCE_HET_DICT')
-    if het_dict is not None:
-        args.extend(["-DB", het_dict])
-    
-    p2 = Popen(args, stdout=PIPE, stderr=PIPE)
-    stdout, stderr = p2.communicate()
-    outfile = open(out_pdb_file, "w")
-    outfile.write(stdout.decode('utf-8'))
-    outfile.close()
+def protonate(in_pdb_file, out_pdb_file):  
+    # protonate (i.e., add hydrogens) a pdb using reduce and save to an output file.  
+    # in_pdb_file: file to protonate.  
+    # out_pdb_file: output file where to save the protonated pdb file.   
+      
+    # Remove protons first, in case the structure is already protonated  
+    args = ["reduce", "-Trim", in_pdb_file]  
+    p2 = Popen(args, stdout=PIPE, stderr=PIPE)  
+    stdout, stderr = p2.communicate()  
+    outfile = open(out_pdb_file, "w")  
+    outfile.write(stdout.decode('utf-8').rstrip())  
+    outfile.close()  
+  
+    # Now add them again.  
+    args = ["reduce", out_pdb_file, "-HIS"]  
+    het_dict = os.environ.get('REDUCE_HET_DICT')  
+    if het_dict is not None:  
+        args.extend(["-DB", het_dict])  
+      
+    p2 = Popen(args, stdout=PIPE, stderr=PIPE)  
+    stdout, stderr = p2.communicate()  
+    outfile = open(out_pdb_file, "w")  
+    outfile.write(stdout.decode('utf-8'))  
+    outfile.close()  
+      
+    # 清理 reduce 输出中的多占位原子  
+    from Bio.PDB import PDBParser, PDBIO, Select  
+      
+    class FirstAltlocSelect(Select):  
+        def accept_atom(self, atom):  
+            altloc = atom.get_altloc()  
+            # 只接受没有 altloc 或 altloc 为 'A' 的原子  
+            if altloc != ' ' and altloc != 'A':  
+                return False  
+            return True  
+      
+    try:  
+        parser = PDBParser(QUIET=True)  
+        structure = parser.get_structure('temp', out_pdb_file)  
+          
+        # 清除所有原子的 altloc 标记  
+        for model in structure:  
+            for chain in model:  
+                for residue in chain:  
+                    for atom in residue:  
+                        atom.set_altloc(' ')  
+          
+        # 重新保存清理后的结构  
+        io = PDBIO()  
+        io.set_structure(structure)  
+        io.save(out_pdb_file, FirstAltlocSelect())  
+    except Exception as e:  
+        print(f"Warning: Failed to clean altloc in {out_pdb_file}: {e}")
 
 def fix_ligand_atom_names(pdb_file):  
     """修复配体中重复的原子名"""  
