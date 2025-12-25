@@ -24,7 +24,11 @@ def parallel_helper(proteinpdb, ligand_file, name, pk, rmsd, protein_cutoff, poc
         return None
     
     # 生成口袋PDB文件（如果不存在）
+<<<<<<< HEAD
     pocketpdb = proteinpdb.parent / (proteinpdb.name.rsplit('.', 1)[0] + '_pocket.pdb')
+=======
+    pocketpdb = proteinpdb.parent / (name + '_protein_pocket.pdb')
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     if not pocketpdb.is_file():
         pymol_pocket(proteinpdb, ligand_file, pocketpdb)
     

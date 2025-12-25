@@ -1,0 +1,3024 @@
+===== 项目文件汇总 (生成时间: Fri Nov 21 20:58:11 CST 2025) =====
+工作目录: /es01/paratera/sce0413/czn/preprocess_pkl
+
+------------------------------------------------------------
+FILE: ./.git/COMMIT_EDITMSG
+SIZE: 7 bytes
+TYPE: ./.git/COMMIT_EDITMSG: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+finish
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/HEAD
+SIZE: 21 bytes
+TYPE: ./.git/HEAD: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+ref: refs/heads/main
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/config
+SIZE: 218 bytes
+TYPE: ./.git/config: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "preprocess"]
+	url = https://github.com/Caozhinan/Preprocess_pkl.git
+	fetch = +refs/heads/*:refs/remotes/preprocess/*
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/description
+SIZE: 73 bytes
+TYPE: ./.git/description: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+Unnamed repository; edit this file 'description' to name the repository.
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/index
+SIZE: 32374 bytes
+TYPE: ./.git/index: Git index, version 2, 260 entries
+
+[二进制或非文本文件，内容略过]
+
+------------------------------------------------------------
+FILE: ./README.md
+SIZE: 3431 bytes
+TYPE: ./README.md: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+# __AffinSculptor 预处理脚本使用指南__
+
+## 概述 
+preprocess.sh 是一个自动化脚本，用于批量处理蛋白质-配体复合物数据，生成包含 MaSIF 表面指纹的整合特征文件。
+
+## 前置要求 
+环境配置：确保已安装所需的 Python 环境和依赖包
+脚本权限：给脚本添加执行权限
+chmod +x preprocess.sh
+## 输入格式 
+脚本需要一个 CSV 文件作为输入，格式如下：
+receptor,ligand,name,pk,rmsd  
+/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/ligand.sdf,6uux-QHM,6.63,1.25  
+/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/ligand.sdf,1abc-XYZ,7.2,0.8
+CSV 字段说明 
+receptor: 蛋白质 PDB 文件的绝对路径
+ligand: 配体 SDF 文件的绝对路径
+name: 复合物名称标识符
+pk: pK 值（数值）
+rmsd: RMSD 值（数值）
+使用方法 
+基本调用 
+./preprocess.sh input_data.csv
+## 完整示例 
+### 1. 准备输入 CSV 文件  
+cat > my_complexes.csv << EOF  
+receptor,ligand,name,pk,rmsd  
+/path/to/complex1/protein.pdb,/path/to/complex1/ligand.sdf,complex1,6.5,1.2  
+/path/to/complex2/protein.pdb,/path/to/complex2/ligand.sdf,complex2,7.1,0.9  
+EOF  
+  
+### 2. 运行脚本  
+./preprocess.sh my_complexes.csv
+处理流程 
+脚本会依次执行以下步骤：
+
+Step 1: 调用 custom_input.py 进行预处理，生成基础 PKL 文件
+Step 2: 调用 meshfeatureGen.py 生成网格和表面特征
+Step 3: 调用 feature_precompute.py 进行特征预计算
+Step 4: 调用 fingerprint_gen.py 生成 MaSIF 指纹
+Step 5: 调用 merge_pkl.py 整合所有特征到最终 PKL 文件
+输出结果 
+对于每个复合物，脚本会在相应目录下创建 output 文件夹，包含：
+
+/path/to/complex/output/  
+├── complex.pdb                    # 预处理后的复合物结构  
+├── surfaces/                      # 表面网格文件  
+├── precomputed/                   # 预计算特征  
+├── descriptors/                   # MaSIF 指纹  
+├── original_data.pkl              # 原始图数据  
+└── original_data_with_masif.pkl   # 整合 MaSIF 特征的最终文件  
+
+## 错误处理 
+如果某个复合物处理失败，脚本会继续处理下一个
+每个步骤都有错误检查，失败时会显示具体错误信息
+处理完成后会显示总体处理结果
+## 注意事项 
+路径要求：CSV 中的文件路径必须是绝对路径
+文件存在性：确保所有输入的 PDB 和 SDF 文件都存在
+磁盘空间：每个复合物会生成较多中间文件，确保有足够磁盘空间
+处理时间：MaSIF 指纹生成可能需要较长时间，特别是对于大型复合物
+## 故障排除 
+常见错误 
+权限错误：确保脚本有执行权限
+路径错误：检查 CSV 中的文件路径是否正确
+依赖缺失：确保所有 Python 脚本都已正确配置命令行参数支持
+调试模式 
+可以手动执行单个步骤来调试问题：
+
+## 测试单个复合物的处理  
+python /xcfhome/zncao02/AffinSculptor/preprocess/custom_input.py \\  
+    --receptor /path/to/protein.pdb \\  
+    --ligand /path/to/ligand.sdf \\  
+    --output_dir /path/to/output \\  
+    --name test_complex
+
+这个脚本设计为批量处理工具，可以高效地为多个蛋白质-配体复合物生成包含 MaSIF 表面指纹的完整特征数据。----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./bak_preprocess.sh
+SIZE: 7076 bytes
+TYPE: ./bak_preprocess.sh: Bourne-Again shell script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/bin/bash
+# source /es01/paratera/parasoft/module.sh
+# module load mambaforge/24.11.0-1-hxl
+source /es01/paratera/parasoft/soft/mambaforge/24.11.0-1/etc/profile.d/conda.sh
+conda activate /es01/paratera/sce0413/czn/conda_env/affincraft
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <csv_file> [num_cores]"
+    echo "CSV format: receptor,ligand,name,pk,rmsd"
+    exit 1
+fi
+
+CSV_FILE="$1"
+NUM_CORES="${2:-1}"
+
+if [ ! -f "$CSV_FILE" ]; then
+    echo "Error: CSV file $CSV_FILE not found"
+    exit 1
+fi
+
+detect_protein_chain() {
+    local pdb_file="$1"
+    local protein_chain
+    protein_chain=$(grep "^ATOM" "$pdb_file" | awk '{print $5}' | grep -v "X" | sort | uniq -c | sort -nr | head -1 | awk '{print $2}')
+    echo "$protein_chain"
+}
+
+process_one_complex() {
+    local receptor="$1"
+    local ligand="$2"
+    local name="$3"
+    local pk="$4"
+    local rmsd="$5"
+
+    [ -z "$receptor" ] && return 0
+
+    echo "Processing: $name"
+    target_dir=$(dirname "$receptor")
+    output_dir="$target_dir/output"
+    mkdir -p "$output_dir"
+
+    THREAD_ID="${name}_$(date +%s%N)_$$"
+    PROCESS_TMP_DIR="/tmp/masif_${THREAD_ID}"
+    mkdir -p "$PROCESS_TMP_DIR"
+
+    cleanup() {
+        rm -rf "$PROCESS_TMP_DIR" 2>/dev/null || true
+        rm -f "$temp_csv" 2>/dev/null || true
+    }
+    trap cleanup EXIT
+
+    temp_csv="$output_dir/temp_input_${THREAD_ID}.csv"
+    echo "receptor,ligand,name,pk,rmsd" > "$temp_csv"
+    echo "$receptor,$ligand,$name,$pk,$rmsd" >> "$temp_csv"
+
+    pkl_output="$output_dir/${name}_features.pkl"
+
+    echo "Step 1: Running custom_input.py..."
+    TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+    python3 /es01/paratera/sce0413/czn/preprocess_pkl/preprocess/custom_input.py \
+        "$temp_csv" \
+        "$pkl_output" < /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Error in custom_input.py for $name"
+        return 1
+    fi
+    rm -f "$temp_csv"
+
+    if [ ! -f "$pkl_output" ]; then
+        echo "Error: PKL file not generated: $pkl_output"
+        return 1
+    fi
+
+    complex_pdb="$target_dir/complex.pdb"
+    if [ ! -f "$complex_pdb" ]; then
+        echo "Error: Complex PDB file not found: $complex_pdb"
+        return 1
+    fi
+
+    protein_chain=$(detect_protein_chain "$complex_pdb")
+    if [ -z "$protein_chain" ]; then
+        echo "Error: Could not detect protein chain in $complex_pdb"
+        return 1
+    fi
+
+    echo "Step 2: Running meshfeatureGen.py..."
+    TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+    python3 /es01/paratera/sce0413/czn/preprocess_pkl/masif/meshfeatureGen.py \
+        --pdb_file "$complex_pdb" \
+        --chain_id "$protein_chain" \
+        --ligand_code "UNK" \
+        --ligand_chain "X" \
+        --sdf_file "$ligand" \
+        --output_dir "$output_dir" < /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Error in meshfeatureGen.py for $name"
+        return 1
+    fi
+
+    ply_file="$output_dir/surfaces/complex_${protein_chain}.ply"
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./data/example.csv
+SIZE: 168 bytes
+TYPE: ./data/example.csv: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+receptor,ligand,name,pk,rmsd
+/es01/paratera/sce0413/czn/part1/2J79_frame20/protein.pdb,/es01/paratera/sce0413/czn/part1/2J79_frame20/ligand.sdf,2J79_frame20,6.32,2.548
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./data/test.pkl
+SIZE: 170815 bytes
+TYPE: ./data/test.pkl: 8086 relocatable (Microsoft)
+
+[二进制或非文本文件，内容略过]
+
+------------------------------------------------------------
+FILE: ./export_env.sh
+SIZE: 1298 bytes
+TYPE: ./export_env.sh: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+export APBS_BIN=/es01/paratera/sce0413/czn/software/APBS-3.0.0.Linux/bin/apbs
+export MULTIVALUE_BIN=/es01/paratera/sce0413/czn/software/APBS-3.0.0.Linux/share/apbs/tools/bin/multivalue
+export PDB2PQR_BIN=/es01/paratera/sce0413/czn/software/pdb2pqr-linux-bin64-2.1.0/pdb2pqr
+export REDUCE_HET_DICT=/es01/paratera/sce0413/czn/software/reduce_wwPDB_het_dict.txt
+export PYMESH_PATH=/es01/paratera/sce0413/czn/conda_env/affincraft/lib/python3.9/site-packages/pymesh
+export MSMS_BIN=/es01/paratera/sce0413/czn/software/msms/msms.x86_64Linux2.2.6.1
+export PDB2XYZRN=/es01/paratera/sce0413/czn/software/msms/pdb_to_xyzrn
+export LD_LIBRARY_PATH=/es01/paratera/sce0413/czn/software/APBS-3.0.0.Linux/lib:
+
+export PATH=$PATH:/es01/paratera/sce0413/czn/software/reduce_bin
+export PYTHONPATH=/es01/paratera/sce0413/czn/preprocess_pkl/masif/source:$PYTHONPATH
+# export PYTHONPATH=/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages:$PYTHONPATH
+# export PYTHONPATH=/xcfhome/zncao02/model_bap/Dynafomer/Dynaformer/fairseq:$PYTHONPATH
+export PYTHONPATH=/es01/paratera/sce0413/czn/preprocess_pkl/masif/data:$PYTHONPATH
+export LD_LIBRARY_PATH=/es01/paratera/sce0413/czn/conda_env/affincraft/lib:$LD_LIBRARY_PATH
+export BABEL_LIBDIR=/es01/paratera/sce0413/czn/conda_env/affincraft/lib/openbabel/3.1.0----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/debug.txt
+SIZE: 1194 bytes
+TYPE: ./masif/debug.txt: Python script, ASCII text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+zncao02@f100$ p /xcfhome/zncao02/AffinSculptor/masif/extract_feature_triang.py
+Traceback (most recent call last):
+File "/xcfhome/zncao02/AffinSculptor/masif/extract_feature_triang.py", line 14, in <module>
+from triangulation.fixmesh import fix_mesh
+File "/xcfhome/zncao02/AffinSculptor/masif/source/triangulation/fixmesh.py", line 3, in <module>
+import pymesh
+File "/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh/init.py", line 18, in <module>
+from .Mesh import Mesh
+File "/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh/Mesh.py", line 5, in <module>
+import PyMesh
+ModuleNotFoundError: No module named 'PyMesh'
+(dynaformer) ~/dataset_bap/test_set/custom/6uux-QHM
+zncao02@f100$ pip install PyMesh
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Requirement already satisfied: PyMesh in /xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages (0.2.0)
+Requirement already satisfied: numpy in /xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages (from PyMesh) (1.20.3)
+WARNING: Error parsing dependencies of omegaconf: .* suffix can only be used with == or != operators
+PyYAML (>=5.1.*)
+~~~~~~^----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/export_path.sh
+SIZE: 689 bytes
+TYPE: ./masif/export_path.sh: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+export APBS_BIN=/xcfhome/zncao02/software/APBS-3.0.0.Linux/bin/apbs
+export MULTIVALUE_BIN=/xcfhome/zncao02/software/APBS-3.0.0.Linux/share/apbs/tools/bin/multivalue
+export PDB2PQR_BIN=/xcfhome/zncao02/software/pdb2pqr-linux-bin64-2.1.0/pdb2pqr
+export REDUCE_HET_DICT=/xcfhome/zncao02/software/reduce_wwPDB_het_dict.txt
+export PYMESH_PATH=/xcfhome/zncao02/anaconda3/envs/dynaformer/lib/python3.9/site-packages/pymesh
+export MSMS_BIN=/xcfhome/zncao02/software/msms/msms.x86_64Linux2.2.6.1
+export PDB2XYZRN=/xcfhome/zncao02/software/msms/pdb_to_xyzrn
+export LD_LIBRARY_PATH=/xcfhome/zncao02/software/APBS-3.0.0.Linux/lib:$LD_LIBRARY_PATH
+export PATH=$PATH:/xcfhome/zncao02/software/reduce_bin----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/feature_precompute.py
+SIZE: 5252 bytes
+TYPE: ./masif/feature_precompute.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/python  
+import numpy as np  
+import os  
+import sys  
+import time  
+import pymesh  
+from sklearn.neighbors import KDTree  
+  
+# 导入必要的模块  
+from default_config.masif_opts import masif_opts  
+from masif_modules.read_data_from_surface import read_data_from_surface, compute_shape_complementarity  
+from geometry.compute_polar_coordinates import compute_polar_coordinates  
+  
+def precompute_surface_features(ply_file_path, output_dir, masif_app='masif_site'):    
+    """    
+    Step 3: 特征预计算（优化版本 - 使用压缩打包）  
+        
+    参数:    
+    - ply_file_path: Step 1和2生成的PLY文件路径    
+    - output_dir: 输出目录    
+    - masif_app: 应用类型 ('masif_site' 或 'masif_ppi_search')    
+        
+    返回:    
+    - 预计算的特征字典    
+    """    
+        
+    print(f"开始Step 3: 特征预计算...")    
+        
+    # 1. 设置参数    
+    if masif_app == 'masif_ppi_search':     
+        params = masif_opts['ppi_search']    
+    elif masif_app == 'masif_site':    
+        params = masif_opts['site']    
+        params['ply_chain_dir'] = masif_opts['ply_chain_dir']    
+    else:    
+        raise ValueError(f"不支持的应用类型: {masif_app}")    
+        
+    # 2. 创建输出目录    
+    ppi_pair_id = os.path.basename(ply_file_path).replace('.ply', '')    
+    my_precomp_dir = os.path.join(output_dir, 'precomputed', ppi_pair_id + '/')    
+    os.makedirs(my_precomp_dir, exist_ok=True)    
+        
+    # 3. 读取表面数据并计算特征    
+    try:    
+        # 调用核心特征计算函数    
+        input_feat, rho, theta, mask, neigh_indices, iface_labels, verts = read_data_from_surface(    
+            ply_file_path, params    
+        )    
+            
+    except Exception as e:    
+        print(f"特征计算失败: {e}")    
+        return None    
+        
+    # 4. 保存预计算的特征（优化版本 - 使用压缩打包）  
+    # print("保存预计算特征...")    
+        
+    # 将所有数据打包到一个压缩文件中  
+    features_dict = {  
+        'p1_rho_wrt_center': rho,  
+        'p1_theta_wrt_center': theta,  
+        'p1_input_feat': input_feat,  
+        'p1_mask': mask,  
+        'p1_list_indices': neigh_indices,  
+        'p1_iface_labels': iface_labels,  
+        'p1_X': verts[:, 0],  
+        'p1_Y': verts[:, 1],  
+        'p1_Z': verts[:, 2]  
+    }  
+  
+    # 使用压缩格式保存所有特征  
+    np.savez_compressed(os.path.join(my_precomp_dir, 'all_features.npz'), **features_dict)  
+        
+    # 5. 构建返回的特征字典    
+    features = {    
+        'input_features': input_feat,  
+        'rho_coordinates': rho,  
+        'theta_coordinates': theta,  
+        'mask': mask,  
+        'neighbor_indices': neigh_indices,  
+        'interface_labels': iface_labels,  
+        'vertices': verts,  
+        'output_dir': my_precomp_dir,  
+        'num_patches': len(verts),  
+        'feature_dim': input_feat.shape[-1]  
+    }    
+        
+    print(f"Step 3完成! 生成了 {len(verts)} 个patches，每个patch有 {input_feat.shape[-1]} 维特征")    
+        
+    return features  
+  
+def load_precomputed_features(precomp_dir, ppi_pair_id='p1'):    
+    """    
+    加载预计算的特征（优化版本 - 从压缩文件加载）  
+        
+    参数:    
+    - precomp_dir: 预计算特征目录    
+    - ppi_pair_id: 蛋白质对ID (默认 'p1')    
+        
+    返回:    
+    - 特征字典    
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/fingerprint_gen.py
+SIZE: 8953 bytes
+TYPE: ./masif/fingerprint_gen.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+import numpy as np    
+import os    
+import sys    
+import time    
+import importlib    
+import warnings  
+warnings.filterwarnings('ignore')  
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+# 导入必要的模块    
+from default_config.masif_opts import masif_opts    
+from masif_modules.MaSIF_ppi_search import MaSIF_ppi_search    
+from masif_modules.train_ppi_search import compute_val_test_desc    
+
+
+
+
+def mask_input_feat(input_feat, mask):    
+    """    
+    根据特征掩码过滤输入特征。    
+    """    
+    mymask = np.where(np.array(mask) == 0.0)[0]    
+    return np.delete(input_feat, mymask, axis=2)    
+    
+def generate_surface_fingerprints(precomputed_features_dir, output_dir, ppi_pair_id, custom_params_file=None):    
+    """    
+    Step 4: 基于神经网络的指纹生成    
+        
+    参数:    
+    - precomputed_features_dir: Step 3生成的预计算特征的目录    
+    - output_dir: 最终指纹的输出目录    
+    - ppi_pair_id: 蛋白质-配对ID (例如 'complex_A')    
+    - custom_params_file: 包含自定义参数的Python文件路径 (例如 'nn_models.sc05.all_feat.custom_params')    
+        
+    返回:    
+    - 包含指纹数据的字典    
+    """    
+        
+    print(f"开始Step 4: 基于神经网络的指纹生成...")    
+    # print(f"从目录加载预计算特征: {precomputed_features_dir}")    
+        
+    # 1. 设置参数    
+    params = masif_opts["ppi_search"].copy()  # 创建副本避免修改原始配置  
+    if custom_params_file:      
+        try:  
+            # 检查文件是否存在  
+            if os.path.exists(custom_params_file):  
+                # 将文件路径转换为模块路径格式  
+                module_path = custom_params_file.replace('.py', '').replace('/', '.')  
+                # 如果是绝对路径，需要添加到sys.path  
+                import sys  
+                file_dir = os.path.dirname(custom_params_file)  
+                if file_dir not in sys.path:  
+                    sys.path.insert(0, file_dir)  
+
+                # 只使用文件名作为模块名  
+                module_name = os.path.basename(custom_params_file).replace('.py', '')  
+                custom_params_module = importlib.import_module(module_name)  
+                custom_params = custom_params_module.custom_params  
+
+                for key in custom_params:  
+                    # print("设置 {} 为 {}".format(key, custom_params[key]))  
+                    params[key] = custom_params[key]  
+            else:  
+                print("自定义参数文件不存在: {}".format(custom_params_file))  
+                print("将使用默认参数。")  
+        except Exception as e:  
+            print("警告: 无法加载自定义参数文件 {}: {}".format(custom_params_file, str(e)))  
+            # print("将使用默认参数。")
+    # 2. 加载预训练的神经网络模型    
+    # print("加载预训练的神经网络模型...")    
+    learning_obj = MaSIF_ppi_search(    
+        params["max_distance"],    
+        n_thetas=16,    
+        n_rhos=5,    
+        n_rotations=16,    
+        idx_gpu="/gpu:0",    
+        feat_mask=params["feat_mask"],    
+    )    
+      
+# 恢复模型权重 - 改进的路径处理  
+# 首先检查 HDF5 权重文件（绝对路径）  
+    hdf5_weight_dir = "/es01/paratera/sce0413/czn/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/weight"  
+    hdf5_weight_path = os.path.join(hdf5_weight_dir, "weights_12A_0129.hdf5")  
+    # model_load_start = time.time()
+    if os.path.exists(hdf5_weight_path + ".data-00000-of-00001"):  
+        model_path = hdf5_weight_path  
+        # print(f"使用HDF5权重文件: {hdf5_weight_path}")  
+    else:  
+        # 回退到原始的 checkpoint 路径检查  
+        model_path = os.path.join(params["model_dir"], "model")  
+          
+        if not os.path.exists(model_path + ".meta"):  
+            # 尝试绝对路径  
+            abs_model_dir = "/es01/paratera/sce0413/czn/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/model_data/"  
+            abs_model_path = os.path.join(abs_model_dir, "model")  
+              
+            if os.path.exists(abs_model_path + ".meta"):  
+                model_path = abs_model_path  
+                # print(f"使用绝对路径加载模型: {abs_model_dir}")  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/fingerprint_gen_batch.py
+SIZE: 7888 bytes
+TYPE: ./masif/fingerprint_gen_batch.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3  
+# -*- coding: utf-8 -*-  
+  
+import sys  
+import os  
+import time  
+import numpy as np  
+import argparse  
+import importlib  
+from default_config.masif_opts import masif_opts  
+  
+# Apply mask to input_feat  
+def mask_input_feat(input_feat, mask):  
+    mymask = np.where(np.array(mask) == 0.0)[0]  
+    return np.delete(input_feat, mymask, axis=2)  
+  
+def load_hdf5_weights(learning_obj, hdf5_weight_path):  
+    """加载HDF5权重文件到TensorFlow模型"""  
+    import h5py  
+      
+    print("使用HDF5权重文件: {}".format(hdf5_weight_path))  
+      
+    with h5py.File(hdf5_weight_path, 'r') as f:  
+        # 获取所有可训练变量  
+        trainable_vars = learning_obj.session.graph.get_collection('trainable_variables')  
+          
+        # 打印模型参数信息（类似你日志中的输出）  
+        # total_params = 0  
+        # for var in trainable_vars:  
+        #     print(var)  
+        #     param_count = np.prod(var.get_shape().as_list())  
+        #     print(param_count)  
+        #     total_params += param_count  
+          
+        # print("Total number parameters: {}".format(total_params))  
+          
+        # 从HDF5文件加载权重  
+        for var in trainable_vars:  
+            var_name = var.name.replace(':0', '')  
+            if var_name in f:  
+                weight_data = f[var_name][:]  
+                learning_obj.session.run(var.assign(weight_data))  
+                # print("已加载权重: {}".format(var_name))  
+            else:  
+                print("警告: 在HDF5文件中未找到权重: {}".format(var_name))  
+  
+def main():  
+    parser = argparse.ArgumentParser(description='Batch fingerprint generation for multiple complexes with HDF5 weights')  
+    parser.add_argument('--precomputed_dirs', nargs='+', required=True,   
+                       help='List of precomputed directories')  
+    parser.add_argument('--output_dirs', nargs='+', required=True,  
+                       help='List of output directories')  
+    parser.add_argument('--ppi_pair_ids', nargs='+', required=True,  
+                       help='List of PPI pair IDs')  
+    parser.add_argument('--custom_params_file', required=False,  
+                       help='Custom parameters file path')  
+      
+    args = parser.parse_args()  
+      
+    # 验证输入参数长度一致  
+    if not (len(args.precomputed_dirs) == len(args.output_dirs) == len(args.ppi_pair_ids)):  
+        print("错误: precomputed_dirs, output_dirs, 和 ppi_pair_ids 的长度必须相同")  
+        sys.exit(1)  
+      
+    # 加载参数配置  
+    params = masif_opts["ppi_search"]  
+      
+    # 尝试加载自定义参数  
+    if args.custom_params_file and os.path.exists(args.custom_params_file):  
+        try:  
+            custom_params = importlib.import_module(args.custom_params_file.replace('.py', '').replace('/', '.'), package=None)  
+            custom_params = custom_params.custom_params  
+            for key in custom_params:  
+                print("设置 {} 为 {}".format(key, custom_params[key]))  
+                params[key] = custom_params[key]  
+        except Exception as e:  
+            # print("警告: 无法加载自定义参数文件 {}: {}".format(args.custom_params_file, str(e)))  
+            print("将使用默认参数。")  
+      
+    # 一次性加载预训练的神经网络模型  
+    print("加载预训练的神经网络模型...")  
+    from masif_modules.MaSIF_ppi_search import MaSIF_ppi_search  
+      
+    learning_obj = MaSIF_ppi_search(  
+        params["max_distance"],  
+        n_thetas=16,  
+        n_rhos=5,  
+        n_rotations=16,  
+        idx_gpu="/gpu:0",  
+        feat_mask=params["feat_mask"],  
+    )  
+      
+    # 使用HDF5权重文件  
+    hdf5_weight_dir = "/es01/paratera/sce0413/czn/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/weight"    
+    hdf5_weight_path = os.path.join(hdf5_weight_dir, "weights_12A_0129.hdf5")  
+      
+    if os.path.exists(hdf5_weight_path):  
+        load_hdf5_weights(learning_obj, hdf5_weight_path)  
+        print("神经网络模型加载成功。")  
+    else:  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/io.mc
+SIZE: 312 bytes
+TYPE: ./masif/io.mc: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+##############################################################################
+# MC-shell I/O capture file.
+# Creation Date and Time:  Thu Jun 26 13:45:42 2025
+
+##############################################################################
+Hello world from PE 0
+Vnm_tstart: starting timer 26 (APBS WALL CLOCK)..
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./masif/meshfeatureGen.py
+SIZE: 11923 bytes
+TYPE: ./masif/meshfeatureGen.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/python  
+import numpy as np  
+import os  
+import Bio  
+import shutil  
+from Bio.PDB import *   
+import sys  
+import importlib  
+from IPython.core.debugger import set_trace  
+import argparse
+# 本地导入  
+from default_config.masif_opts import masif_opts  
+from triangulation.computeMSMS import computeMSMS  
+from triangulation.fixmesh import fix_mesh  
+from triangulation.ligand_utils import extract_ligand, sdf_to_mol2
+import pymesh  
+from input_output.extractPDB import extractPDB  
+from input_output.save_ply import save_ply  
+from input_output.read_ply import read_ply  
+from input_output.protonate import protonate , fix_ligand_atom_names
+from triangulation.computeHydrophobicity import computeHydrophobicity  
+from triangulation.computeCharges import computeCharges, assignChargesToNewMesh  
+from triangulation.computeAPBS import computeAPBS  
+from triangulation.compute_normal import compute_normal  
+from sklearn.neighbors import KDTree  
+import time
+
+def compute_protein_ligand_surface_features(pdb_file, chain_id, ligand_code=None, ligand_chain=None, sdf_file=None, mol2_patch=None, output_dir=None):    
+    """    
+    完整的蛋白质-配体表面特征计算流程    
+        
+    参数:    
+    - pdb_file: PDB文件路径    
+    - chain_id: 蛋白质链ID    
+    - ligand_code: 配体三字母代码 (可选)    
+    - ligand_chain: 配体所在链 (可选)    
+    - sdf_file: SDF模板文件路径 (可选)    
+    - mol2_patch: MOL2补丁文件路径 (可选)    
+    - output_dir: 输出目录    
+        
+    返回:    
+    - 增强的特征字典，包含几何、化学和形状特征    
+    """    
+        
+    print("开始蛋白质-配体表面特征计算...")    
+        
+    # ========== Step 1: PDB提取和表面三角化 ==========    
+        
+    # 1. 设置临时目录    
+    tmp_dir = output_dir + "/tmp/" if output_dir else masif_opts['tmp_dir']    
+    os.makedirs(tmp_dir, exist_ok=True)    
+        
+
+# 2. 质子化PDB文件    
+    pdb_id = os.path.basename(pdb_file).replace('.pdb', '')    
+    protonated_file = tmp_dir + "/" + pdb_id + "_protonated.pdb"  
+  
+# ===== 新增: 在质子化之前先清理输入文件 =====  
+    from Bio.PDB import PDBParser, PDBIO, Select  
+    
+    class FirstAltlocSelect(Select):  
+        """只保留主构象(altloc为空或为'A')"""  
+        def accept_atom(self, atom):  
+            altloc = atom.get_altloc()  
+            return altloc == ' ' or altloc == 'A'  
+    
+    # 创建清理后的临时输入文件  
+    cleaned_input = tmp_dir + "/" + pdb_id + "_cleaned_input.pdb"  
+    parser = PDBParser(QUIET=True)  
+    structure = parser.get_structure('temp', pdb_file)  
+    io = PDBIO()  
+    io.set_structure(structure)  
+    io.save(cleaned_input, FirstAltlocSelect())  
+    print(f"已清理输入文件的多占位原子")  
+    # ===== 清理结束 =====  
+    
+    # 使用清理后的文件进行质子化  
+    protonate(cleaned_input, protonated_file)    
+    fix_ligand_atom_names(protonated_file)
+    
+    # 3. 提取指定链    
+    out_filename = tmp_dir + "/" + pdb_id + "_" + chain_id    
+    print(f"提取链 {chain_id}...")    
+    extractPDB(protonated_file, out_filename + ".pdb", chain_id, ligand_code, ligand_chain)  
+    
+    # ===== 新增: 清理提取后文件中的多占位原子 =====  
+    # 清理提取后的文件  
+    extracted_pdb = out_filename + ".pdb"  
+    parser2 = PDBParser(QUIET=True)  
+    structure2 = parser2.get_structure('temp2', extracted_pdb)  
+    io2 = PDBIO()  
+    io2.set_structure(structure2)  
+    io2.save(extracted_pdb, FirstAltlocSelect())  
+    print(f"已清理提取后文件的多占位原子: {extracted_pdb}")  
+    # ===== 清理逻辑结束 =====  
+    
+    # 4. 计算MSMS表面    
+    vertices1, faces1, normals1, names1, areas1 = computeMSMS(    
+        out_filename + ".pdb",     
+        protonate=True,     
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./pkl_files_list.txt
+SIZE: 19292 bytes
+TYPE: ./pkl_files_list.txt: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_140/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_93/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_173/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_18/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_167/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_45/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_185/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_80/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_139/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_15/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_138/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_68/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_153/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_190/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_22/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_26/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_47/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_60/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_89/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_198/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_120/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_6/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_32/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_75/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_121/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_184/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_8/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_81/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_19/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_178/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_100/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_117/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_38/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_145/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_2/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_128/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_11/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_63/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_66/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_149/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_122/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_142/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_34/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_195/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_42/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_29/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_191/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_4/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_95/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_154/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_189/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_157/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_186/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_111/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_37/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_16/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_176/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_188/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_5/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_46/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_196/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_36/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_159/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_134/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_144/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_99/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_166/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_35/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_51/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_148/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_24/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_92/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_20/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_61/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_182/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_107/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_113/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_7/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_52/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_152/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_23/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_69/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_155/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_43/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_193/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_109/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_177/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_40/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_79/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_103/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_163/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_74/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_151/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_85/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_78/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_135/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_53/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_14/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_31/merged_features_with_masif.pkl
+/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/job_57/merged_features_with_masif.pkl
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess.sh
+SIZE: 6852 bytes
+TYPE: ./preprocess.sh: Bourne-Again shell script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/bin/bash
+
+
+# # source /es01/paratera/parasoft/module.sh
+# # module load mambaforge/24.11.0-1-hxl
+# source /es01/paratera/parasoft/soft/mambaforge/24.11.0-1/etc/profile.d/conda.sh
+# # 初始化 conda
+# # eval "$(conda shell.bash hook)"
+# # 激活环境
+# conda activate /es01/paratera/sce0413/czn/conda_env/affincraft
+# # which python
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <csv_file> [num_cores]"
+    echo "CSV format: receptor,ligand,name,pk,rmsd"
+    exit 1
+fi
+
+CSV_FILE="$1"
+NUM_CORES="${2:-1}"
+
+if [ ! -f "$CSV_FILE" ]; then
+    echo "Error: CSV file $CSV_FILE not found"
+    exit 1
+fi
+
+detect_protein_chain() {
+    local pdb_file="$1"
+    local protein_chain
+    protein_chain=$(grep "^ATOM" "$pdb_file" | awk '{print $5}' | grep -v "X" | sort | uniq -c | sort -nr | head -1 | awk '{print $2}')
+    echo "$protein_chain"
+}
+
+process_one_complex() {
+    local receptor="$1"
+    local ligand="$2"
+    local name="$3"
+    local pk="$4"
+    local rmsd="$5"
+
+    [ -z "$receptor" ] && return 0
+
+    echo "Processing: $name"
+    target_dir=$(dirname "$receptor")
+    output_dir="$target_dir/output"
+    mkdir -p "$output_dir"
+
+    THREAD_ID="${name}_$(date +%s%N)_$$"
+    PROCESS_TMP_DIR="/tmp/masif_${THREAD_ID}"
+    mkdir -p "$PROCESS_TMP_DIR"
+
+    cleanup() {
+        rm -rf "$PROCESS_TMP_DIR" 2>/dev/null || true
+        rm -f "$temp_csv" 2>/dev/null || true
+    }
+    trap cleanup EXIT
+
+    temp_csv="$output_dir/temp_input_${THREAD_ID}.csv"
+    echo "receptor,ligand,name,pk,rmsd" > "$temp_csv"
+    echo "$receptor,$ligand,$name,$pk,$rmsd" >> "$temp_csv"
+
+    pkl_output="$output_dir/${name}_features.pkl"
+
+    echo "Step 1: Running custom_input.py..."
+    TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+    python3 /es01/paratera/sce0413/czn/preprocess_pkl/preprocess/custom_input.py \
+        "$temp_csv" \
+        "$pkl_output" < /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Error in custom_input.py for $name"
+        return 1
+    fi
+    rm -f "$temp_csv"
+
+    if [ ! -f "$pkl_output" ]; then
+        echo "Error: PKL file not generated: $pkl_output"
+        return 1
+    fi
+
+    complex_pdb="$target_dir/complex.pdb"
+    if [ ! -f "$complex_pdb" ]; then
+        echo "Error: Complex PDB file not found: $complex_pdb"
+        return 1
+    fi
+
+    protein_chain=$(detect_protein_chain "$complex_pdb")
+    if [ -z "$protein_chain" ]; then
+        echo "Error: Could not detect protein chain in $complex_pdb"
+        return 1
+    fi
+
+    echo "Step 2: Running meshfeatureGen.py..."
+    TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+    python3 /es01/paratera/sce0413/czn/preprocess_pkl/masif/meshfeatureGen.py \
+        --pdb_file "$complex_pdb" \
+        --chain_id "$protein_chain" \
+        --ligand_code "UNK" \
+        --ligand_chain "X" \
+        --sdf_file "$ligand" \
+        --output_dir "$output_dir" < /dev/null
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/bak.py
+SIZE: 43032 bytes
+TYPE: ./preprocess/bak.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+
+import numpy as np  
+from scipy.spatial.distance import cdist  
+from pathlib import Path  
+from torch_geometric.data import Data  
+import torch  
+from rdkit import Chem  
+from pymol import cmd  
+# 添加PLIP导入  
+from plip.structure.preparation import PDBComplex  
+import tempfile  
+import os  
+from plip_analysis import merge_protein_ligand_with_pymol  
+from intra_pro_plip import (  
+    InteractionAnalyzer,  
+    AtomInfo, Config )
+from water_metal_detection import detect_water_bridges_from_atoms, detect_metal_complex_from_atoms
+from intra_lig_plip import InteractionAnalyzer as LigandInteractionAnalyzer
+import time
+# 扩展边特征编码  
+SPATIAL_EDGE = [4, 0, 0]  # 原有空间边  
+HYDROGEN_BOND_EDGE = [5, 1, 0]  # 氢键  
+HYDROPHOBIC_EDGE = [5, 2, 0]    # 疏水相互作用  
+PI_STACKING_EDGE = [5, 3, 0]    # π-π堆积  
+PI_CATION_EDGE = [5, 4, 0]      # π-阳离子相互作用  
+SALT_BRIDGE_EDGE = [5, 5, 0]    # 盐桥  
+WATER_BRIDGE_EDGE = [5, 6, 0]   # 水桥  
+HALOGEN_BOND_EDGE = [5, 7, 0]   # 卤键  
+METAL_COMPLEX_EDGE = [5, 8, 0]  # 金属配位  
+OTHERS_EDGE = [5, 9, 0]         # 其他相互作用  
+  
+# 相互作用类型映射  
+INTERACTION_TYPE_MAP = {  
+    'hydrogen_bonds': HYDROGEN_BOND_EDGE,        # 改为复数  
+    'hydrophobic_contacts': HYDROPHOBIC_EDGE,    # 改为复数  
+    'pi_stacking': PI_STACKING_EDGE,  
+    'pi_cation': PI_CATION_EDGE,  
+    'salt_bridges': SALT_BRIDGE_EDGE,            # 改为复数  
+    'water_bridges': WATER_BRIDGE_EDGE,          # 改为复数  
+    'halogen_bonds': HALOGEN_BOND_EDGE,          # 改为复数  
+    'metal_complexes': METAL_COMPLEX_EDGE,       # 改为复数  
+    'others': OTHERS_EDGE  
+}
+
+def analyze_plip_interactions(protein_file, ligand_file):  
+    """  
+    使用PLIP分析蛋白质-配体相互作用  
+      
+    Args:  
+        protein_file: 蛋白质PDB文件路径  
+        ligand_file: 配体SDF文件路径  
+      
+    Returns:  
+        dict: 包含原子对相互作用信息的字典  
+    """  
+    # Create complex file in the same directory as the protein file  
+    protein_path = Path(protein_file)  
+    complex_file = protein_path.parent / "complex.pdb"  
+      
+     
+    if not complex_file.exists():  
+        # print(f"Creating complex file: {complex_file}")  
+          
+        if not merge_protein_ligand_with_pymol(protein_file, ligand_file, str(complex_file)):  
+            print(f"Failed to create complex file")  
+            return {}  
+          
+        # 新增：修改HETATM行的链标识符  
+        fix_hetatm_chain_ids(str(complex_file), 'X')  
+        
+    try:  
+        my_mol = PDBComplex()  
+        my_mol.load_pdb(str(complex_file))
+        print(f"DEBUG: 识别出的配体数量: {len(my_mol.ligands)}")  
+        # for i, ligand in enumerate(my_mol.ligands):  
+        #     print(f"DEBUG: 配体 {i+1}: {ligand.hetid}, 链: {ligand.chain}, 位置: {ligand.position}")  
+            # print(f"DEBUG: 配体类型: {ligand.type}, 长名称: {ligand.longname}")  
+
+        # print(f"DEBUG: 排除的分子: {my_mol.excluded}") 
+        my_mol.analyze()  
+          
+        # 提取原子对信息  
+        atom_pairs_dict = {}  
+        # print(f"DEBUG: 发现的结合位点标识符: {list(my_mol.interaction_sets.keys())}")  
+        # print(f"DEBUG: 结合位点详细信息:")
+        for bsid, interactions in my_mol.interaction_sets.items():  
+            atom_pairs_dict[bsid] = {  
+                'hydrogen_bonds': [],  
+                'hydrophobic_contacts': [],  
+                'pi_stacking': [],  
+                'pi_cation': [],  
+                'salt_bridges': [],  
+                'water_bridges': [],  
+                'halogen_bonds': [],  
+                'metal_complexes': []  
+            }  
+              
+            # 氢键  
+            for hbond in interactions.hbonds_ldon + interactions.hbonds_pdon:  
+                atom_pairs_dict[bsid]['hydrogen_bonds'].append({  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/complex2graph.py
+SIZE: 6635 bytes
+TYPE: ./preprocess/complex2graph.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+import argparse  # 命令行参数解析
+from pathlib import Path  # 跨平台路径对象
+from tqdm import tqdm  # 进度条（本脚本未用到）
+import pickle  # 对象序列化/反序列化
+from preprocess import gen_feature, gen_graph, to_pyg_graph, get_info,  GB_score,  analyze_plip_interactions  # 自定义化学特征/图处理函数
+from joblib import Parallel, delayed  # 并行处理
+from utils import read_mol, obabel_pdb2mol, pymol_pocket, correct_sanitize_v2  # 分子文件处理工具
+import numpy as np  # 数值处理
+from rdkit import Chem, RDLogger  # RDKit 化学库及日志
+import tempfile  # 临时文件操作
+import pandas as pd  # 表格处理（本脚本未用到）
+import os  # 操作系统相关，如文件删除
+
+
+# 多线程单个样本处理主函数
+def parallel_helper(proteinpdb, ligandsdf, name_prefix, mol, pdict, protein_cutoff, pocket_cutoff, spatial_cutoff):  
+    RDLogger.DisableLog('rdApp.*')  # 关闭 RDKit 日志输出，防止多线程干扰  
+    # 创建临时文件用于中间数据保存  
+    _, templigand = tempfile.mkstemp(suffix='.sdf')  # 临时配体 sdf  
+    os.close(_)  # 关闭文件描述符  
+    _, temppocketpdb = tempfile.mkstemp(suffix='.pdb')  # 临时 pocket pdb  
+    os.close(_)  
+    _, temppocketsdf = tempfile.mkstemp(suffix='.sdf')  # 临时 pocket sdf  
+    os.close(_)  
+      
+    pymol_pocket(proteinpdb, ligandsdf, temppocketpdb)  # 用 pymol 选出 pocket 区域保存为 pdb  
+    obabel_pdb2mol(temppocketpdb, temppocketsdf)  # 用 openbabel 转为 sdf 格式  
+    assert "_Name" in pdict, f'Property dict should have _Name key, but currently: {pdict}'  # 检查分子属性有名字  
+    name = name_prefix + f'_{pdict["_Name"]}'  # 生成唯一名字  
+      
+    try:  
+        ligand = correct_sanitize_v2(mol)  # RDKit 分子消毒修正  
+        Chem.MolToMolFile(ligand, templigand)  # 保存修正结果为 sdf  
+        pocket = read_mol(temppocketsdf)  # 读取 pocket 分子  
+        proinfo, liginfo = get_info(proteinpdb, templigand)  # 获取蛋白与配体信息（如原子坐标、类型等）  
+        res = gen_feature(ligand, pocket, name)  # 生成结构特征（如原子、键、环境等）  
+          
+        # 机器学习相关评分特征  
+        # res['rfscore'] = RF_score(liginfo, proinfo)  # 随机森林打分  
+        res['gbscore'] = GB_score(liginfo, proinfo)  # 梯度提升树打分   
+          
+        # 新增：PLIP相互作用分析  
+        print(f"正在进行PLIP分析: {name}")  
+        plip_interactions = analyze_plip_interactions(str(proteinpdb), str(templigand))  
+        res['plip_interactions'] = plip_interactions  
+          
+    except RuntimeError as e:  
+        # 只要分子读入失败就报错并返回 None  
+        print(proteinpdb, temppocketsdf, templigand, "Fail on reading molecule")  
+        return None  
+  
+    # 提取配体与 pocket 特征（如原子类别、坐标、环境等，作为图节点/边属性）  
+    ligand = (res['lc'], res['lf'], res['lei'], res['lea'])  
+    pocket = (res['pc'], res['pf'], res['pei'], res['pea'])  
+  
+    # 生成分子复合物图，异常时跳过  
+    try:  
+        # 修改：传递PLIP分析结果和文件路径给gen_graph  
+        raw = gen_graph(  
+            ligand, pocket, name,   
+            protein_cutoff=protein_cutoff,  
+            pocket_cutoff=pocket_cutoff,  
+            spatial_cutoff=spatial_cutoff,  
+            protein_file=str(proteinpdb),  
+            ligand_file=str(templigand),  
+            plip_interactions=res['plip_interactions']  
+        )  # 生成原始图结构特征（如邻接、节点、边等），cutoff 控制边界  
+    except ValueError as e:  
+        print(f"{name}: Error gen_graph from raw feature {str(e)}")  
+        return None  
+  
+    # 转换为 PyTorch Geometric 图数据结构，并加上全局特征  
+    graph = to_pyg_graph(  
+        list(raw) + [ res['gbscore'], res['ecif'], -1, name],   
+        frame=-1, rmsd_lig=0.0, rmsd_pro=0.0  
+    )  
+  
+    # 清理所有临时文件，防止磁盘爆满  
+    os.remove(templigand)  
+    os.remove(temppocketpdb)  
+    os.remove(temppocketsdf)  
+    return graph  # 返回该分子复合物的图对象
+
+# 并行批量处理复合物
+def process_complex(proteinpdb: Path, ligandsdf: Path, name_prefix: str, njobs: int, protein_cutoff, pocket_cutoff, spatial_cutoff):
+    suppl = Chem.SDMolSupplier(str(ligandsdf), sanitize=False, strictParsing=False)  # 读取 ligand sdf 文件，允许多 conformer
+    mols = list(suppl)  # 转成分子列表
+    graphs = []
+
+    # joblib 并行分发任务（每个 ligand 一个进程）
+    res = Parallel(n_jobs=njobs)(
+        delayed(parallel_helper)(
+            proteinpdb, ligandsdf, f"{idx}_{name_prefix}", mol, mol.GetPropsAsDict(True),
+            protein_cutoff, pocket_cutoff, spatial_cutoff
+        )
+        for idx, mol in enumerate(mols)
+    )
+    # 收集所有图对象
+    for i in res:
+        if i: graphs.append(i)
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/custom_input.py
+SIZE: 9064 bytes
+TYPE: ./preprocess/custom_input.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+import argparse  # 解析命令行参数
+from pathlib import Path  # 跨平台处理文件和路径
+# from tqdm import tqdm  # 进度条，可显示任务进度
+import pickle  # 用于保存/加载Python对象
+from preprocess import  gen_graph, get_info, GB_score, analyze_plip_interactions  # 预处理和特征生成相关函数
+from joblib import Parallel, delayed  # 并行计算工具
+from utils import read_mol, obabel_pdb2mol, pymol_pocket  # 读取分子和格式转换工具
+import numpy as np  # 数值计算库
+from rdkit import Chem, RDLogger  # 化学信息学库及日志管理
+import tempfile  # 临时文件/目录工具（未使用）
+import pandas as pd  # 数据处理库
+import os  # 操作系统接口（未使用）
+from mol2graph import mol2graph_ligand, mol2graph_protein_from_pdb   # 分子图转换工具
+import time
+
+# def process_one(proteinpdb: Path, ligandsdf: Path, name: str, pk: float, rmsd: float, protein_cutoff, pocket_cutoff, spatial_cutoff):  
+#     RDLogger.DisableLog('rdApp.*')  
+  
+#     if not (proteinpdb.is_file() and ligandsdf.is_file()):  
+#         print(f"{proteinpdb} or {ligandsdf} does not exist.")  
+#         return None  
+      
+#     # 生成口袋PDB文件（如果不存在）  
+#     pocketpdb = proteinpdb.parent / (proteinpdb.name.rsplit('.', 1)[0] + '_pocket.pdb')  
+#     if not pocketpdb.is_file():  
+#         pymol_pocket(proteinpdb, ligandsdf, pocketpdb)  
+      
+#     # 跳过SDF转换步骤，直接使用PDB文件  
+  
+#     try:  
+#         ligand = read_mol(ligandsdf)  
+#         # 直接从PDB文件读取口袋信息  
+#         pocket_dict = mol2graph_protein_from_pdb(pocketpdb)  
+          
+#         proinfo, liginfo = get_info(proteinpdb, ligandsdf)  
+          
+#         # 手动构建res字典  
+#         ligand_dict = mol2graph_ligand(ligand)  
+          
+#         res = {  
+#             'lc': ligand_dict['coords'], 'lf': ligand_dict['node_feat'],   
+#             'lei': ligand_dict['edge_index'], 'lea': ligand_dict['edge_feat'],  
+#             'pc': pocket_dict['coords'], 'pf': pocket_dict['node_feat'],   
+#             'pei': pocket_dict['edge_index'], 'pea': pocket_dict['edge_feat'],  
+#             'pdbid': name,  
+#             'ligand_smiles': ligand_dict['smiles'],  
+#             'protein_atom_names': pocket_dict['pro_name'],  
+#             'protein_aa_names': pocket_dict['AA_name']  
+#         }  
+          
+#         res['rfscore'] = RF_score(liginfo, proinfo)  
+#         res['gbscore'] = GB_score(liginfo, proinfo)  
+#         res['ecif'] = np.array(GetECIF(str(proteinpdb), str(ligandsdf)))  
+          
+#     except RuntimeError as e:  
+#         print(proteinpdb, pocketpdb, ligandsdf, "Fail on reading molecule")  
+#         return None  
+  
+#     # 其余处理逻辑保持不变  
+#     ligand = (res['lc'], res['lf'], res['lei'], res['lea'])  
+#     pocket = (res['pc'], res['pf'], res['pei'], res['pea'])  
+      
+#     try:  
+#         raw = gen_graph(ligand, pocket, name, protein_cutoff=protein_cutoff, pocket_cutoff=pocket_cutoff, spatial_cutoff=spatial_cutoff)  
+#     except ValueError as e:  
+#         print(f"{name}: Error gen_graph from raw feature {str(e)}")  
+#         return None  
+      
+#     # 返回字典格式  
+#     result_dict = {  
+#         'edge_index': raw[2], 'edge_feat': raw[3], 'node_feat': raw[1], 'coords': raw[0],  
+#         'pro_name': res['protein_atom_names'], 'AA_name': res['protein_aa_names'],  
+#         'smiles': res['ligand_smiles'], 'rmsd': rmsd,  
+#         'rfscore': res['rfscore'], 'gbscore': res['gbscore'], 'ecif': res['ecif'],  
+#         'pk': pk, 'pdbid': name, 'num_node': raw[4], 'num_edge': raw[5]  
+#     }  
+      
+#     return result_dict
+
+def parallel_helper(proteinpdb, ligandsdf, name, pk, rmsd, protein_cutoff, pocket_cutoff, spatial_cutoff):    
+    """    
+    处理单个蛋白质-配体复合物的并行辅助函数    
+    集成PLIP分析到特征生成流程    
+    """    
+    RDLogger.DisableLog('rdApp.*')  # 关闭 RDKit 日志输出    
+        
+    if not (proteinpdb.is_file() and ligandsdf.is_file()):    
+        print(f"{proteinpdb} or {ligandsdf} does not exist.")    
+        return None    
+        
+    # 生成口袋PDB文件（如果不存在）    
+    pocketpdb = proteinpdb.parent / (proteinpdb.name.rsplit('.', 1)[0] + '_pocket.pdb')    
+    if not pocketpdb.is_file():    
+        pymol_pocket(proteinpdb, ligandsdf, pocketpdb)    
+        
+    try:    
+        ligand = read_mol(ligandsdf)    
+        # 直接从PDB文件读取口袋信息    
+        pocket_dict = mol2graph_protein_from_pdb(pocketpdb)    
+            
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/features.py
+SIZE: 6819 bytes
+TYPE: ./preprocess/features.py: Python script, ASCII text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+# allowable multiple choice node and edge features 
+allowable_features = {
+    'possible_atomic_num_list' : list(range(1, 119)) + ['misc'],
+    'possible_chirality_list' : [
+        'CHI_UNSPECIFIED',
+        'CHI_TETRAHEDRAL_CW',
+        'CHI_TETRAHEDRAL_CCW',
+        'CHI_OTHER', 
+        'mics'
+    ],
+    'possible_degree_list' : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'misc'],
+    'possible_formal_charge_list' : [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 'misc'],
+    'possible_numH_list' : [0, 1, 2, 3, 4, 5, 6, 7, 8, 'misc'],
+    'possible_number_radical_e_list': [0, 1, 2, 3, 4, 'misc'],
+    'possible_hybridization_list' : [
+        'SP', 'SP2', 'SP3', 'SP3D', 'SP3D2', 'misc'
+        ],
+    'possible_is_aromatic_list': [False, True],
+    'possible_is_in_ring_list': [False, True],
+    'possible_bond_type_list' : [
+        'SINGLE',
+        'DOUBLE',
+        'TRIPLE',
+        'AROMATIC',
+        'misc'
+    ],
+    'possible_bond_stereo_list': [
+        'STEREONONE',
+        'STEREOZ',
+        'STEREOE',
+        'STEREOCIS',
+        'STEREOTRANS',
+        'STEREOANY',
+    ], 
+    'possible_is_conjugated_list': [False, True],
+}
+
+def safe_index(l, e):
+    """
+    Return index of element e in list l. If e is not present, return the last index
+    """
+    try:
+        return l.index(e)
+    except:
+        return len(l) - 1
+# # miscellaneous case
+# i = safe_index(allowable_features['possible_atomic_num_list'], 'asdf')
+# assert allowable_features['possible_atomic_num_list'][i] == 'misc'
+# # normal case
+# i = safe_index(allowable_features['possible_atomic_num_list'], 2)
+# assert allowable_features['possible_atomic_num_list'][i] == 2
+
+def atom_to_feature_vector(atom):
+    """
+    Converts rdkit atom object to feature list of indices
+    :param mol: rdkit atom object
+    :return: list
+    """
+    atom_feature = [
+            safe_index(allowable_features['possible_atomic_num_list'], atom.GetAtomicNum()),
+            safe_index(allowable_features['possible_chirality_list'], str(atom.GetChiralTag())),
+            safe_index(allowable_features['possible_degree_list'], atom.GetTotalDegree()),
+            safe_index(allowable_features['possible_formal_charge_list'], atom.GetFormalCharge()),
+            safe_index(allowable_features['possible_numH_list'], atom.GetTotalNumHs()),
+            safe_index(allowable_features['possible_number_radical_e_list'], atom.GetNumRadicalElectrons()),
+            safe_index(allowable_features['possible_hybridization_list'], str(atom.GetHybridization())),
+            allowable_features['possible_is_aromatic_list'].index(atom.GetIsAromatic()),
+            allowable_features['possible_is_in_ring_list'].index(atom.IsInRing()),
+            ]
+    return atom_feature
+# from rdkit import Chem
+# mol = Chem.MolFromSmiles('Cl[C@H](/C=C/C)Br')
+# atom = mol.GetAtomWithIdx(1)  # chiral carbon
+# atom_feature = atom_to_feature_vector(atom)
+# assert atom_feature == [5, 2, 4, 5, 1, 0, 2, 0, 0]
+
+
+def get_atom_feature_dims():
+    return list(map(len, [
+        allowable_features['possible_atomic_num_list'],
+        allowable_features['possible_chirality_list'],
+        allowable_features['possible_degree_list'],
+        allowable_features['possible_formal_charge_list'],
+        allowable_features['possible_numH_list'],
+        allowable_features['possible_number_radical_e_list'],
+        allowable_features['possible_hybridization_list'],
+        allowable_features['possible_is_aromatic_list'],
+        allowable_features['possible_is_in_ring_list']
+        ]))
+
+def bond_to_feature_vector(bond):
+    """
+    Converts rdkit bond object to feature list of indices
+    :param mol: rdkit bond object
+    :return: list
+    """
+    bond_feature = [
+                safe_index(allowable_features['possible_bond_type_list'], str(bond.GetBondType())),
+                allowable_features['possible_bond_stereo_list'].index(str(bond.GetStereo())),
+                allowable_features['possible_is_conjugated_list'].index(bond.GetIsConjugated()),
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/intra_lig_plip.py
+SIZE: 14866 bytes
+TYPE: ./preprocess/intra_lig_plip.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3    
+"""    
+配体内部相互作用分析模块    
+直接复用 intra_pro_plip.py 的所有类和函数定义，适配配体分子    
+"""    
+    
+import numpy as np    
+from openbabel import pybel    
+from typing import List, Dict, Tuple, Optional, Set    
+import math  
+import itertools  
+from collections import namedtuple  
+  
+# 导入 intra_pro_plip.py 中的精细检测函数和辅助函数  
+from intra_pro_plip import (  
+    hydrophobic_interactions, hbonds, pistacking,   
+    saltbridge, pication, halogen_bonds,  
+    euclidean3d, vector, vecangle, normalize_vector,  
+    AtomInfo as ProAtomInfo, RingInfo as ProRingInfo  
+)  
+  
+class AtomInfo:    
+    """原子信息类，存储原子的基本属性 - 兼容 intra_pro_plip.py"""    
+    def __init__(self, atom):    
+        self.atom = atom    
+        self.idx = atom.idx    
+        self.atomicnum = atom.atomicnum    
+        self.coords = np.array([atom.coords[0], atom.coords[1], atom.coords[2]])    
+        self.element = atom.OBAtom.GetAtomicNum()    
+        self.formal_charge = getattr(atom, 'formalcharge', 0)
+        self.partial_charge = getattr(atom.OBAtom, 'GetPartialCharge', lambda: 0.0)()  
+        self.type = atom.type  
+        self.OBAtom = atom.OBAtom  
+  
+class Config:    
+    """配置参数类 - 与 intra_pro_plip.py 保持一致"""    
+    HYDROPHOBIC_DIST_MAX = 4.0  
+    HYDROPH_DIST_MAX = 4.0  # 别名，与 intra_pro_plip.py 兼容  
+    HBOND_DIST_MAX = 3.5    
+    HBOND_DON_ANGLE_MIN = 120.0    
+    PISTACK_DIST_MAX = 5.5    
+    PISTACK_ANG_DEV = 30.0    
+    PISTACK_OFFSET_MAX = 2.0    
+    PICATION_DIST_MAX = 6.0    
+    SALTBRIDGE_DIST_MAX = 5.0    
+    HALOGEN_DIST_MAX = 4.0    
+    HALOGEN_ACC_ANGLE = 120.0    
+    HALOGEN_DON_ANGLE = 165.0  
+    HALOGEN_ANGLE_DEV = 30.0  # 新增角度偏差参数  
+    WATER_BRIDGE_MINDIST = 2.5    
+    WATER_BRIDGE_MAXDIST = 4.0    
+    METAL_DIST_MAX = 3.0  
+    MIN_DIST = 0.5  # 最小距离阈值  
+  
+# 全局配置实例  
+config = Config()  
+  
+def find_hydrophobic_atoms(molecule):    
+    """识别疏水原子 - 返回 AtomInfo 对象列表，兼容 intra_pro_plip.py"""    
+    hydrophobic_atoms = []    
+        
+    for atom in molecule.atoms:    
+        if atom.atomicnum == 6:  # Carbon    
+            # 检查邻居原子是否只有碳和氢    
+            neighbor_nums = set()    
+            for neighbor in pybel.ob.OBAtomAtomIter(atom.OBAtom):    
+                neighbor_nums.add(neighbor.GetAtomicNum())    
+                
+            # 如果邻居只有碳(6)和氢(1)，则为疏水原子    
+            if neighbor_nums.issubset({1, 6}):    
+                hydrophobic_atoms.append(AtomInfo(atom))    
+        elif atom.atomicnum == 16:  # Sulfur    
+            hydrophobic_atoms.append(AtomInfo(atom))    
+        
+    return hydrophobic_atoms    
+  
+def find_hba(molecule):    
+    """识别氢键受体 - 返回 AtomInfo 对象列表，兼容 intra_pro_plip.py"""    
+    acceptors = []    
+        
+    for atom in molecule.atoms:    
+        # 排除卤素原子    
+        if atom.atomicnum not in [9, 17, 35, 53]:    
+            if atom.OBAtom.IsHbondAcceptor():    
+                acceptors.append(AtomInfo(atom))    
+        
+    return acceptors    
+  
+def find_hbd(molecule, hydrophobic_atoms=None):    
+    """识别氢键供体 - 返回 namedtuple 对象列表，兼容 intra_pro_plip.py"""    
+    data = namedtuple('hbonddonor', 'd h type')    
+    donors = []    
+        
+    # 强氢键供体    
+    for atom in molecule.atoms:    
+        if atom.OBAtom.IsHbondDonor():    
+            for adj_atom in pybel.ob.OBAtomAtomIter(atom.OBAtom):    
+                if adj_atom.IsHbondDonorH():    
+                    donors.append(data(d=AtomInfo(atom), h=pybel.Atom(adj_atom), type='regular'))    
+        
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/intra_pro_plip.py
+SIZE: 23555 bytes
+TYPE: ./preprocess/intra_pro_plip.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3  
+"""  
+基于PLIP和OpenBabel的非共价相互作用类型识别脚本  
+用于分析蛋白质内部原子对的相互作用类型  
+"""  
+  
+import itertools  
+import numpy as np  
+from collections import namedtuple  
+from openbabel import pybel  
+from openbabel.openbabel import OBAtomAtomIter  
+  
+# 配置参数 (基于PLIP的默认阈值)  
+class Config:  
+    MIN_DIST = 0.5  
+    HYDROPH_DIST_MAX = 4.0  
+    HBOND_DIST_MAX = 4.0  
+    HBOND_DON_ANGLE_MIN = 100  
+    PISTACK_DIST_MAX = 5.5  
+    PISTACK_ANG_DEV = 30  
+    PISTACK_OFFSET_MAX = 2.0  
+    PICATION_DIST_MAX = 6.0  
+    SALTBRIDGE_DIST_MAX = 5.5  
+    HALOGEN_DIST_MAX = 4.0  
+    HALOGEN_ACC_ANGLE = 120  
+    HALOGEN_DON_ANGLE = 165  
+    HALOGEN_ANGLE_DEV = 30  
+    AROMATIC_PLANARITY = 5.0  
+  
+config = Config()  
+  
+def euclidean3d(coord1, coord2):  
+    """计算两点间的欧几里得距离"""  
+    return np.sqrt(sum([(coord1[i] - coord2[i])**2 for i in range(3)]))  
+  
+def vector(coord1, coord2):  
+    """计算从coord1到coord2的向量"""  
+    return np.array([coord2[i] - coord1[i] for i in range(3)])  
+  
+def vecangle(vec1, vec2):  
+    """计算两个向量间的夹角(度)"""  
+    cos_angle = np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))  
+    cos_angle = np.clip(cos_angle, -1.0, 1.0)  
+    return np.degrees(np.arccos(cos_angle))  
+  
+def normalize_vector(v):  
+    """向量归一化"""  
+    norm = np.linalg.norm(v)  
+    if norm == 0:  
+        return v  
+    return v / norm  
+  
+def projection(normal, center, point):  
+    """将点投影到由法向量和中心定义的平面上"""  
+    v = np.array(point) - np.array(center)  
+    proj_length = np.dot(v, normal) / np.dot(normal, normal)  
+    return np.array(point) - proj_length * np.array(normal)  
+  
+def centroid(coords):  
+    """计算坐标的质心"""  
+    return np.mean(coords, axis=0)  
+  
+def ring_is_planar(ring, atoms):  
+    """检查环是否平面，基于PLIP的实现""" [1] 
+    if len(atoms) < 4:  
+        return True  
+      
+    # 计算每个原子到其邻居的法向量  
+    normals = []  
+    for i in range(len(atoms)):  
+        prev_atom = atoms[i-1]  
+        curr_atom = atoms[i]  
+        next_atom = atoms[(i+1) % len(atoms)]  
+          
+        v1 = vector(curr_atom.coords, prev_atom.coords)  
+        v2 = vector(curr_atom.coords, next_atom.coords)  
+        normal = np.cross(v1, v2)  
+        if np.linalg.norm(normal) > 0:  
+            normals.append(normalize_vector(normal))  
+      
+    if len(normals) < 2:  
+        return True  
+      
+    # 检查所有法向量之间的角度  
+    for i in range(len(normals)):  
+        for j in range(i+1, len(normals)):  
+            angle = vecangle(normals[i], normals[j])  
+            if angle > config.AROMATIC_PLANARITY and (180 - angle) > config.AROMATIC_PLANARITY:  
+                return False  
+    return True  
+  
+class AtomInfo:  
+    """原子信息类，包装OpenBabel原子"""  
+    def __init__(self, pybel_atom, idx=None):  
+        self.atom = pybel_atom  
+        self.idx = idx if idx is not None else pybel_atom.idx  
+        self.coords = pybel_atom.coords  
+        self.atomicnum = pybel_atom.atomicnum  
+        self.type = pybel_atom.type  
+        self.OBAtom = pybel_atom.OBAtom  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/merge_all_pkl.py
+SIZE: 9258 bytes
+TYPE: ./preprocess/merge_all_pkl.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3  
+"""  
+清理临时文件并合并所有PKL文件  
+"""  
+  
+import argparse  
+import pickle  
+import os  
+import sys  
+import shutil  
+import glob  
+from pathlib import Path  
+from concurrent.futures import ProcessPoolExecutor  
+import traceback  
+  
+def cleanup_directory(target_dir, name):  
+    """  
+    清理单个目录，只保留必要的PKL文件  
+    """  
+    try:  
+        output_dir = os.path.join(target_dir, "output")  
+        if not os.path.exists(output_dir):  
+            return False, f"Output directory not found: {output_dir}"  
+              
+        # 需要保留的文件  
+        features_pkl = os.path.join(output_dir, f"{name}_features.pkl")  
+        masif_pkl = os.path.join(output_dir, f"{name}_features_with_masif.pkl")  
+          
+        # 检查必要文件是否存在  
+        if not os.path.exists(masif_pkl):  
+            return False, f"MaSIF PKL file not found: {masif_pkl}"  
+              
+        # 删除不需要的子目录和文件  
+        dirs_to_remove = ['descriptors', 'precomputed', 'surfaces', 'pdbs', 'tmp']  
+        for dir_name in dirs_to_remove:  
+            dir_path = os.path.join(output_dir, dir_name)  
+            if os.path.exists(dir_path):  
+                shutil.rmtree(dir_path)  
+                print(f"Removed directory: {dir_path}")  
+          
+        # 删除其他临时文件，但保留必要的PKL文件  
+        for file_path in glob.glob(os.path.join(output_dir, "*")):  
+            if os.path.isfile(file_path):  
+                if file_path not in [features_pkl, masif_pkl]:  
+                    os.remove(file_path)  
+                    print(f"Removed file: {file_path}")  
+          
+        print(f"Cleanup completed for {name}")  
+        return True, "Success"  
+          
+    except Exception as e:  
+        error_msg = f"Error cleaning up {target_dir}: {e}"  
+        print(error_msg)  
+        return False, error_msg  
+  
+def load_pkl_file(pkl_path):  
+    """  
+    加载单个PKL文件  
+    """  
+    try:  
+        with open(pkl_path, 'rb') as f:  
+            data = pickle.load(f)  
+        return data  
+    except Exception as e:  
+        print(f"Error loading {pkl_path}: {e}")  
+        return None  
+  
+def merge_pkl_files(pkl_files, output_file):  
+    """  
+    合并多个PKL文件  
+    """  
+    try:  
+        all_complexes = []  
+          
+        print(f"Merging {len(pkl_files)} PKL files...")  
+          
+        # 使用多进程加载PKL文件  
+        with ProcessPoolExecutor(max_workers=24) as executor:  
+            results = list(executor.map(load_pkl_file, pkl_files))  
+          
+        for i, data in enumerate(results):  
+            if data is None:  
+                print(f"Skipping failed file: {pkl_files[i]}")  
+                continue  
+                  
+            if isinstance(data, list):  
+                all_complexes.extend(data)  
+            elif isinstance(data, dict):  
+                all_complexes.append(data)  
+            else:  
+                print(f"Unknown data format in {pkl_files[i]}")  
+          
+        print(f"Total complexes to merge: {len(all_complexes)}")  
+          
+        # 保存合并后的文件  
+        with open(output_file, 'wb') as f:  
+            pickle.dump(all_complexes, f)  
+              
+        print(f"Merged PKL saved to: {output_file}")  
+        return True  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/merge_pkl.py
+SIZE: 2856 bytes
+TYPE: ./preprocess/merge_pkl.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3  
+"""  
+整合MaSIF指纹到现有PKL文件（仅标准方向指纹）  
+"""  
+  
+import argparse  
+import pickle  
+import numpy as np  
+import os  
+import sys  
+import traceback  
+  
+def merge_masif_to_existing_pkl(pkl_file_path, descriptors_dir, output_file=None):  
+    """  
+    将MaSIF指纹整合到现有的PKL文件中（仅保留标准方向指纹）  
+    """  
+    try:  
+        # 1. 加载现有的PKL文件  
+        if not os.path.exists(pkl_file_path):  
+            return False  
+        with open(pkl_file_path, 'rb') as f:  
+            existing_data = pickle.load(f)  
+  
+        # 2. 检查描述符目录存在性  
+        if not os.path.exists(descriptors_dir):  
+            return False  
+  
+        # 3. 初始化MaSIF特征字典  
+        masif_features = {}  
+  
+        # 4. 加载描述符文件（仅标准方向指纹）  
+        file_path = os.path.join(descriptors_dir, 'p1_desc_straight.npy')  
+        if os.path.exists(file_path):  
+            masif_features['masif_desc_straight'] = np.load(file_path)  
+        else:  
+            return False  
+  
+        # 5. 整合特征到现有数据中  
+        if isinstance(existing_data, dict):  
+            existing_data.update(masif_features)  
+        elif isinstance(existing_data, list) and len(existing_data) > 0:  
+            if isinstance(existing_data[0], dict):  
+                existing_data[0].update(masif_features)  
+            else:  
+                return False  
+        else:  
+            return False  
+  
+        # 6. 保存整合后的数据  
+        if output_file is None:  
+            base_name = os.path.splitext(pkl_file_path)[0]  
+            output_file = f"{base_name}_with_masif.pkl"  
+  
+        with open(output_file, 'wb') as f:  
+            pickle.dump(existing_data, f)  
+  
+        if not os.path.exists(output_file):  
+            return False  
+  
+        return True  
+  
+    except Exception:  
+        traceback.print_exc()  
+        return False  
+  
+def main():  
+    parser = argparse.ArgumentParser(description='将MaSIF指纹整合到现有PKL文件（仅标准方向指纹）')  
+    parser.add_argument('--pkl_file', required=True, help='现有的PKL文件路径')  
+    parser.add_argument('--descriptors_dir', required=True, help='描述符目录')  
+    parser.add_argument('--output_file', help='输出PKL文件路径（可选）')  
+  
+    args = parser.parse_args()  
+  
+    if not os.path.exists(args.pkl_file):  
+        sys.exit(1)  
+    if not os.path.exists(args.descriptors_dir):  
+        sys.exit(1)  
+  
+    success = merge_masif_to_existing_pkl(  
+        pkl_file_path=args.pkl_file,  
+        descriptors_dir=args.descriptors_dir,  
+        output_file=args.output_file  
+    )  
+  
+    if not success:  
+        sys.exit(1)  
+  
+if __name__ == "__main__":  
+    main()----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/mol2graph.py
+SIZE: 7582 bytes
+TYPE: ./preprocess/mol2graph.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+# 从 features.py 文件中导入若干函数和变量，用于分子特征处理
+from features import (
+    allowable_features,             # 允许的特征列表
+    atom_to_feature_vector,         # 原子对象转特征向量
+    bond_to_feature_vector,         # 键对象转特征向量
+    atom_feature_vector_to_dict,    # 原子特征向量转字典
+    bond_feature_vector_to_dict     # 键特征向量转字典
+)
+from pathlib import Path
+from rdkit import Chem
+from utils import correct_sanitize_v2                # 导入 RDKit 的 Chem 模块（化学结构处理）
+import numpy as np                 # 导入 numpy 用于数值计算
+from utils import read_mol         # 从 utils.py 中导入 read_mol 函数
+from features import atom_to_feature_vector, bond_to_feature_vector  
+
+def mol2graph(mol: Chem.Mol):  
+    conformer = mol.GetConformer(0)  
+  
+    # 处理原子  
+    atom_features_list, coords = [], []  
+    atom_map = dict()  
+    atom_ids = []  # 新增：存储原子ID  
+      
+    for idx, atom in enumerate(mol.GetAtoms()):  
+        if atom.GetSymbol() == "H":  
+            continue  
+        atom_features_list.append(atom_to_feature_vector(atom))  
+        coords.append(conformer.GetAtomPosition(atom.GetIdx()))  
+          
+        # 新增：记录原子ID映射  
+        atom_ids.append(atom.GetIdx())  
+        atom_map[atom.GetIdx()] = len(coords) - 1
+
+    x = np.array(atom_features_list, dtype = np.int64)   # 所有原子特征转换为 numpy 数组
+
+    # 处理化学键
+    num_bond_features = 3  # 键的特征数量（类型、立体、是否共轭）
+    if len(mol.GetBonds()) > 0:    # 如果分子有化学键
+        edges_list = []            # 存储边（键）两端的原子索引
+        edge_features_list = []    # 存储边的特征
+        for bond in mol.GetBonds():    # 遍历分子中的每个化学键
+            i = bond.GetBeginAtomIdx()   # 键的起始原子索引
+            j = bond.GetEndAtomIdx()     # 键的终止原子索引
+            # 如果任一端是氢原子则跳过
+            if mol.GetAtomWithIdx(i).GetSymbol() == "H":
+                continue
+            if mol.GetAtomWithIdx(j).GetSymbol() == "H":
+                continue
+
+            edge_feature = bond_to_feature_vector(bond)    # 键特征向量化
+
+            # 添加有向边：i->j 和 j->i（无向图）
+            edges_list.append((atom_map[i], atom_map[j]))
+            edge_features_list.append(edge_feature)
+            edges_list.append((atom_map[j], atom_map[i]))
+            edge_features_list.append(edge_feature)
+
+        # 生成 numpy 数组，shape=[2,num_edges]，表示 COO 格式的边索引
+        edge_index = np.array(edges_list, dtype = np.int64).T
+        # 边的特征，shape=[num_edges, num_edge_features]
+        edge_attr = np.array(edge_features_list, dtype = np.int64)
+
+    else:   # 如果分子没有化学键
+        edge_index = np.empty((2, 0), dtype = np.int64)        # 空边索引
+        edge_attr = np.empty((0, num_bond_features), dtype = np.int64)  # 空边特征
+
+    # 构建分子图字典
+    graph = dict()  
+    graph['edge_index'] = edge_index  
+    graph['edge_feat'] = edge_attr  
+    graph['node_feat'] = x  
+    graph['coords'] = np.array(coords)  
+      
+    # 新增：添加原子ID信息  
+    graph['atom_ids'] = np.array(atom_ids)  
+    graph['atom_id_to_graph_index'] = atom_map  
+  
+    return graph
+
+def mol2graph_protein_from_pdb(pdb_file: Path):    
+    """直接从PDB文件处理蛋白质分子的图构建"""    
+    # 使用RDKit读取PDB文件    
+    mol = Chem.MolFromPDBFile(str(pdb_file), sanitize=False, removeHs=False)    
+    if mol is None:    
+        raise RuntimeError(f"Cannot read PDB file: {pdb_file}")    
+        
+    mol = correct_sanitize_v2(mol)    
+    mol = Chem.RemoveHs(mol, sanitize=False)    
+        
+    conformer = mol.GetConformer(0)    
+    atom_features_list, coords, pro_names, aa_names = [], [], [], []    
+    atom_map = dict()  
+    atom_ids = []  # 新增：存储原子ID  
+        
+    for idx, atom in enumerate(mol.GetAtoms()):    
+        if atom.GetSymbol() == "H": continue    
+            
+        atom_features_list.append(atom_to_feature_vector(atom))    
+        coords.append(conformer.GetAtomPosition(atom.GetIdx()))    
+            
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/plip_analysis.py
+SIZE: 14820 bytes
+TYPE: ./preprocess/plip_analysis.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/usr/bin/env python3  
+"""  
+PLIP相互作用分析脚本 - 返回原子对详细信息  
+处理蛋白质口袋文件和小分子SDF文件  
+"""  
+  
+import sys  
+import os  
+from plip.structure.preparation import PDBComplex  
+  
+def merge_protein_ligand_with_pymol(protein_file, ligand_file, output_file="complex.pdb"):    
+    """使用PyMOL合并蛋白质和配体文件"""    
+    try:    
+        import pymol    
+        from pymol import cmd    
+            
+        # 初始化PyMOL    
+        pymol.finish_launching(['pymol', '-c'])    
+        cmd.reinitialize()    
+            
+        # 加载蛋白质文件    
+        cmd.load(protein_file, "protein")    
+            
+        # 加载配体文件    
+        cmd.load(ligand_file, "ligand")    
+            
+        # 创建复合物选择    
+        cmd.create("complex", "protein or ligand")    
+          
+        # ===== 新增: 清理多占位原子 =====  
+        # 只保留主构象(altloc为空或为'A')  
+        cmd.remove("complex and not (alt ''+A)")  
+        # 将所有原子的 altloc 设置为空  
+        cmd.alter("complex", "alt=''")  
+        print("  ✓ 已清理多占位原子")  
+        # ===== 清理结束 =====  
+            
+        # 保存复合物 - 使用绝对路径确保保存位置正确    
+        abs_output_file = os.path.abspath(output_file)    
+        cmd.save(abs_output_file, "complex")    
+        print(f"  ✓ 复合物已保存为: {abs_output_file}")    
+            
+        # 强制刷新并等待文件写入完成    
+        cmd.sync()    
+            
+        # 验证文件是否真的存在    
+        if not os.path.exists(abs_output_file):  
+            print(f"  ✗ 警告: 文件未找到: {abs_output_file}")  
+            return False  
+            
+        # 清理PyMOL会话    
+        cmd.reinitialize()    
+            
+        return True    
+            
+    except ImportError:    
+        print("错误: 未找到PyMOL模块")    
+        return False    
+    except Exception as e:    
+        print(f"PyMOL合并过程中出现错误: {e}")    
+        return False
+
+        
+def extract_interaction_atom_pairs(interaction_sets):  
+    """  
+    从interaction_sets中提取原子对的详细信息  
+      
+    Returns:  
+        dict: 包含原子对信息的字典  
+    """  
+    atom_pairs_dict = {}  
+      
+    for bsid, interactions in interaction_sets.items():  
+        atom_pairs_dict[bsid] = {  
+            'hydrogen_bonds': [],  
+            'hydrophobic_contacts': [],  
+            'pi_stacking': [],  
+            'pi_cation': [],  
+            'salt_bridges': [],  
+            'water_bridges': [],  
+            'halogen_bonds': [],  
+            'metal_complexes': []  
+        }  
+          
+        # 氢键 - 基于plip/structure/detection.py中的hbonds函数  
+        for hbond in interactions.hbonds_ldon + interactions.hbonds_pdon:  
+            atom_pairs_dict[bsid]['hydrogen_bonds'].append({  
+                'interaction_type': 'hydrogen_bond',  
+                'protein_atom': {  
+                    'residue_name': hbond.restype,  
+                    'residue_number': hbond.resnr,  
+                    'chain': hbond.reschain,  
+                    'atom_type': hbond.dtype if hbond.protisdon else hbond.atype,  
+                    'coordinates': hbond.d.coords if hbond.protisdon else hbond.a.coords  
+                },  
+                'ligand_atom': {  
+                    'residue_name': hbond.restype_l,  
+                    'residue_number': hbond.resnr_l,  
+                    'chain': hbond.reschain_l,  
+                    'atom_type': hbond.atype if hbond.protisdon else hbond.dtype,  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/preprocess.py
+SIZE: 43798 bytes
+TYPE: ./preprocess/preprocess.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+
+import numpy as np  
+from scipy.spatial.distance import cdist  
+from pathlib import Path  
+# from torch_geometric.data import Data  
+# import torch  
+from rdkit import Chem  
+from pymol import cmd  
+# 添加PLIP导入  
+from plip.structure.preparation import PDBComplex  
+import tempfile  
+import os  
+from plip_analysis import merge_protein_ligand_with_pymol  
+from intra_pro_plip import (  
+    InteractionAnalyzer,  
+    AtomInfo, Config )
+from water_metal_detection import detect_water_bridges_from_atoms, detect_metal_complex_from_atoms
+from intra_lig_plip import InteractionAnalyzer as LigandInteractionAnalyzer
+import time
+from openbabel import pybel
+
+# 扩展边特征编码  
+SPATIAL_EDGE = [4, 0, 0]  # 原有空间边  
+HYDROGEN_BOND_EDGE = [5, 1, 0]  # 氢键  
+HYDROPHOBIC_EDGE = [5, 2, 0]    # 疏水相互作用  
+PI_STACKING_EDGE = [5, 3, 0]    # π-π堆积  
+PI_CATION_EDGE = [5, 4, 0]      # π-阳离子相互作用  
+SALT_BRIDGE_EDGE = [5, 5, 0]    # 盐桥  
+WATER_BRIDGE_EDGE = [5, 6, 0]   # 水桥  
+HALOGEN_BOND_EDGE = [5, 7, 0]   # 卤键  
+METAL_COMPLEX_EDGE = [5, 8, 0]  # 金属配位  
+OTHERS_EDGE = [5, 9, 0]         # 其他相互作用  
+  
+# 相互作用类型映射  
+INTERACTION_TYPE_MAP = {  
+    'hydrogen_bonds': HYDROGEN_BOND_EDGE,        # 改为复数  
+    'hydrophobic_contacts': HYDROPHOBIC_EDGE,    # 改为复数  
+    'pi_stacking': PI_STACKING_EDGE,  
+    'pi_cation': PI_CATION_EDGE,  
+    'salt_bridges': SALT_BRIDGE_EDGE,            # 改为复数  
+    'water_bridges': WATER_BRIDGE_EDGE,          # 改为复数  
+    'halogen_bonds': HALOGEN_BOND_EDGE,          # 改为复数  
+    'metal_complexes': METAL_COMPLEX_EDGE,       # 改为复数  
+    'others': OTHERS_EDGE  
+}
+
+
+def analyze_plip_interactions(protein_file, ligand_file):    
+    """    
+    使用PLIP分析蛋白质-配体相互作用    
+    """    
+    protein_path = Path(protein_file)    
+    complex_file = protein_path.parent / "complex.pdb"    
+        
+    if not complex_file.exists():    
+        if not merge_protein_ligand_with_pymol(protein_file, ligand_file, str(complex_file)):    
+            print(f"Failed to create complex file")    
+            return {}    
+            
+        # 修改HETATM行的链标识符    
+        fix_hetatm_chain_ids(str(complex_file), 'X')    
+          
+        # ===== 新增: 清理多占位原子 =====  
+        from Bio.PDB import PDBParser, PDBIO, Select  
+          
+        class FirstAltlocSelect(Select):  
+            """只保留主构象(altloc为空或为'A')"""  
+            def accept_atom(self, atom):  
+                altloc = atom.get_altloc()  
+                return altloc == ' ' or altloc == 'A'  
+          
+        # 清理 complex.pdb  
+        parser = PDBParser(QUIET=True)  
+        structure = parser.get_structure('complex', str(complex_file))  
+        io = PDBIO()  
+        io.set_structure(structure)  
+        io.save(str(complex_file), FirstAltlocSelect())  
+        print(f"已清理 complex.pdb 的多占位原子")  
+        # ===== 清理逻辑结束 =====  
+        
+    try:  
+        my_mol = PDBComplex()  
+        my_mol.load_pdb(str(complex_file))
+        print(f"DEBUG: 识别出的配体数量: {len(my_mol.ligands)}")  
+        # for i, ligand in enumerate(my_mol.ligands):  
+        #     print(f"DEBUG: 配体 {i+1}: {ligand.hetid}, 链: {ligand.chain}, 位置: {ligand.position}")  
+            # print(f"DEBUG: 配体类型: {ligand.type}, 长名称: {ligand.longname}")  
+
+        # print(f"DEBUG: 排除的分子: {my_mol.excluded}") 
+        my_mol.analyze()  
+          
+        # 提取原子对信息  
+        atom_pairs_dict = {}  
+        # print(f"DEBUG: 发现的结合位点标识符: {list(my_mol.interaction_sets.keys())}")  
+        # print(f"DEBUG: 结合位点详细信息:")
+        for bsid, interactions in my_mol.interaction_sets.items():  
+            atom_pairs_dict[bsid] = {  
+                'hydrogen_bonds': [],  
+                'hydrophobic_contacts': [],  
+                'pi_stacking': [],  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/read_data.ipynb
+SIZE: 24267 bytes
+TYPE: ./preprocess/read_data.ipynb: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ad7a7827",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "PKL文件路径: /xcfhome/zncao02/AffinSculptor/preprocess/test.pkl\n",
+      "数据类型: <class 'list'>\n",
+      "包含 1 个复合物\n",
+      "\n",
+      "=== 复合物 1: 6uux-QHM ===\n",
+      "PDB ID: 6uux-QHM\n",
+      "结合亲和力 (pK): 6.63\n",
+      "RMSD: 1.25\n",
+      "SMILES: CC[NH+](CC)CCNC1=C/C=C(CO)\\C2=C\\1C(=O)C1=CC=CC=C1S2\n",
+      "\n",
+      "图结构信息:\n",
+      "  节点特征形状: (163, 9)\n",
+      "  边索引形状: (2, 2436)\n",
+      "  边特征形状: (2436, 3)\n",
+      "  坐标形状: (163, 3)\n",
+      "  配体节点数: 25\n",
+      "  蛋白质节点数: 138\n",
+      "  配体边数: 54\n",
+      "  蛋白质边数: 220\n",
+      "  相互作用边数: 494\n",
+      "\n",
+      "蛋白质原子信息:\n",
+      "  原子名称数量: 815\n",
+      "  前5个原子名称: ['N' 'CA' 'C' 'O' 'N']\n",
+      "  氨基酸名称数量: 815\n",
+      "  前5个氨基酸: ['GLY' 'GLY' 'GLY' 'GLY' 'LEU']\n",
+      "\n",
+      "交互特征:\n",
+      "  RF-Score形状: (100,)\n",
+      "  GB-Score形状: (400,)\n",
+      "  ECIF形状: (0,)\n",
+      "--------------------------------------------------\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pickle  \n",
+    "import numpy as np  \n",
+    "from pathlib import Path  \n",
+    "  ###适用于我自己的脚本\n",
+    "def read_and_print_pkl(pkl_file_path):  \n",
+    "    \"\"\"读取并打印pkl文件的内容\"\"\"  \n",
+    "      \n",
+    "    # 读取pkl文件  \n",
+    "    with open(pkl_file_path, 'rb') as f:  \n",
+    "        data = pickle.load(f)  \n",
+    "      \n",
+    "    print(f\"PKL文件路径: {pkl_file_path}\")  \n",
+    "    print(f\"数据类型: {type(data)}\")  \n",
+    "    print(f\"包含 {len(data)} 个复合物\\n\")  \n",
+    "      \n",
+    "    # 遍历每个复合物  \n",
+    "    for i, complex_dict in enumerate(data):  \n",
+    "        print(f\"=== 复合物 {i+1}: {complex_dict.get('pdbid', 'Unknown')} ===\")  \n",
+    "          \n",
+    "        # 基本信息  \n",
+    "        print(f\"PDB ID: {complex_dict.get('pdbid', 'N/A')}\")  \n",
+    "        print(f\"结合亲和力 (pK): {complex_dict.get('pk', 'N/A')}\")  \n",
+    "        print(f\"RMSD: {complex_dict.get('rmsd', 'N/A')}\")  \n",
+    "        print(f\"SMILES: {complex_dict.get('smiles', 'N/A')}\")  \n",
+    "          \n",
+    "        # 图结构信息  \n",
+    "        print(f\"\\n图结构信息:\")  \n",
+    "        print(f\"  节点特征形状: {complex_dict.get('node_feat', np.array([])).shape}\")  \n",
+    "        print(f\"  边索引形状: {complex_dict.get('edge_index', np.array([])).shape}\")  \n",
+    "        print(f\"  边特征形状: {complex_dict.get('edge_feat', np.array([])).shape}\")  \n",
+    "        print(f\"  坐标形状: {complex_dict.get('coords', np.array([])).shape}\")  \n",
+    "          \n",
+    "        # 节点和边统计  \n",
+    "        num_node = complex_dict.get('num_node', [])  \n",
+    "        num_edge = complex_dict.get('num_edge', [])  \n",
+    "        if len(num_node) >= 2:  \n",
+    "            print(f\"  配体节点数: {num_node[0]}\")  \n",
+    "            print(f\"  蛋白质节点数: {num_node[1]}\")  \n",
+    "        if len(num_edge) >= 3:  \n",
+    "            print(f\"  配体边数: {num_edge[0]}\")  \n",
+    "            print(f\"  蛋白质边数: {num_edge[1]}\")  \n",
+    "            print(f\"  相互作用边数: {num_edge[2]}\")  \n",
+    "          \n",
+    "        # 蛋白质特征  \n",
+    "        pro_names = complex_dict.get('pro_name', [])  \n",
+    "        aa_names = complex_dict.get('AA_name', [])  \n",
+    "        if len(pro_names) > 0:  \n",
+    "            print(f\"\\n蛋白质原子信息:\")  \n",
+    "            print(f\"  原子名称数量: {len(pro_names)}\")  \n",
+    "            print(f\"  前5个原子名称: {pro_names[:5] if len(pro_names) >= 5 else pro_names}\")  \n",
+    "            print(f\"  氨基酸名称数量: {len(aa_names)}\")  \n",
+    "            print(f\"  前5个氨基酸: {aa_names[:5] if len(aa_names) >= 5 else aa_names}\")  \n",
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/read_pkl.ipynb
+SIZE: 28159 bytes
+TYPE: ./preprocess/read_pkl.ipynb: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "a67fbaae",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "成功加载 1 个复合物\\n\n",
+      "=== 复合物 1: 2zga_frame75 ===\n",
+      "PDB ID: 2zga_frame75\n",
+      "结合亲和力 (pK): 6.32\n",
+      "SMILES: CC(C)CCN(CC[NH3])S(=O)(=O)c1ccc(C(N)=O)cc1\n",
+      "\\n节点统计:\n",
+      "  配体节点数: 21\n",
+      "  蛋白质节点数: 81\n",
+      "  总节点数: 102\n",
+      "\\n边统计:\n",
+      "  配体内部边数: 42 (22.8%)\n",
+      "  蛋白质内部边数: 126 (68.5%)\n",
+      "  蛋白-配体相互作用边数: 16 (8.7%)\n",
+      "  总边数: 184\n",
+      "\\n整体边特征分析:\n",
+      "  边特征形状: (1012, 4)\n",
+      "  边特征数据类型: float32\n",
+      "  整体边类型分布:\n",
+      "    其他相互作用 (Others): 710 条边 (70.2%)\n",
+      "    未知类型 (0, 0, 0): 132 条边 (13.0%)\n",
+      "    疏水相互作用 (Hydrophobic): 86 条边 (8.5%)\n",
+      "    氢键 (Hydrogen Bonds): 42 条边 (4.2%)\n",
+      "    未知类型 (1, 0, 0): 18 条边 (1.8%)\n",
+      "    未知类型 (3, 0, 1): 12 条边 (1.2%)\n",
+      "    盐桥 (Salt Bridges): 6 条边 (0.6%)\n",
+      "    未知类型 (0, 0, 1): 4 条边 (0.4%)\n",
+      "    未知类型 (1, 0, 1): 2 条边 (0.2%)\n",
+      "\\n配体内部空间边:\n",
+      "  配体空间边数量: 196\n",
+      "  配体空间边特征形状: (196, 4)\n",
+      "  配体内部边类型分布:\n",
+      "    其他相互作用 (Others): 170 条边 (86.7%)\n",
+      "    疏水相互作用 (Hydrophobic): 22 条边 (11.2%)\n",
+      "    氢键 (Hydrogen Bonds): 4 条边 (2.0%)\n",
+      "\\n蛋白质内部空间边:\n",
+      "  蛋白空间边数量: 632\n",
+      "  蛋白空间边特征形状: (632, 4)\n",
+      "  蛋白质内部边类型分布:\n",
+      "    其他相互作用 (Others): 540 条边 (85.4%)\n",
+      "    疏水相互作用 (Hydrophobic): 52 条边 (8.2%)\n",
+      "    氢键 (Hydrogen Bonds): 36 条边 (5.7%)\n",
+      "    盐桥 (Salt Bridges): 4 条边 (0.6%)\n",
+      "\\n前5条边的详细信息:\n",
+      "  边 0: 2 -> 1, 类型: 未知类型 (3, 0, 1), 特征: [3.        0.        1.        1.3724158]\n",
+      "  边 1: 1 -> 2, 类型: 未知类型 (3, 0, 1), 特征: [3.        0.        1.        1.3724158]\n",
+      "  边 2: 2 -> 3, 类型: 未知类型 (0, 0, 1), 特征: [0.        0.        1.        1.5317265]\n",
+      "  边 3: 3 -> 2, 类型: 未知类型 (0, 0, 1), 特征: [0.        0.        1.        1.5317265]\n",
+      "  边 4: 3 -> 0, 类型: 未知类型 (0, 0, 1), 特征: [0.        0.        1.        1.3554884]\n",
+      "--------------------------------------------------------------------------------\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pickle  \n",
+    "import numpy as np  \n",
+    "from collections import Counter  \n",
+    "from pathlib import Path  \n",
+    "  \n",
+    "def get_edge_type_name(edge_type_tuple):  \n",
+    "    \"\"\"根据边类型编码返回相互作用名称\"\"\"  \n",
+    "    edge_type_map = {  \n",
+    "        (4, 0, 0): \"空间边 (Spatial)\",  \n",
+    "        (5, 1, 0): \"氢键 (Hydrogen Bonds)\",   \n",
+    "        (5, 2, 0): \"疏水相互作用 (Hydrophobic)\",  \n",
+    "        (5, 3, 0): \"π-π堆积 (Pi Stacking)\",  \n",
+    "        (5, 4, 0): \"π-阳离子相互作用 (Pi-Cation)\",  \n",
+    "        (5, 5, 0): \"盐桥 (Salt Bridges)\",  \n",
+    "        (5, 6, 0): \"水桥 (Water Bridges)\",  \n",
+    "        (5, 7, 0): \"卤键 (Halogen Bonds)\",  \n",
+    "        (5, 8, 0): \"金属配位 (Metal Complexes)\",  \n",
+    "        (5, 9, 0): \"其他相互作用 (Others)\"  \n",
+    "    }  \n",
+    "    return edge_type_map.get(edge_type_tuple, f\"未知类型 {edge_type_tuple}\")  \n",
+    "  \n",
+    "def analyze_edge_types_and_ratios(pkl_file_path):  \n",
+    "    \"\"\"分析PKL文件中的边类型和占比\"\"\"  \n",
+    "      \n",
+    "    # 读取pkl文件  \n",
+    "    with open(pkl_file_path, 'rb') as f:  \n",
+    "        data = pickle.load(f)  \n",
+    "      \n",
+    "    print(f\"成功加载 {len(data)} 个复合物\\\\n\")  \n",
+    "      \n",
+    "    for i, complex_dict in enumerate(data):  \n",
+    "        print(f\"=== 复合物 {i+1}: {complex_dict.get('pdbid', 'Unknown')} ===\")  \n",
+    "          \n",
+    "        # 基本信息  \n",
+    "        print(f\"PDB ID: {complex_dict.get('pdbid', 'N/A')}\")  \n",
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/test.pkl
+SIZE: 76831 bytes
+TYPE: ./preprocess/test.pkl: 8086 relocatable (Microsoft)
+
+[二进制或非文本文件，内容略过]
+
+------------------------------------------------------------
+FILE: ./preprocess/test.py
+SIZE: 800 bytes
+TYPE: ./preprocess/test.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+import re
+
+with open('test_time.txt', encoding='utf-8') as f:
+    log = f.read()
+
+def sum_times(pattern):
+    times = re.findall(pattern, log)
+    return sum(float(x) for x in times)
+
+src_sum = sum_times(r'find_closest_atom_by_coord\(src\): ([0-9.]+)s')
+tgt_sum = sum_times(r'find_closest_atom_by_coord\(tgt\): ([0-9.]+)s')
+analyze_sum = sum_times(r'analyze_atom_pair: ([0-9.]+)s')
+single_sum = sum_times(r'single edge total: ([0-9.]+)s')
+
+print(f'find_closest_atom_by_coord(src) 总时间: {src_sum:.6f} s')
+print(f'find_closest_atom_by_coord(tgt) 总时间: {tgt_sum:.6f} s')
+print(f'analyze_atom_pair 总时间: {analyze_sum:.6f} s')
+print(f'single edge total 总时间: {single_sum:.6f} s')
+print(f'所有src+tgt+analyze+single edge合计: {src_sum + tgt_sum + analyze_sum + single_sum:.6f} s')
+
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/test1.pkl
+SIZE: 100662 bytes
+TYPE: ./preprocess/test1.pkl: 8086 relocatable (Microsoft)
+
+[二进制或非文本文件，内容略过]
+
+------------------------------------------------------------
+FILE: ./preprocess/test_custom_input.py
+SIZE: 6432 bytes
+TYPE: ./preprocess/test_custom_input.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+import argparse  # 解析命令行参数
+from pathlib import Path  # 跨平台处理文件和路径
+import pickle  # 用于保存/加载Python对象
+from preprocess import  gen_graph, to_pyg_graph, get_info, GB_score, analyze_plip_interactions  # 预处理和特征生成相关函数
+from joblib import Parallel, delayed  # 并行计算工具
+from utils import read_mol, obabel_pdb2mol, pymol_pocket  # 读取分子和格式转换工具
+import numpy as np  # 数值计算库
+from rdkit import Chem, RDLogger  # 化学信息学库及日志管理
+import pandas as pd  # 数据处理库
+import time
+from mol2graph import mol2graph_ligand, mol2graph_protein_from_pdb   # 分子图转换工具
+import functools
+
+# 计时装饰器
+def timing(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start
+        print(f"[TIMER] {func.__name__} took {elapsed:.3f} seconds")
+        return result
+    return wrapper
+
+# 给主要步骤打上计时装饰器（假如允许）
+read_mol = timing(read_mol)
+mol2graph_protein_from_pdb = timing(mol2graph_protein_from_pdb)
+get_info = timing(get_info)
+mol2graph_ligand = timing(mol2graph_ligand)
+GB_score = timing(GB_score)
+analyze_plip_interactions = timing(analyze_plip_interactions)
+gen_graph = timing(gen_graph)
+
+def parallel_helper(proteinpdb, ligandsdf, name, pk, rmsd, protein_cutoff, pocket_cutoff, spatial_cutoff):  
+    RDLogger.DisableLog('rdApp.*')
+    t_all = time.perf_counter()
+
+    if not (proteinpdb.is_file() and ligandsdf.is_file()):
+        print(f"{proteinpdb} or {ligandsdf} does not exist.")
+        return None
+
+    # 生成口袋PDB文件（如果不存在）
+    pocketpdb = proteinpdb.parent / (proteinpdb.name.rsplit('.', 1)[0] + '_pocket.pdb')
+    if not pocketpdb.is_file():
+        t_pocket = time.perf_counter()
+        pymol_pocket(proteinpdb, ligandsdf, pocketpdb)
+        print(f"[{name}] pymol_pocket: {time.perf_counter()-t_pocket:.3f}s")
+
+    try:
+        t0 = time.perf_counter()
+        ligand = read_mol(ligandsdf)
+        t1 = time.perf_counter()
+        pocket_dict = mol2graph_protein_from_pdb(pocketpdb)
+        t2 = time.perf_counter()
+        proinfo, liginfo = get_info(proteinpdb, ligandsdf)
+        t3 = time.perf_counter()
+        ligand_dict = mol2graph_ligand(ligand)
+        t4 = time.perf_counter()
+        res = {
+            'lc': ligand_dict['coords'], 'lf': ligand_dict['node_feat'],
+            'lei': ligand_dict['edge_index'], 'lea': ligand_dict['edge_feat'],
+            'pc': pocket_dict['coords'], 'pf': pocket_dict['node_feat'],
+            'pei': pocket_dict['edge_index'], 'pea': pocket_dict['edge_feat'],
+            'pdbid': name,
+            'ligand_smiles': ligand_dict['smiles'],
+            'protein_atom_names': pocket_dict['pro_name'],
+            'protein_aa_names': pocket_dict['AA_name']
+        }
+        t5 = time.perf_counter()
+        res['gbscore'] = GB_score(liginfo, proinfo)
+        t6 = time.perf_counter()
+        plip_interactions = analyze_plip_interactions(str(proteinpdb), str(ligandsdf))
+        t7 = time.perf_counter()
+        res['plip_interactions'] = plip_interactions
+        # 细分步骤打印
+        print(f"[{name}] read_mol: {t1-t0:.3f}s, mol2graph_protein_from_pdb: {t2-t1:.3f}s, get_info: {t3-t2:.3f}s, mol2graph_ligand: {t4-t3:.3f}s, GB_score: {t6-t5:.3f}s, plip: {t7-t6:.3f}s")
+    except RuntimeError as e:
+        print(proteinpdb, pocketpdb, ligandsdf, "Fail on reading molecule")
+        return None
+
+    ligand = (res['lc'], res['lf'], res['lei'], res['lea'])
+    pocket = (res['pc'], res['pf'], res['pei'], res['pea'])
+
+    try:
+        t8 = time.perf_counter()
+        raw = gen_graph(
+            ligand, pocket, name,
+            protein_cutoff=protein_cutoff,
+            pocket_cutoff=pocket_cutoff,
+            spatial_cutoff=spatial_cutoff,
+            protein_file=str(proteinpdb),
+            ligand_file=str(ligandsdf),
+            plip_interactions=res['plip_interactions']
+        )
+        t9 = time.perf_counter()
+        print(f"[{name}] gen_graph: {t9-t8:.3f}s")
+        comp_coord, comp_feat, comp_ei, comp_ea, comp_num_node, comp_num_edge, lig_sei, lig_sea, pro_sei, pro_sea = raw
+    except ValueError as e:
+        print(f"{name}: Error gen_graph from raw feature {str(e)}")
+        return None
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/utils.py
+SIZE: 15162 bytes
+TYPE: ./preprocess/utils.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+from pathlib import Path  # 导入 Path，用于文件路径操作
+from subprocess import run, DEVNULL  # 导入 run/DEVNULL，用于调用外部命令行工具并屏蔽输出
+from rdkit import Chem  # 导入 RDKit 的 Chem 模块，用于分子操作
+import pymol  # 导入 pymol，用于分子可视化和格式转换
+
+# 读取分子文件（支持 sdf/mol 格式），并进行消毒和修正
+def read_mol(mol_file: Path):
+    """
+    For ligand, use sdf, for protein, use sdf converted from pdb by pymol
+    # 对于配体直接用 sdf，对于蛋白建议用 pymol 转换过的 sdf
+    """
+    # 不严格解析/不消毒读取分子文件
+    mol = Chem.MolFromMolFile(str(mol_file), sanitize=False, strictParsing=False)
+    if mol is None:  # 如果读取失败
+        raise RuntimeError(f"{mol_file} cannot be processed")  # 抛出异常
+    mol = correct_sanitize_v2(mol)  # 进行自定义的分子消毒/修正
+    # try:
+    #     mol = neutralize_atoms(mol)  # 可选：中和离子
+    # except Exception:
+    #     pass
+    return Chem.RemoveHs(mol, sanitize=False,)  # 移除氢原子（不消毒），返回修正后的分子
+
+# 中和分子中的带电原子
+def neutralize_atoms(mol):
+    # SMARTS 匹配带正/负电荷但不合理的原子
+    pattern = Chem.MolFromSmarts("[+1!h0!$([*]~[-1,-2,-3,-4]),-1!$([*]~[+1,+2,+3,+4])]")
+    at_matches = mol.GetSubstructMatches(pattern)  # 搜索匹配原子
+    at_matches_list = [y[0] for y in at_matches]
+    if len(at_matches_list) > 0:  # 若有匹配
+        for at_idx in at_matches_list:
+            atom = mol.GetAtomWithIdx(at_idx)
+            chg = atom.GetFormalCharge()  # 获取原子电荷数
+            hcount = atom.GetTotalNumHs()  # 氢原子数
+            atom.SetFormalCharge(0)  # 设置为中性
+            atom.SetNumExplicitHs(hcount - chg)  # 调整氢原子数
+            atom.UpdatePropertyCache()  # 更新原子属性
+    return mol
+
+# 查找与指定原子连接、满足条件的邻居原子
+def find_atom_bond_around(at: Chem.Atom, sym: str, bt: Chem.BondType, inring: bool, aromatic: bool):
+    mol = at.GetOwningMol()  # 获取分子对象
+    res = []
+    for n in at.GetNeighbors():  # 遍历邻居原子
+        bond = mol.GetBondBetweenAtoms(at.GetIdx(), n.GetIdx())  # 获取连接键
+        c1 = (n.GetSymbol() == sym) if sym is not None else True  # 判断原子类型
+        c2 = (bond.GetBondType() == bt) if bt is not None else True  # 判断键类型
+        c3 = (n.IsInRing() == inring) if inring is not None else True  # 判断环系
+        c4 = (n.GetIsAromatic() == aromatic) if aromatic is not None else True  # 判断芳香性
+        if c1 and c2 and c3 and c4:  # 满足所有条件
+            res.append(n)
+    return res
+
+# 修正磷酰基团（P=O 相关结构）
+def fix_phosphoryl_group(at: Chem.Atom, mol: Chem.Mol):
+    if at.GetSymbol() == 'P':
+        double_bonded_o = find_atom_bond_around(at, "O", Chem.BondType.DOUBLE, False, False)
+        if len(double_bonded_o) >= 2:  # 如果有2个及以上双键氧
+            mol.GetBondBetweenAtoms(at.GetIdx(), double_bonded_o[0].GetIdx()).SetBondType(Chem.BondType.SINGLE)
+            double_bonded_o[0].SetFormalCharge(-1)
+            at.SetFormalCharge(0)
+
+# 修正羧基（COO-）电荷与键型
+def fix_carboxyl_group(at: Chem.Atom, mol: Chem.Mol):
+    if at.GetSymbol() == 'C':
+        double_bonded_o = find_atom_bond_around(at, "O", Chem.BondType.DOUBLE, False, False)
+        single_bonded_o = find_atom_bond_around(at, "O", Chem.BondType.SINGLE, False, False)
+        if len(double_bonded_o) == 2:  # 两个双键氧
+            mol.GetBondBetweenAtoms(at.GetIdx(), double_bonded_o[0].GetIdx()).SetBondType(Chem.BondType.SINGLE)
+            double_bonded_o[0].SetFormalCharge(-1)
+            at.SetFormalCharge(0)
+        if len(double_bonded_o) == 1 and len(single_bonded_o) == 1 and at.GetFormalCharge() == -1:
+            at.SetFormalCharge(0)
+            single_bonded_o[0].SetFormalCharge(-1)
+
+# 修正胍基/亚胺基团（如 N=C(N)N）
+def fix_guanidine_amidine_group(at: Chem.Atom, mol: Chem.Mol):
+    if at.GetSymbol() == 'C' and not at.IsInRing():
+        double_bonded_n = find_atom_bond_around(at, "N", Chem.BondType.DOUBLE, None, False)
+        single_bonded_n = find_atom_bond_around(at, "N", Chem.BondType.SINGLE, None, False)
+        if len(double_bonded_n) in {2, 3}:
+            is_set = False
+            for n in double_bonded_n:
+                num_non_h = 0
+                for a in n.GetNeighbors():
+                    if a.GetSymbol() != "H": num_non_h += 1
+                if num_non_h == 1 and not is_set:
+                    is_set = True
+                    mol.GetBondBetweenAtoms(at.GetIdx(), n.GetIdx()).SetBondType(Chem.BondType.DOUBLE)
+                    n.SetFormalCharge(1)
+                else:
+                    mol.GetBondBetweenAtoms(at.GetIdx(), n.GetIdx()).SetBondType(Chem.BondType.SINGLE)
+                    n.SetFormalCharge(0)
+            at.SetFormalCharge(0)
+        if len(double_bonded_n) == 1 and len(single_bonded_n) in {1, 2}:
+            at.SetFormalCharge(0)
+            double_bonded_n[0].SetFormalCharge(1)
+
+# 修正磺酰基团（SO3-）等超价氧问题
+def fix_sulfonyl_group(at: Chem.Atom, mol: Chem.Mol):
+    if at.GetSymbol() == 'S':
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./preprocess/water_metal_detection.py
+SIZE: 8383 bytes
+TYPE: ./preprocess/water_metal_detection.py: Python script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+"""  
+水桥和金属配位检测脚本  
+基于PLIP (Protein-Ligand Interaction Profiler) 的核心算法  
+集成到affincraft预处理流程中  
+"""  
+  
+import itertools  
+import math  
+from collections import namedtuple, defaultdict  
+from typing import List, Tuple, Dict, Any  
+import numpy as np  
+  
+# 配置参数  
+class WaterMetalConfig:  
+    # 水桥检测参数  
+    WATER_BRIDGE_MINDIST = 2.5  # 水分子氧原子与极性原子的最小距离  
+    WATER_BRIDGE_MAXDIST = 4.1  # 水分子氧原子与极性原子的最大距离  
+    WATER_BRIDGE_OMEGA_MIN = 71  # 受体-水氧-供体氢之间的最小角度  
+    WATER_BRIDGE_OMEGA_MAX = 140  # 受体-水氧-供体氢之间的最大角度  
+    WATER_BRIDGE_THETA_MIN = 100  # 水氧-供体氢-供体原子之间的最小角度  
+      
+    # 金属配位参数  
+    METAL_DIST_MAX = 3.0  # 金属离子与配位原子的最大距离  
+      
+    # 通用参数  
+    MIN_DIST = 0.5  # 所有距离阈值的最小距离  
+  
+config = WaterMetalConfig()  
+  
+# 几何计算函数  
+def euclidean3d(coord1: Tuple[float, float, float], coord2: Tuple[float, float, float]) -> float:  
+    """计算两点间的欧几里得距离"""  
+    return math.sqrt(sum((a - b) ** 2 for a, b in zip(coord1, coord2)))  
+  
+def vector(coord1: Tuple[float, float, float], coord2: Tuple[float, float, float]) -> Tuple[float, float, float]:  
+    """计算从coord1到coord2的向量"""  
+    return tuple(b - a for a, b in zip(coord1, coord2))  
+  
+def vecangle(vec1: Tuple[float, float, float], vec2: Tuple[float, float, float]) -> float:  
+    """计算两个向量之间的角度（度）"""  
+    def dot_product(v1, v2):  
+        return sum(a * b for a, b in zip(v1, v2))  
+      
+    def magnitude(v):  
+        return math.sqrt(sum(x ** 2 for x in v))  
+      
+    mag1, mag2 = magnitude(vec1), magnitude(vec2)  
+    if mag1 == 0 or mag2 == 0:  
+        return 0.0  
+      
+    cos_angle = dot_product(vec1, vec2) / (mag1 * mag2)  
+    cos_angle = max(-1.0, min(1.0, cos_angle))  # 防止数值误差  
+    return math.degrees(math.acos(cos_angle))  
+  
+# 适配到现有系统的检测函数  
+def detect_water_bridges_from_atoms(src_atom, tgt_atom, distance, molecule):  
+    """  
+    检测两个原子之间是否存在水桥相互作用  
+    适配到classify_protein_spatial_edges的调用方式  
+      
+    Args:  
+        src_atom: 源原子 (AtomInfo对象)  
+        tgt_atom: 目标原子 (AtomInfo对象)  
+        distance: 原子间距离  
+        molecule: OpenBabel分子对象  
+      
+    Returns:  
+        bool: 是否存在水桥相互作用  
+    """  
+    try:  
+        # 检查距离是否在合理范围内  
+        if distance > config.WATER_BRIDGE_MAXDIST * 2:  # 水桥可能涉及更长的距离  
+            return False  
+          
+        # 简化的水桥检测逻辑  
+        # 1. 检查是否有水分子参与  
+        src_is_water = _is_water_atom(src_atom)  
+        tgt_is_water = _is_water_atom(tgt_atom)  
+          
+        if src_is_water or tgt_is_water:  
+            # 如果其中一个是水原子，检查另一个是否是极性原子  
+            non_water_atom = tgt_atom if src_is_water else src_atom  
+            if _is_polar_atom(non_water_atom):  
+                return True  
+          
+        # 2. 检查是否可能通过水分子桥接  
+        # 这需要更复杂的分子环境分析，这里提供简化版本  
+        if _is_polar_atom(src_atom) and _is_polar_atom(tgt_atom):  
+            # 如果两个都是极性原子且距离适中，可能存在水桥  
+            if config.WATER_BRIDGE_MINDIST * 2 <= distance <= config.WATER_BRIDGE_MAXDIST * 2:  
+                # 进一步检查分子中是否有水分子  
+                if _has_nearby_water(src_atom, tgt_atom, molecule):  
+                    return True  
+          
+        return False  
+          
+    except Exception as e:  
+        # 如果检测失败，返回False  
+        return False  
+  
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./project_context_summary.txt
+SIZE: 114755 bytes
+TYPE: ./project_context_summary.txt: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+===== 项目文件汇总 (生成时间: Fri Nov 21 20:58:11 CST 2025) =====
+工作目录: /es01/paratera/sce0413/czn/preprocess_pkl
+
+------------------------------------------------------------
+FILE: ./.git/COMMIT_EDITMSG
+SIZE: 7 bytes
+TYPE: ./.git/COMMIT_EDITMSG: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+finish
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/HEAD
+SIZE: 21 bytes
+TYPE: ./.git/HEAD: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+ref: refs/heads/main
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/config
+SIZE: 218 bytes
+TYPE: ./.git/config: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "preprocess"]
+	url = https://github.com/Caozhinan/Preprocess_pkl.git
+	fetch = +refs/heads/*:refs/remotes/preprocess/*
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/description
+SIZE: 73 bytes
+TYPE: ./.git/description: ASCII text
+
+----- BEGIN CONTENT (first 100 lines) -----
+Unnamed repository; edit this file 'description' to name the repository.
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./.git/index
+SIZE: 32374 bytes
+TYPE: ./.git/index: Git index, version 2, 260 entries
+
+[二进制或非文本文件，内容略过]
+
+------------------------------------------------------------
+FILE: ./README.md
+SIZE: 3431 bytes
+TYPE: ./README.md: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+# __AffinSculptor 预处理脚本使用指南__
+
+## 概述 
+preprocess.sh 是一个自动化脚本，用于批量处理蛋白质-配体复合物数据，生成包含 MaSIF 表面指纹的整合特征文件。
+
+## 前置要求 
+环境配置：确保已安装所需的 Python 环境和依赖包
+脚本权限：给脚本添加执行权限
+chmod +x preprocess.sh
+## 输入格式 
+脚本需要一个 CSV 文件作为输入，格式如下：
+receptor,ligand,name,pk,rmsd  
+/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/ligand.sdf,6uux-QHM,6.63,1.25  
+/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/ligand.sdf,1abc-XYZ,7.2,0.8
+CSV 字段说明 
+receptor: 蛋白质 PDB 文件的绝对路径
+ligand: 配体 SDF 文件的绝对路径
+name: 复合物名称标识符
+pk: pK 值（数值）
+rmsd: RMSD 值（数值）
+使用方法 
+基本调用 
+./preprocess.sh input_data.csv
+## 完整示例 
+### 1. 准备输入 CSV 文件  
+cat > my_complexes.csv << EOF  
+receptor,ligand,name,pk,rmsd  
+/path/to/complex1/protein.pdb,/path/to/complex1/ligand.sdf,complex1,6.5,1.2  
+/path/to/complex2/protein.pdb,/path/to/complex2/ligand.sdf,complex2,7.1,0.9  
+EOF  
+  
+### 2. 运行脚本  
+./preprocess.sh my_complexes.csv
+处理流程 
+脚本会依次执行以下步骤：
+
+Step 1: 调用 custom_input.py 进行预处理，生成基础 PKL 文件
+Step 2: 调用 meshfeatureGen.py 生成网格和表面特征
+Step 3: 调用 feature_precompute.py 进行特征预计算
+Step 4: 调用 fingerprint_gen.py 生成 MaSIF 指纹
+Step 5: 调用 merge_pkl.py 整合所有特征到最终 PKL 文件
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./read_pkl.ipynb
+SIZE: 13072 bytes
+TYPE: ./read_pkl.ipynb: UTF-8 Unicode text
+
+----- BEGIN CONTENT (first 100 lines) -----
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "adedeba7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "PKL文件路径: /xcfhome/jzlu/For/czn/misato/part4/3JQG_frame95/output/3jqg_frame95_features_with_masif.pkl\n",
+      "数据类型: <class 'list'>\n",
+      "================================================================================\n",
+      "包含 1 个复合物\n",
+      "\n",
+      "第一个复合物的键值对结构:\n",
+      "edge_index:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (2, 960)\n",
+      "  数据类型: int64\n",
+      "  前5个元素: [0 4 1 0 1]\n",
+      "\n",
+      "edge_feat:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (960, 4)\n",
+      "  数据类型: float32\n",
+      "  前5个元素: [1.       0.       0.       1.339217 1.      ]\n",
+      "\n",
+      "node_feat:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (93, 9)\n",
+      "  数据类型: int64\n",
+      "  前5个元素: [5 0 3 5 0]\n",
+      "\n",
+      "coords:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (93, 3)\n",
+      "  数据类型: float64\n",
+      "  前5个元素: [73.07  54.306 51.865 71.724 54.561]\n",
+      "\n",
+      "pro_name:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (544,)\n",
+      "  数据类型: <U3\n",
+      "  前5个元素: ['N' 'CA' 'C' 'O' 'CB']\n",
+      "\n",
+      "AA_name:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (544,)\n",
+      "  数据类型: <U3\n",
+      "  前5个元素: ['THR' 'THR' 'THR' 'THR' 'THR']\n",
+      "\n",
+      "smiles:\n",
+      "  类型: str\n",
+      "  值: COC1=CC=C(CSC2=NC(N)=NC(N)=C2)C=C1\n",
+      "\n",
+      "rmsd:\n",
+      "  类型: float\n",
+      "  值: 3.348\n",
+      "\n",
+      "gbscore:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (400,)\n",
+      "  数据类型: float64\n",
+      "  前5个元素: [ 55.74593417  60.98127269  52.50335771 193.64677401  27.23606257]\n",
+      "\n",
+      "pk:\n",
+      "  类型: float\n",
+      "  值: 4.74\n",
+      "\n",
+      "pdbid:\n",
+      "  类型: str\n",
+      "  值: 3jqg_frame95\n",
+      "\n",
+      "num_node:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (2,)\n",
+      "  数据类型: int64\n",
+      "  内容: [18 75]\n",
+      "\n",
+      "num_edge:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (5,)\n",
+      "  数据类型: int64\n",
+      "  内容: [ 38 128  12 132 650]\n",
+      "\n",
+      "lig_spatial_edge_index:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (2, 132)\n",
+      "  数据类型: int64\n",
+      "  前5个元素: [0 0 0 0 0]\n",
+      "\n",
+      "lig_spatial_edge_attr:\n",
+      "  类型: numpy.ndarray\n",
+      "  形状: (132, 4)\n",
+      "  数据类型: float32\n",
+      "  前5个元素: [5.        9.        0.        2.3561077 5.       ]\n",
+      "\n",
+----- END CONTENT -----
+
+------------------------------------------------------------
+FILE: ./test.sh
+SIZE: 1785 bytes
+TYPE: ./test.sh: Bourne-Again shell script, UTF-8 Unicode text executable
+
+----- BEGIN CONTENT (first 100 lines) -----
+#!/bin/bash
+# 收集当前目录和一层子目录中的文件信息与内容摘要
+
+# 输出汇总文件名
+OUTFILE="project_context_summary.txt"
+MAX_LINES=100   # 每个文本文件最多输出的行数
+
+# 清空或创建输出文件
+: > "$OUTFILE"
+
+echo "===== 项目文件汇总 (生成时间: $(date)) =====" >> "$OUTFILE"
+echo "工作目录: $(pwd)" >> "$OUTFILE"
+echo "" >> "$OUTFILE"
+
+# 列出当前目录和一层子目录中的所有文件（不再递归更深）
+# -maxdepth 2 表示当前目录(深度1) + 一层子目录(深度2)
+find . -maxdepth 2 -type f | sort | while read -r f; do
+    echo "------------------------------------------------------------" >> "$OUTFILE"
+    echo "FILE: $f" >> "$OUTFILE"
+
+    # 基本信息
+    if command -v stat >/dev/null 2>&1; then
+        # 尝试使用 stat 获取大小
+        filesize=$(stat -c%s "$f" 2>/dev/null || stat -f%z "$f" 2>/dev/null)
+        echo "SIZE: ${filesize} bytes" >> "$OUTFILE"
+    fi
+
+    if command -v file >/dev/null 2>&1; then
+        filetype=$(file "$f")
+        echo "TYPE: $filetype" >> "$OUTFILE"
+    fi
+
+    echo "" >> "$OUTFILE"
+
+    # 判断是不是文本文件（简单做法：file 输出包含 "text"）
+    if command -v file >/dev/null 2>&1 && file "$f" | grep -qi "text"; then
+        echo "----- BEGIN CONTENT (first ${MAX_LINES} lines) -----" >> "$OUTFILE"
+        # 使用 sed 只取前 MAX_LINES 行
+        sed -n "1,${MAX_LINES}p" "$f" >> "$OUTFILE"
+        echo "----- END CONTENT -----" >> "$OUTFILE"
+    else
+        echo "[二进制或非文本文件，内容略过]" >> "$OUTFILE"
+    fi
+
+    echo "" >> "$OUTFILE"
+done
+
+echo "===== 汇总结束 =====" >> "$OUTFILE"
+
+echo "已生成汇总文件: $OUTFILE"
+echo "你可以把该文件内容复制/上传给 AI，用于调试。"----- END CONTENT -----
+
+------------------------------------------------------------
+

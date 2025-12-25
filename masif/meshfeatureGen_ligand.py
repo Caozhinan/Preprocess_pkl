@@ -50,6 +50,7 @@ def compute_ligand_surface_features(
     from rdkit import Chem
     from rdkit.Chem import AllChem
 
+<<<<<<< HEAD
     mol = Chem.SDMolSupplier(sdf_file, removeHs=False)[0]
     if mol is None:
         print("错误: 无法读取SDF分子")
@@ -57,6 +58,21 @@ def compute_ligand_surface_features(
 
     writer = Chem.PDBWriter(ligand_pdb)
     writer.write(mol)
+=======
+    mol = Chem.SDMolSupplier(sdf_file, removeHs=False, sanitize=False)[0]  
+    if mol is None:  
+        print("错误: 无法读取SDF分子")  
+        return None  
+    
+    # 手动进行基本清理  
+    try:  
+        Chem.SanitizeMol(mol, Chem.SanitizeFlags.SANITIZE_ALL ^ Chem.SanitizeFlags.SANITIZE_PROPERTIES)  
+    except:  
+        print("警告: 分子清理失败，继续使用原始分子")  
+  
+    writer = Chem.PDBWriter(ligand_pdb)  
+    writer.write(mol)  
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     writer.close()
 
     # 3. 准备 PDB 文件（不额外质子化）

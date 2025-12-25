@@ -261,7 +261,7 @@ def pymol_pocket(receptor_file: Path, ligand_file: Path, pocket_file: Path):
     pymol.cmd.reinitialize()
     pymol.cmd.load(f"{str(receptor_file)}", "receptor")  # 加载受体
     pymol.cmd.load(f"{str(ligand_file)}", "ligand")  # 加载配体
-    pymol.cmd.select("pocket", "byres (receptor within 10 of ligand)")  # 选取距离配体 10 Å 内的受体残基
+    pymol.cmd.select("pocket", "byres (receptor within 5 of ligand)")  # 选取距离配体 6 Å 内的受体残基
     pymol.cmd.save(f"{str(pocket_file)}", "pocket and not sol.")  # 导出 pocket 区域
 
 # 用 openbabel 将 pdb 转 mol 格式

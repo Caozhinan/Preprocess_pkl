@@ -1,72 +1,73 @@
-# __AffinSculptor 预处理脚本使用指南__
+# Preprocess_pkl: Protein-Ligand Complex Feature Extraction Pipeline 
+A high-performance parallel preprocessing pipeline for extracting and integrating structural features from protein-ligand complexes, combining traditional molecular features with MaSIF surface fingerprints for machine learning applications.
 
-## 概述 
-preprocess.sh 是一个自动化脚本，用于批量处理蛋白质-配体复合物数据，生成包含 MaSIF 表面指纹的整合特征文件。
+## Overview 
+This repository implements a comprehensive preprocessing pipeline that transforms protein-ligand complexes into feature-rich PKL files suitable for deep learning models. The pipeline integrates molecular graph features with MaSIF (Machine Learning for Structural Interaction Fingerprinting) surface descriptors through a multi-step parallel processing workflow .
 
-## 前置要求 
-环境配置：确保已安装所需的 Python 环境和依赖包
-脚本权限：给脚本添加执行权限
-chmod +x preprocess.sh
-## 输入格式 
-脚本需要一个 CSV 文件作为输入，格式如下：
-receptor,ligand,name,pk,rmsd  
-/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/6uux-QHM/ligand.sdf,6uux-QHM,6.63,1.25  
-/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/protein.pdb,/xcfhome/zncao02/dataset_bap/test_set/custom/1abc-XYZ/ligand.sdf,1abc-XYZ,7.2,0.8
-CSV 字段说明 
-receptor: 蛋白质 PDB 文件的绝对路径
-ligand: 配体 SDF 文件的绝对路径
-name: 复合物名称标识符
-pk: pK 值（数值）
-rmsd: RMSD 值（数值）
-使用方法 
-基本调用 
-./preprocess.sh input_data.csv
-## 完整示例 
-### 1. 准备输入 CSV 文件  
-cat > my_complexes.csv << EOF  
-receptor,ligand,name,pk,rmsd  
-/path/to/complex1/protein.pdb,/path/to/complex1/ligand.sdf,complex1,6.5,1.2  
-/path/to/complex2/protein.pdb,/path/to/complex2/ligand.sdf,complex2,7.1,0.9  
-EOF  
+## Key Features 
+Parallel Processing: Utilizes GNU Parallel for efficient multi-core processing of large datasets
+Integrated Features: Combines traditional molecular features with MaSIF surface fingerprints
+Robust Error Handling: Continues processing on individual failures with comprehensive logging
+Resource Isolation: Each worker uses isolated temporary directories to prevent conflicts
+Flexible Input: Supports both PDB and SDF ligand formats custom_input.py:35-56
+Pipeline Architecture 
+The processing pipeline consists of four main steps:
+
+
+
+
+
+
+
+### Step 1: Base Feature Extraction 
+Generates molecular graph features using custom_input.py, including coordinates, node features, edge indices, and chemical properties .
+
+### Step 2: Surface Mesh Generation 
+Creates surface meshes for both ligand and pocket using MSMS algorithm with configurable density and resolution parameters .
+
+### Step 3: MaSIF Feature Computation 
+Computes geometric and chemical surface features using MaSIF's precomputation pipeline with configurable distance and shape parameters .
+
+### Step 4: Feature Integration 
+Merges base molecular features with MaSIF surface descriptors into unified PKL files .
+
+Installation 
+Prerequisites 
+Linux environment with GNU Parallel
+Conda environment with required packages
+Python 3.7+ with scientific computing libraries
+Environment Setup 
+# Activate conda environment (adjust path as needed)  
+conda activate /path/to/your/conda_env/affincraft
+Usage 
+Basic Usage 
+./update_preprocess.sh <csv_file> [num_cores] [log_dir]
+Parameters 
+csv_file: Path to CSV file with format receptor,ligand,name,pk,rmsd
+num_cores: Number of parallel cores (default: 1)
+log_dir: Custom log directory (default: ./logs/<csv_name>)
+Example 
+## Process dataset using 8 cores  
+./update_preprocess.sh complexes.csv 8 ./processing_logs  
   
-### 2. 运行脚本  
-./preprocess.sh my_complexes.csv
-处理流程 
-脚本会依次执行以下步骤：
+## Single-core processing with default logging  
+./update_preprocess.sh complexes.csv
+Input Format 
+The CSV file should contain the following columns:
 
-Step 1: 调用 custom_input.py 进行预处理，生成基础 PKL 文件
-Step 2: 调用 meshfeatureGen.py 生成网格和表面特征
-Step 3: 调用 feature_precompute.py 进行特征预计算
-Step 4: 调用 fingerprint_gen.py 生成 MaSIF 指纹
-Step 5: 调用 merge_pkl.py 整合所有特征到最终 PKL 文件
-输出结果 
-对于每个复合物，脚本会在相应目录下创建 output 文件夹，包含：
+receptor,ligand,name,pk,rmsd  
+/path/to/receptor.pdb,/path/to/ligand.sdf,complex_name,1.5,0.8  
+Output Structure 
+For each complex, the pipeline generates:
 
-/path/to/complex/output/  
-├── complex.pdb                    # 预处理后的复合物结构  
-├── surfaces/                      # 表面网格文件  
-├── precomputed/                   # 预计算特征  
-├── descriptors/                   # MaSIF 指纹  
-├── original_data.pkl              # 原始图数据  
-└── original_data_with_masif.pkl   # 整合 MaSIF 特征的最终文件  
+{name}_features.pkl: Base molecular features
+{name}_features_with_masif.pkl: Integrated features with MaSIF descriptors
+Intermediate files are automatically cleaned up after successful processing .
 
-## 错误处理 
-如果某个复合物处理失败，脚本会继续处理下一个
-每个步骤都有错误检查，失败时会显示具体错误信息
-处理完成后会显示总体处理结果
-## 注意事项 
-路径要求：CSV 中的文件路径必须是绝对路径
-文件存在性：确保所有输入的 PDB 和 SDF 文件都存在
-磁盘空间：每个复合物会生成较多中间文件，确保有足够磁盘空间
-处理时间：MaSIF 指纹生成可能需要较长时间，特别是对于大型复合物
-## 故障排除 
-常见错误 
-权限错误：确保脚本有执行权限
-路径错误：检查 CSV 中的文件路径是否正确
-依赖缺失：确保所有 Python 脚本都已正确配置命令行参数支持
-调试模式 
-可以手动执行单个步骤来调试问题：
+Logging and Monitoring 
+The pipeline provides comprehensive logging:
 
+<<<<<<< HEAD
 ## 测试单个复合物的处理  
 python /xcfhome/zncao02/AffinSculptor/preprocess/custom_input.py \\  
     --receptor /path/to/protein.pdb \\  
@@ -101,3 +102,13 @@ batch_preprocess_surface_features_full.sh	完整批量处理	四步流程，多�
 - output/precomputed/ligand/all_features.npz - 小分子5维特征 (184×60×5)
 - output/precomputed/pocket/all_features.npz - 蛋白质口袋5维特征 (1759×80×5)
 - output/{name}_features_with_masif.pkl - 合并后的完整特征文件
+=======
+parallel.log: GNU Parallel job tracking
+output_success.log: Success messages and progress
+output_fail.log: Error messages and failures
+Performance Considerations 
+Memory: Each worker typically requires 2-4 GB RAM
+Disk: Temporary files during processing (~500-1000 MB per complex)
+CPU: Steps 3-4 are CPU-intensive; Steps 1-2 are I/O-bound
+Recommended Cores: Use min(CPU_CORES - 2, MEMORY_GB / 4) for optimal performance
+>>>>>>> 4f9f0f7 (ppi_to_be_done)

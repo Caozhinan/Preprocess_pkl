@@ -206,56 +206,51 @@ def fix_atom_names(mol2_path):
     with open(mol2_path, 'w') as f:
         f.write('\n'.join(new_lines) + '\n')
     # print(f"[OK] Atom names fixed in {mol2_path}")
-
-def extract_ligand(ligand_sdf_file="ligand.sdf"):  
-    """  
-    直接从SDF文件中提取配体分子  
-  
-    Args:  
-        ligand_sdf_file: 配体SDF文件路径 (默认: "ligand.sdf")  
-  
-    Returns:  
-        RDKit分子对象，如果失败则返回None  
-    """  
-  
-    # 检查SDF文件是否存在  
-    if not os.path.exists(ligand_sdf_file):  
-        print(f"DEBUG: ERROR - SDF file does not exist: {ligand_sdf_file}")  
-        return None  
-  
-    # print(f"DEBUG: Reading ligand from SDF file: {ligand_sdf_file}")  
-  
-    try:  
-        # 直接从SDF文件读取分子  
-        rdmol = Chem.MolFromMolFile(ligand_sdf_file, sanitize=True, removeHs=False)  
-  
+    
+def extract_ligand(ligand_sdf_file="ligand.sdf"):    
+    """    
+    直接从SDF文件中提取配体分子    
+    
+    Args:    
+        ligand_sdf_file: 配体SDF文件路径 (默认: "ligand.sdf")    
+    
+    Returns:    
+        RDKit分子对象，如果失败则返回None    
+    """    
+    
+    # 检查SDF文件是否存在    
+    if not os.path.exists(ligand_sdf_file):    
+        print(f"DEBUG: ERROR - SDF file does not exist: {ligand_sdf_file}")    
+        return None    
+    
+    try:    
+        # 修改：使用更宽松的参数读取分子  
+        rdmol = Chem.MolFromMolFile(ligand_sdf_file, sanitize=False, removeHs=False)    
+          
         if rdmol is not None:  
-        # 为原子添加PDB残基信息，使用与MSMS输出匹配的命名  
-            element_counts = {}  
-
-            for i, atom in enumerate(rdmol.GetAtoms()):  
-                info = Chem.AtomPDBResidueInfo()  
-
-                # 使用简单的元素符号作为原子名称  
-                element = atom.GetSymbol()  
-                if element not in element_counts:  
-                    element_counts[element] = 0  
-                element_counts[element] += 1  
-
-                # 第一个原子使用纯元素符号，后续添加数字  
-                if element_counts[element] == 1:  
-                    atom_name = element  # 'C', 'N', 'O' 等  
-                else:  
-                    atom_name = f"{element}{element_counts[element]}"  # 'C2', 'N2' 等  
-
-                info.SetName(atom_name)  
-                info.SetResidueName("UNK")  
-                info.SetResidueNumber(1)  
-                info.SetChainId("X")  
-                atom.SetPDBResidueInfo(info)  
-      
-        return rdmol  
-  
-    except Exception as e:  
-        print(f"DEBUG: Exception during SDF processing: {e}")  
+            # 手动进行基本的分子清理，但跳过价态检查  
+            Chem.SanitizeMol(rdmol, Chem.SanitizeFlags.SANITIZE_ALL ^ Chem.SanitizeFlags.SANITIZE_PROPERTIES)  
+              
+            # 为原子添加PDB残基信息  
+            element_counts = {}    
+            for i, atom in enumerate(rdmol.GetAtoms()):    
+                info = Chem.AtomPDBResidueInfo()    
+                element = atom.GetSymbol()    
+                if element not in element_counts:    
+                    element_counts[element] = 0    
+                element_counts[element] += 1    
+                if element_counts[element] == 1:    
+                    atom_name = element    
+                else:    
+                    atom_name = f"{element}{element_counts[element]}"    
+                info.SetName(atom_name)    
+                info.SetResidueName("UNK")    
+                info.SetResidueNumber(1)    
+                info.SetChainId("X")    
+                atom.SetPDBResidueInfo(info)    
+        
+        return rdmol    
+    
+    except Exception as e:    
+        print(f"DEBUG: Exception during SDF processing: {e}")    
         return None

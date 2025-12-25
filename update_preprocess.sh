@@ -3,19 +3,39 @@
 # conda activate /es01/paratera/sce0413/czn/conda_env/affincraft
 
 if [ $# -lt 1 ]; then
+<<<<<<< HEAD
     echo "Usage: $0 <csv_file> [num_cores]"
+=======
+    echo "Usage: $0 <csv_file> [num_cores] [log_dir]"
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     echo "CSV format: receptor,ligand,name,pk,rmsd"
     exit 1
 fi
 
 CSV_FILE="$1"
 NUM_CORES="${2:-1}"
+<<<<<<< HEAD
+=======
+LOG_DIR_ARG="${3:-}"
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 
 if [ ! -f "$CSV_FILE" ]; then
     echo "Error: CSV file $CSV_FILE not found"
     exit 1
 fi
 
+<<<<<<< HEAD
+=======
+# -------- log dir: now configurable by argument --------
+if [ -n "$LOG_DIR_ARG" ]; then
+    LOG_DIR="$LOG_DIR_ARG"
+else
+    # default if not provided (you can change this default)
+    LOG_DIR="./logs/$(basename "$CSV_FILE" .csv)"
+fi
+mkdir -p "$LOG_DIR"
+
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 process_one_complex() {
     local receptor="$1"
     local ligand="$2"
@@ -113,7 +133,11 @@ process_one_complex() {
         --ply_file "$ligand_ply" \
         --output_dir "$output_dir" \
         --max_distance 5.0 \
+<<<<<<< HEAD
         --max_shape_size 60 < /dev/null
+=======
+        --max_shape_size 40 < /dev/null
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     if [ $? -ne 0 ]; then
         echo "Error in feature_precompute_ligand.py for $name"
         return 1
@@ -132,7 +156,11 @@ process_one_complex() {
         --ply_file "$pocket_ply" \
         --output_dir "$output_dir" \
         --max_distance 6.0 \
+<<<<<<< HEAD
         --max_shape_size 60 < /dev/null
+=======
+        --max_shape_size 40 < /dev/null
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     if [ $? -ne 0 ]; then
         echo "Error in feature_precompute_pocket.py for $name"
         return 1
@@ -174,9 +202,12 @@ process_one_complex() {
 
 export -f process_one_complex
 
+<<<<<<< HEAD
 LOG_DIR="/es01/paratera/sce0413/czn/log_update/$(basename "$CSV_FILE" .csv)"
 mkdir -p "$LOG_DIR"
 
+=======
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 tail -n +2 "$CSV_FILE" | \
     awk -F',' '{
         gsub(/^ +| +$/, "", $1);

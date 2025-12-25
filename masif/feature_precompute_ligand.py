@@ -114,8 +114,13 @@ if __name__ == "__main__":
         max_shape_size=args.max_shape_size
     )
 
+<<<<<<< HEAD
     elapsed = time.time() - start_time
     print(f"总耗时: {elapsed:.2f} 秒")
+=======
+    # elapsed = time.time() - start_time
+    # print(f"总耗时: {elapsed:.2f} 秒")
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 
     if features is not None:
         print("小分子特征预计算成功!")

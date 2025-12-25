@@ -73,7 +73,7 @@ def analyze_plip_interactions(protein_file, ligand_file):
     try:  
         my_mol = PDBComplex()  
         my_mol.load_pdb(str(complex_file))
-        print(f"DEBUG: 识别出的配体数量: {len(my_mol.ligands)}")  
+        # print(f"DEBUG: 识别出的配体数量: {len(my_mol.ligands)}")  
         # for i, ligand in enumerate(my_mol.ligands):  
         #     print(f"DEBUG: 配体 {i+1}: {ligand.hetid}, 链: {ligand.chain}, 位置: {ligand.position}")  
             # print(f"DEBUG: 配体类型: {ligand.type}, 长名称: {ligand.longname}")  
@@ -472,7 +472,7 @@ def classify_protein_spatial_edges(pro_sei, pro_sea, pro_coord, protein_file,
         # print(f"  匹配失败: {failed_matches}/{total_edges} ({failed_matches/total_edges*100:.1f}%)")  
         # print(f"  检测到特定相互作用: {interaction_detected}/{successful_matches} ({interaction_detected/successful_matches*100:.1f}% of successful matches)")  
           
-        print(f"[classify_protein_spatial_edges] total big loop time: {time.perf_counter() - t_big_loop:.3f}s")  
+        # print(f"[classify_protein_spatial_edges] total big loop time: {time.perf_counter() - t_big_loop:.3f}s")  
         classified_edge_attr = np.array(classified_edge_attr, dtype=np.float32)  
           
     except Exception as e:  
@@ -901,18 +901,3 @@ def GB_score(lig_info: dict, pro_info: dict) -> np.ndarray:
 
     return fp.flatten()
 
-# def RF_score(lig_info: dict, pro_info: dict):
-#     # 生成RFScore特征（配体-蛋白原子对12A内原子对数，100维）
-#     LIG_TYPES = ["C", "N", "O", "F", "P", "S", "Cl", "Br", "I"]
-#     PRO_TYPES = ["C", "N", "O", "F", "P", "S", "Cl", "Br", "I"]
-#     distmap = cdist(lig_info['coord'], pro_info['coord'])
-#     fp = np.zeros([10, 10])
-#     for i, el in enumerate(LIG_TYPES):
-#         lmask = lig_info['elem'] == el
-#         if lmask.sum() < 1: continue
-#         for j, ep in enumerate(PRO_TYPES):
-#             pmask = pro_info['elem'] == ep
-#             d = distmap[lmask][:, pmask]
-#             v = d[d < 12].shape[0]
-#             fp[i, j] = v
-#     return fp.flatten()

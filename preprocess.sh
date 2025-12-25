@@ -1,4 +1,5 @@
 #!/bin/bash
+<<<<<<< HEAD
 # source /es01/paratera/parasoft/module.sh
 # module load mambaforge/24.11.0-1-hxl
 source /es01/paratera/parasoft/soft/mambaforge/24.11.0-1/etc/profile.d/conda.sh
@@ -7,6 +8,8 @@ source /es01/paratera/parasoft/soft/mambaforge/24.11.0-1/etc/profile.d/conda.sh
 # 激活环境
 conda activate /es01/paratera/sce0413/czn/conda_env/affincraft
 # which python
+=======
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <csv_file> [num_cores]"
@@ -15,7 +18,11 @@ if [ $# -lt 1 ]; then
 fi
 
 CSV_FILE="$1"
+<<<<<<< HEAD
 NUM_CORES="${2:-1}"
+=======
+NUM_CORES="$2"
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 
 if [ ! -f "$CSV_FILE" ]; then
     echo "Error: CSV file $CSV_FILE not found"
@@ -61,7 +68,11 @@ process_one_complex() {
 
     echo "Step 1: Running custom_input.py..."
     TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+<<<<<<< HEAD
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/preprocess/custom_input.py \
+=======
+    python3 /xcfhome/zncao02/preprocess_pkl/preprocess/custom_input.py \
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
         "$temp_csv" \
         "$pkl_output" < /dev/null
     if [ $? -ne 0 ]; then
@@ -89,7 +100,11 @@ process_one_complex() {
 
     echo "Step 2: Running meshfeatureGen.py..."
     TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+<<<<<<< HEAD
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/masif/meshfeatureGen.py \
+=======
+    python3 /xcfhome/zncao02/preprocess_pkl/masif/meshfeatureGen.py \
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
         --pdb_file "$complex_pdb" \
         --chain_id "$protein_chain" \
         --ligand_code "UNK" \
@@ -112,7 +127,11 @@ process_one_complex() {
 
     echo "Step 3: Running feature_precompute.py..."
     TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+<<<<<<< HEAD
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/masif/feature_precompute.py \
+=======
+    python3 /xcfhome/zncao02/preprocess_pkl/masif/feature_precompute.py \
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
         --ply_file "$ply_file" \
         --output_dir "$output_dir" \
         --masif_app "masif_site" < /dev/null
@@ -128,11 +147,19 @@ process_one_complex() {
 
     echo "Step 4: Running fingerprint_gen.py..."
     TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+<<<<<<< HEAD
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/masif/fingerprint_gen.py \
         --precomputed_dir "$precomputed_dir" \
         --output_dir "$output_dir" \
         --ppi_pair_id "$ppi_pair_id" \
         --custom_params_file "/es01/paratera/sce0413/czn/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/custom_params.py" < /dev/null
+=======
+    python3 /xcfhome/zncao02/preprocess_pkl/masif/fingerprint_gen.py \
+        --precomputed_dir "$precomputed_dir" \
+        --output_dir "$output_dir" \
+        --ppi_pair_id "$ppi_pair_id" \
+        --custom_params_file "/xcfhome/zncao02/preprocess_pkl/masif/data/masif_ppi_search/nn_models/sc05/all_feat/custom_params.py" < /dev/null
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
     if [ $? -ne 0 ]; then
         echo "Error in fingerprint_gen.py for $name"
         return 1
@@ -142,7 +169,11 @@ process_one_complex() {
     descriptors_dir="$output_dir/descriptors/complex_${protein_chain}"
 
     TMPDIR="$PROCESS_TMP_DIR" MASIF_TMP_DIR="$PROCESS_TMP_DIR" \
+<<<<<<< HEAD
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/preprocess/merge_pkl.py \
+=======
+    python3 /xcfhome/zncao02/preprocess_pkl/preprocess/merge_pkl.py \
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
         --pkl_file "$pkl_output" \
         --descriptors_dir "$descriptors_dir" \
         --output_file "$output_dir/${name}_features_with_masif.pkl" < /dev/null
@@ -159,7 +190,11 @@ export -f process_one_complex
 export -f detect_protein_chain
 
 # 创建日志文件夹
+<<<<<<< HEAD
 LOG_DIR="/es01/paratera/sce0413/czn/preprocess_pkl/log-part4/$(basename "$CSV_FILE" .csv)"
+=======
+LOG_DIR="/xcfhome/zncao02/preprocess_pkl/logs/logs_4-2-part2"
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
 mkdir -p "$LOG_DIR"
 
 # 正确分隔符传递到parallel（tab分隔，并去掉空格）
@@ -187,11 +222,19 @@ if [ $success_count -gt 0 ]; then
     echo "Starting cleanup and merge process..."
 
     # 创建合并输出目录
+<<<<<<< HEAD
     MERGE_OUTPUT_DIR="/es01/paratera/sce0413/czn/preprocess_pkl/merged_results4/$(basename "$CSV_FILE" .csv)"
     mkdir -p "$MERGE_OUTPUT_DIR"
 
     # 运行清理和合并脚本（注意：反斜杠后不能有空格）
     python3 /es01/paratera/sce0413/czn/preprocess_pkl/preprocess/merge_all_pkl.py \
+=======
+    MERGE_OUTPUT_DIR="/xcfhome/zncao02/preprocess_pkl/merged_results/"
+    mkdir -p "$MERGE_OUTPUT_DIR"
+
+    # 运行清理和合并脚本（注意：反斜杠后不能有空格）
+    python3 /xcfhome/zncao02/preprocess_pkl/preprocess/merge_all_pkl.py \
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
         --csv_file "$CSV_FILE" \
         --output_dir "$MERGE_OUTPUT_DIR"
 

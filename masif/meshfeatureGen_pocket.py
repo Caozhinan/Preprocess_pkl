@@ -137,5 +137,10 @@ if __name__ == "__main__":
         output_dir=args.output_dir
     )
 
+<<<<<<< HEAD
     elapsed = time.time() - start_time
     print(f"总耗时: {elapsed:.2f} 秒")
+=======
+    # elapsed = time.time() - start_time
+    # print(f"总耗时: {elapsed:.2f} 秒")
+>>>>>>> 4f9f0f7 (ppi_to_be_done)
