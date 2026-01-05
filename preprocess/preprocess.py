@@ -307,27 +307,6 @@ def remove_duplicated_edges(ei: np.ndarray, ea: np.ndarray, ref_ei: np.ndarray):
     ea_n = ea[mask]
     return ei_n, ea_n
 
-# def gen_feature(ligand: Chem.Mol, pocket: Chem.Mol, pdbid: str):  
-#     ligand_dict = mol2graph_ligand(ligand)  # 使用小分子版本  
-#     pocket_dict = mol2graph_protein_from_pdb(pocket)  # 使用蛋白质版本  
-      
-#     ligand_coords, ligand_features, ligand_edge_index, ligand_edge_attr = ligand_dict['coords'], ligand_dict[  
-#         'node_feat'], ligand_dict['edge_index'], ligand_dict['edge_feat']  
-#     pocket_coords, pocket_features, pocket_edge_index, pocket_edge_attr = pocket_dict['coords'], pocket_dict[  
-#         'node_feat'], pocket_dict['edge_index'], pocket_dict['edge_feat']  
-  
-#     # 形状检查  
-#     if not (dim2(ligand_coords) and dim2(ligand_features) and dim2(ligand_edge_index) and dim2(ligand_edge_attr)):  
-#         raise RuntimeError(f"Ligand feature shape error")  
-#     if not (dim2(pocket_coords) and dim2(pocket_features) and dim2(pocket_edge_index) and dim2(pocket_edge_attr)):  
-#         raise RuntimeError(f"Protein feature shape error")  
-  
-#     return {'lc': ligand_coords, 'lf': ligand_features, 'lei': ligand_edge_index, 'lea': ligand_edge_attr,  
-#             'pc': pocket_coords, 'pf': pocket_features, 'pei': pocket_edge_index, 'pea': pocket_edge_attr,  
-#             'pdbid': pdbid,  
-#             'ligand_smiles': ligand_dict['smiles'],  # 新增  
-#             'protein_atom_names': pocket_dict['pro_name'],  # 新增  
-#             'protein_aa_names': pocket_dict['AA_name']}  # 新增
 
 def gen_spatial_edge(dm: np.ndarray, spatial_cutoff: float = 5):  
     # 生成所有空间距离<cutoff的节点对，并赋空间边特征  
@@ -348,43 +327,81 @@ def gen_spatial_edge(dm: np.ndarray, spatial_cutoff: float = 5):
     edge_attr = np.array(edge_attr, dtype=np.float32)  # 改为float32  
     return edge_index, edge_attr
 
-def gen_ligpro_edge(dm: np.ndarray, pocket_cutoff: float, plip_interactions=None,   
+def gen_ligpro_edge(dm: np.ndarray, pocket_cutoff: float, plip_interactions=None,     
                    lig_coord=None, pro_coord=None, lig_atom_id_map=None, pro_atom_id_map=None):  
-    # print(f"DEBUG: plip_interactions = {plip_interactions}")    
-    # print(f"DEBUG: plip_interactions is None = {plip_interactions is None}")    
-        
-    # if plip_interactions:    
-    #     print(f"DEBUG: Found {len(plip_interactions)} binding sites")    
-    #     for bsid, interactions in plip_interactions.items():    
-    #         print(f"DEBUG: Binding site {bsid} has interactions: {list(interactions.keys())}")    
+    """  
+    生成配体-蛋白之间的边，混合策略：
+    1. 优先生成 PLIP 相互作用边 (Type 5)
+    2. 对剩余距离近的原子对生成空间边 (Type 4)
+    """  
+    lig_num_atom, pro_num_atom = dm.shape  
+    all_edge_list = []  
+    all_edge_attr_list = []  
       
-    # 生成配体-蛋白之间的边，包括PLIP相互作用和空间边    
-    lig_num_atom, pro_num_atom = dm.shape    
-        
-    # 如果有PLIP分析结果，使用convert_plip_to_edges函数    
-    if plip_interactions and lig_coord is not None and pro_coord is not None:    
-        return convert_plip_to_edges(  
+    # --- 1. 生成 PLIP 相互作用边 (优先级最高) ---
+    if plip_interactions and lig_coord is not None and pro_coord is not None:  
+        plip_ei, plip_ea = convert_plip_to_edges(  
             plip_interactions, lig_coord, pro_coord, lig_num_atom,  
-            lig_atom_id_map=lig_atom_id_map,   
-            pro_atom_id_map=pro_atom_id_map  
-        )    
+            lig_atom_id_map=lig_atom_id_map,     
+            pro_atom_id_map=pro_atom_id_map    
+        )  
         
-    # 否则生成普通空间边，但要包含距离特征    
-    lig_idx, pro_idx = np.where(dm <= pocket_cutoff)    
-    edge_list = []    
-    edge_attr_list = []    
+        # 确保有边生成
+        if plip_ei.shape[1] > 0:  
+            # 转置为 list of tuples: [(u, v), ...]
+            all_edge_list.extend(plip_ei.T.tolist())  
+            all_edge_attr_list.extend(plip_ea.tolist())  
+      
+    # --- 2. 生成所有距离近的空间边 (作为候选) ---
+    lig_idx, pro_idx = np.where(dm <= pocket_cutoff)  
+      
+    # 预先定义空间边的基础类型 [4, 0, 0]
+    # 注意：这里假设 SPATIAL_EDGE 是全局变量，例如 [4, 0, 0]
+    
+    for x, y in zip(lig_idx, pro_idx):  
+        distance = dm[x, y]  
+        # 构造特征 [4, 0, 0, distance]
+        edge_feature = SPATIAL_EDGE + [float(distance)]   
+          
+        # 添加双向边 (Ligand -> Protein) 和 (Protein -> Ligand)
+        # 注意：这里必须和 convert_plip_to_edges 的节点索引逻辑保持一致
+        # 通常 Ligand 索引是 0 ~ lig_n-1
+        # Protein 索引是 lig_n ~ lig_n + pro_n - 1
         
-    for x, y in zip(lig_idx, pro_idx):    
-        distance = dm[x, y]    
-        edge_feature = SPATIAL_EDGE + [distance]  # [4, 0, 0, distance]    
+        # L -> P
+        all_edge_list.append((x, y + lig_num_atom))
+        all_edge_attr_list.append(edge_feature)
+        
+        # P -> L
+        all_edge_list.append((y + lig_num_atom, x))
+        all_edge_attr_list.append(edge_feature)
+      
+    # --- 3. 去重逻辑 (核心) ---
+    # 逻辑：因为 PLIP 边在列表前面，所以 set 会先记录 PLIP 边。
+    # 当后续遍历到同坐标的空间边时，因为已在 set 中，会被忽略。
+    
+    if all_edge_list:  
+        edge_set = set()  
+        unique_edges = []  
+        unique_attrs = []  
+          
+        for edge, attr in zip(all_edge_list, all_edge_attr_list):  
+            # 将 list 转为 tuple 才能存入 set
+            edge_tuple = tuple(edge)  
             
-        # 双向边    
-        edge_list.extend([(x, y + lig_num_atom), (y + lig_num_atom, x)])    
-        edge_attr_list.extend([edge_feature, edge_feature])    
-        
-    edge_index = np.array(edge_list, dtype=np.int64).T if edge_list else np.empty((2, 0), dtype=np.int64)    
-    edge_attr = np.array(edge_attr_list, dtype=np.float32) if edge_attr_list else np.empty((0, 4), dtype=np.float32)    
-        
+            if edge_tuple not in edge_set:  
+                edge_set.add(edge_tuple)  
+                unique_edges.append(edge)  
+                unique_attrs.append(attr)  
+          
+        # 转换为 numpy 数组
+        edge_index = np.array(unique_edges, dtype=np.int64).T  
+        edge_attr = np.array(unique_attrs, dtype=np.float32)  
+    else:  
+        edge_index = np.empty((2, 0), dtype=np.int64)  
+        # 注意：这里的 4 要根据你的特征维度决定，如果是 [type, sub, sub, dist] 则是 4
+        edge_attr = np.empty((0, 4), dtype=np.float32)  
+          
     return edge_index, edge_attr
  
   
@@ -614,19 +631,6 @@ def classify_ligand_spatial_edges(lig_sei, lig_sea, lig_coord, ligand_file,
         
     return lig_sei, classified_edge_attr
 
-def find_closest_atom_by_coord(coord, molecule):  
-    """根据坐标找到最接近的原子"""  
-    min_dist = float('inf')  
-    closest_atom = None  
-      
-    for atom in molecule.atoms:  
-        atom_coord = np.array(atom.coords)  
-        dist = np.linalg.norm(np.array(coord) - atom_coord)  
-        if dist < min_dist:  
-            min_dist = dist  
-            closest_atom = AtomInfo(atom)  
-      
-    return closest_atom if min_dist < 2.0 else None  # 2Å阈值  
   
 def check_ring_interactions_improved(src_atom, tgt_atom, distance, rings, charged_groups):  
     """改进的环相互作用检测，使用PLIP的精细检测函数"""  
@@ -660,34 +664,34 @@ def check_ring_interactions_improved(src_atom, tgt_atom, distance, rings, charge
       
     return 'others'
 
-def set_ligand_spatial_edge_types(lig_sea):  
-    """  
-    将配体内部空间边的类型统一设置为OTHERS_EDGE  
+# def set_ligand_spatial_edge_types(lig_sea):  
+#     """  
+#     将配体内部空间边的类型统一设置为OTHERS_EDGE  
       
-    Args:  
-        lig_sea: 配体空间边属性  
+#     Args:  
+#         lig_sea: 配体空间边属性  
       
-    Returns:  
-        np.array: 更新后的边属性  
-    """  
-    if len(lig_sea) == 0:  
-        return lig_sea  
+#     Returns:  
+#         np.array: 更新后的边属性  
+#     """  
+#     if len(lig_sea) == 0:  
+#         return lig_sea  
       
-    # 为每条边设置OTHERS类型  
-    updated_edge_attr = []  
+#     # 为每条边设置OTHERS类型  
+#     updated_edge_attr = []  
       
-    for edge_attr in lig_sea:  
-        # 保留原有的距离信息（如果存在）  
-        if len(edge_attr) > 3:  
-            distance = edge_attr[3]  
-        else:  
-            distance = edge_attr[-1] if len(edge_attr) > 0 else 0.0  
+#     for edge_attr in lig_sea:  
+#         # 保留原有的距离信息（如果存在）  
+#         if len(edge_attr) > 3:  
+#             distance = edge_attr[3]  
+#         else:  
+#             distance = edge_attr[-1] if len(edge_attr) > 0 else 0.0  
           
-        # 创建新的边特征：OTHERS_EDGE + 距离  
-        new_edge_feature = OTHERS_EDGE + [distance]  
-        updated_edge_attr.append(new_edge_feature)  
+#         # 创建新的边特征：OTHERS_EDGE + 距离  
+#         new_edge_feature = OTHERS_EDGE + [distance]  
+#         updated_edge_attr.append(new_edge_feature)  
       
-    return np.array(updated_edge_attr, dtype=np.float32)
+#     return np.array(updated_edge_attr, dtype=np.float32)
 
 def gen_graph(ligand: tuple, pocket: tuple, name: str, protein_cutoff: float,     
               pocket_cutoff: float, spatial_cutoff: float, protein_file=None,     
