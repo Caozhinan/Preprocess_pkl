@@ -116,7 +116,7 @@ def parallel_helper(proteinpdb, ligand_file, name, pk, rmsd, protein_cutoff, poc
         'pk': pk, 'pdbid': name, 'num_node': comp_num_node, 'num_edge': comp_num_edge,
         'lig_spatial_edge_index': lig_sei,
         'lig_spatial_edge_attr': lig_sea,
-        'pro_spatial_edge_index': pro_sei + len(comp_feat) // 2,
+        'pro_spatial_edge_index': pro_sei + comp_num_node[0],  # 使用配体原子数作为偏移,
         'pro_spatial_edge_attr': pro_sea
     }
     
